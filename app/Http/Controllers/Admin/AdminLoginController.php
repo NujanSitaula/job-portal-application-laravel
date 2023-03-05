@@ -151,9 +151,9 @@ class AdminLoginController extends Controller
         $resetLink = url('admin/recoverPassword/'.$token.'/'.$request->email);
         $subject = 'One Time Password Confirmation';
         $message = $otp;
-        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message));
+        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.OTPemailTemplate'));
 
-        return redirect()->route('admin.enterOTPassword',$token)->with('success', 'Password reset link has been sent to your email');
+        return redirect()->route('admin.enterOTPassword',$token)->with('success', 'OTP Code has been sent to your email');
     }
 
     public function validateOTPasswordSubmit(Request $request)

@@ -37,12 +37,12 @@ style=" boprder-radius:15px; @import url(https://fonts.googleapis.com/css?family
 </tr>
 <tr>
 <td style="padding:0 35px;">
-  <h1 style="color:#27AF66;">JobScout - Reset Password</h1>
+  <h1 style="color:#27AF66;">JobScout - One Time Password</h1>
 <br>
 <p style="color:#455056; font-size:16px;line-height:24px; margin:0;">Hello! Admin.<br>
-You requested a password reset. Here is your reset link:</p>
+You requested a OTP. Here is your Code:</p>
 <br>
-  <a href="{!! $body !!}" style="text-decoration: none;"><table border="0" cellpadding="0" cellspacing="0">
+  <a style="text-decoration: none;"><table border="0" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
         <td align="center" style="padding-left:4px;padding-right:4px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
@@ -57,7 +57,7 @@ You requested a password reset. Here is your reset link:</p>
         <td valign="middle" align="center" bgcolor="#27AF66" class="button_pad" style="padding: 12px 40px;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #15181A;"><table border="0" cellpadding="0" cellspacing="0" valign="middle">
           <tbody>
             <tr>
-              <td valign="middle" align="center" bgcolor="#27AF66" style="-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #15181A;"><span class="bodytext2" style="color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 13px; font-weight: bold;">Reset Password</span></td>
+              <td valign="middle" align="center" bgcolor="#27AF66" style="-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #15181A;"><span class="bodytext2" style="color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 13px; font-weight: bold;">{!! $body !!}</span></td>
               <td class="pad-l4" style="padding-left: 4px" valign="middle"></td>
             </tr>
           </tbody>
@@ -77,8 +77,8 @@ You requested a password reset. Here is your reset link:</p>
 <br>
   <p style="line-height:24px;"></p>
 <p style="color:#455056; font-size:16px;line-height:24px; margin:0;">
-Unable to reset using the button above? Copy the link given bellow to your browser to reset your password. Or contact <a href="mailto:support@jobscout.co?subject=Password reset request" style="color:#455056;">support@jobscout.co</a></p>
-  <p style="color:#455056; font-size:16px;line-height:24px; margin:0;">{!! $body !!}</p>
+Unable to login using the code above? Copy the link given bellow to your browser to login using password. Or contact <a href="mailto:support@jobscout.co?subject=Password reset request" style="color:#455056;">support@jobscout.co</a></p>
+  <p style="color:#455056; font-size:16px;line-height:24px; margin:0;">{{ route('admin.login') }}</p>
 <br>
 </td>
 </tr>
