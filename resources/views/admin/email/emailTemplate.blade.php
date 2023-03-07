@@ -1,107 +1,271 @@
-
-<!doctype html>
-<html lang="en-US">
-
+<!DOCTYPE html>
+<html>
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Jobscout – Reset Password Request</title>
-<meta name="description" content="Reset Password Email Template.">
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <style type="text/css">
-a:hover {text-decoration: underline !important;}
-textarea:focus, input:focus{outline: none;}
+    /* FONTS */
+    @media screen {
+        @font-face {
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+        }
+        
+        @font-face {
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 700;
+          src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+        }
+        
+        @font-face {
+          font-family: 'Lato';
+          font-style: italic;
+          font-weight: 400;
+          src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+        }
+        
+        @font-face {
+          font-family: 'Lato';
+          font-style: italic;
+          font-weight: 700;
+          src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+        }
+    }
+    
+    /* CLIENT-SPECIFIC STYLES */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; }
+
+    /* RESET STYLES */
+    img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    table { border-collapse: collapse !important; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+
+    /* iOS BLUE LINKS */
+    a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+    
+    /* MOBILE STYLES */
+    @media screen and (max-width:600px){
+        h1 {
+            font-size: 32px !important;
+            line-height: 32px !important;
+        }
+    }
+
+    /* ANDROID CENTER FIX */
+    div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style>
 </head>
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
 
-<body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color:#F8F8FB;" leftmargin="0">
-<!--100% body table-->
-<table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#F8F8FB"
-style=" boprder-radius:15px; @import url(https://fonts.googleapis.com/css?family=Inter:300,400,600,700); font-family: 'Inter', sans-serif;">
-<tr>
-<td>
-<table style="background-color:#F8F8FB; max-width:670px;  margin:0 auto;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr>
-<td style="height:80px;">&nbsp;</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="height:40px;">&nbsp;</td>
-</tr>
-<tr>
-<td>
-<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style="max-width:670px;background:#fff; border-radius:10px; text-align:left;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
-<tr>
-<td style="height:40px;">&nbsp;</td>
-</tr>
-<tr>
-<td style="padding:0 35px;">
-  <h1 style="color:#27AF66;">JobScout - Reset Password</h1>
-<br>
-<p style="color:#455056; font-size:16px;line-height:24px; margin:0;">Hello! Admin.<br>
-You requested a password reset. Here is your reset link:</p>
-<br>
-  <a href="{!! $body !!}" style="text-decoration: none;"><table border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td align="center" style="padding-left:4px;padding-right:4px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-      <tr>
-        <td align="center" style="padding-left:2px;padding-right:2px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-      <tr>
-        <td align="center" style="padding-left:1px;padding-right:1px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-      <tr>
-        <td valign="middle" align="center" bgcolor="#27AF66" class="button_pad" style="padding: 12px 40px;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #15181A;"><table border="0" cellpadding="0" cellspacing="0" valign="middle">
-          <tbody>
+<!-- HIDDEN PREHEADER TEXT -->
+<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+   Let's Get You Back In!
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <!-- LOGO -->
+    <tr>
+        <td bgcolor="#66BB7F" align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
             <tr>
-              <td valign="middle" align="center" bgcolor="#27AF66" style="-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #15181A;"><span class="bodytext2" style="color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 13px; font-weight: bold;">Reset Password</span></td>
-              <td class="pad-l4" style="padding-left: 4px" valign="middle"></td>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+                <tr>
+                    <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                        <a href="http://litmus.com" target="_blank">
+                            <img alt="Logo" src="https://i.ibb.co/ngH1LVV/Copy-of-jobscout.png" width="100" style="display: block; width: 200px; max-width: 200px; min-width: 40px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
             </tr>
-          </tbody>
-        </table></td>
-      </tr>
-      <tr>
-        <td align="center" style="padding-left:1px;padding-right:1px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-      <tr>
-        <td align="center" style="padding-left:2px;padding-right:2px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-      <tr>
-        <td align="center" style="padding-left:4px;padding-right:4px;height:1px;line-height:1px;font-size:1px;"><div style="display:block;height:1px;background-color:#27AF66;line-height:1px;font-size:1px;"> </div></td>
-      </tr>
-    </tbody>
-  </table></a>
-<br>
-  <p style="line-height:24px;"></p>
-<p style="color:#455056; font-size:16px;line-height:24px; margin:0;">
-Unable to reset using the button above? Copy the link given bellow to your browser to reset your password. Or contact <a href="mailto:support@jobscout.co?subject=Password reset request" style="color:#455056;">support@jobscout.co</a></p>
-  <p style="color:#455056; font-size:16px;line-height:24px; margin:0;">{!! $body !!}</p>
-<br>
-</td>
-</tr>
-<tr>
-<td style="height:40px;">&nbsp;</td>
-</tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- HERO -->
+    <tr>
+        <td bgcolor="#66BB7F" align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+                <tr>
+                    <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                      <h1 style="font-size: 48px; font-weight: 400; margin: 0;">Trouble Logging In?</h1>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- COPY BLOCK -->
+    <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+              <!-- COPY -->
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;">We understand that forgetting your password can be frustrating, but don't worry - we're here to help!</p>
+                </td>
+              </tr>
+              <!-- COPY -->
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;">To get you back into your account on JobScout, please reset your password using the link and button below:</p>
+                </td>
+              </tr>
+              <!-- BULLETPROOF BUTTON -->
+              <tr>
+                <td bgcolor="#ffffff" align="left">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                              <td align="center" style="border-radius: 3px;" bgcolor="#66BB7F"><a href="{!! $body !!}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #66BB7F; display: inline-block;">Reset Password</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+               <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;">If you are unable to click the link or button above, please copy and paste the link below into your browser:</p>
+                  <p>{!! $body !!}<p>
+                </td>
+              </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- COPY CALLOUT -->
+    <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+                <!-- HEADLINE -->
+                <tr>
+                  <td bgcolor="#111111" align="left" style="padding: 40px 30px 20px 30px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                    <h2 style="font-size: 24px; font-weight: 400; margin: 0;">Not Your Request?</h2>
+                  </td>
+                </tr>
+                <!-- COPY -->
+                <tr>
+                  <td bgcolor="#111111" align="left" style="padding: 0px 30px 20px 30px; color: #aeaeae; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                    <p style="margin: 0;">If you did not initiate this request, please disregard this email. It's possible that someone else accidentally entered your email address or username when trying to reset their password.</p><br>
+                  </td>
+                </tr>
+                <!-- COPY -->
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- SUPPORT CALLOUT -->
+    <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+                <!-- HEADLINE -->
+                <tr>
+                  <td bgcolor="#D3F8ED" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                    <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?</h2>
+                    <p style="margin: 0;"><a href="mailto:support@jobscout.co" style="color: #0C6427;">We&rsquo;re here, ready to talk</a></p>
+                  </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+              <!-- NAVIGATION -->
+              <br>
+              <!-- PERMISSION REMINDER -->
+              <tr>
+                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                  <p style="margin: 0;">You received this email because you requested a password reset link. If it looks weird, <a href="https://jobscout.co" target="_blank" style="color: #111111; font-weight: 700;">view it in your browser</a>.</p>
+                </td>
+              </tr>
+              <!-- UNSUBSCRIBE -->
+              <tr>
+                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                  <p style="margin: 0;">If these emails get annoying, please feel free to <a href="http://jobscout.co" target="_blank" style="color: #111111; font-weight: 700;">unsubscribe</a>.</p>
+                </td>
+              </tr>
+              <!-- ADDRESS -->
+              <tr>
+                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                  <p style="margin: 0;">Buddha Marga, Kathmandu 44600, Nepal</p>
+                </td>
+              </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
 </table>
-</td>
-<tr>
-<td style="height:20px;">&nbsp;</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-<p style="font-size:14px; color:#C7CACD; line-height:18px; margin:0 0 0;">Copyright &copy; 2023 JobScout. All Rights Reserved.</p>
-</td>
-</tr>
-<tr>
-<td style="height:80px;">&nbsp;</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!--/100% body table-->
+    
 </body>
 </html>

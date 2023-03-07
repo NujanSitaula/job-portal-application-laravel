@@ -41,6 +41,10 @@
                             <div class="p-2">
 
                                 <form class="form-horizontal" method="post" action="{{ route('admin.validateOTPassword.submit') }}">
+                                    <div class="user-thumb text-center mb-4">
+                                        <img src="{{ asset('assets/images/users/'.$adminCheck->photo) }}" class="rounded-circle img-thumbnail avatar-md" alt="thumbnail">
+                                        <h5 class="font-size-15 mt-3">{{ $adminCheck->name }}</h5>
+                                    </div>
                                     @csrf
                                     <input type="hidden" name="token" value="{{ $token }}">
                                     @if (session()->get('tokenError'))
@@ -66,7 +70,7 @@
                                     </div>
                                     @endif
                                     <div class="form-group">
-                                        <label for="useremail">Email</label>
+                                        <label for="useremail">Enter One Time Password</label>
                                         <input type="text" name="otp" class="form-control @error('otp') is-invalid @enderror" id="useremail" placeholder="Enter OTP">
                                         @error('otp')
                                         <div class="invalid-feedback">
@@ -77,7 +81,7 @@
 
                                     <div class="form-group row mb-0">
                                         <div class="col-12 text-right">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Send Code</button>
+                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Validate Code</button>
                                         </div>
                                     </div>
                                     @endif

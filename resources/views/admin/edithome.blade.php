@@ -168,9 +168,10 @@
                           </div>
                           <div class="square-switch">
                             <label>Hide Top Categories Section</label><br>
-                            <input name="isShown" type="checkbox" @if( $pageHomeData->job_category_status == 'Hide') checked @endif id="isChecked" value="Hide" switch="primary"/>
+                            <input type="hidden" name="isShown" @if( $pageHomeData->job_category_status == 'Show') @endif id="isCheckedHidden" value="Show"> 
+                            <input name="isShown" type="checkbox" @if( $pageHomeData->job_category_status == 'Hide') checked @endif id="isChecked" switch="primary" value="Hide"/>
                             <label for="isChecked" data-on-label="On" data-off-label="Off"></label>
-                            <input type="hidden" name="isShown" @if( $pageHomeData->job_category_status == 'Show') disabled @endif id="isCheckedHidden" value="Show"> 
+                            
                           </div>
                         
                     </div>

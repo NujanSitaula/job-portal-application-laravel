@@ -108,7 +108,7 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.invalid')->with('tokenError', 'Invalid token or email');
         }
 
-        return view('admin.sosvalidate', compact('token'));
+        return view('admin.sosvalidate', compact('token', 'adminCheck'));
     }
 
     public function resetPasswordSubmit(Request $request)

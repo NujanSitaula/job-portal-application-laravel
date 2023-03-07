@@ -28,8 +28,8 @@
                         <div class="bg-login text-center">
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
-                                <h5 class="text-white font-size-20">Login Via OTP</h5>
-                                <p class="text-white-50 mb-0">Get Code With Email.</p>
+                                <h5 class="text-white font-size-20">Login Using OTP</h5>
+                                <p class="text-white-50 mb-0">Get Code Via Email.</p>
 
                                 <a href="index.html" class="logo logo-admin mt-4">
                                     <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="30">
@@ -65,8 +65,8 @@
                                     </div>
                                     @endif
                                     <div class="form-group">
-                                        <label for="useremail">Email</label>
-                                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="useremail" placeholder="Enter email">
+                                        <label for="useremail">Email Address</label>
+                                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="useremail" placeholder="Enter email address">
                                         @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}

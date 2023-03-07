@@ -41,7 +41,7 @@ class AdminHomeEditController extends Controller
             unlink(public_path('frontEndAssets/img/'.$HomeImageUpdate->image));
 
             $ext = $request->file('image')->extension();
-            $finalName = 'homepage'.'.'.$ext;
+            $finalName = 'homepage_'.time().'.'.$ext;
 
             $request->file('image')->move(public_path('frontEndAssets/img/'),$finalName);
 
