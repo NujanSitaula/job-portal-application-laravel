@@ -28,15 +28,34 @@
                     <h6 class="text-muted mb-0">Employer Portal</h6>
                     <h2 class="ft-bold">Sign In To An Account</h2>
                 </div>
-                <form class="border p-3 rounded">				
-                    <div class="form-group">
+                <form class="border p-3 rounded" method="POST" action="{{ route('employer.signin.submit') }}">
+                    @if (session()->get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-block-helper me-2"> </i> {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                @endif
+                    @csrf				
+                    <div class="form-group has-validation">
                         <label>User Name *</label>
-                        <input type="text" class="form-control" placeholder="Username*">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username*" value="{{ old('username') }}">
+                        @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group has-validation">
                         <label>Password *</label>
-                        <input type="password" class="form-control" placeholder="Password*">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password*">
+                        @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     
                     <div class="form-group">
@@ -56,7 +75,7 @@
                     </div>
                 </form>
                 <div class="mt-3 text-center">
-                    <p>Don't have an account? <a href="#">Sign Up</a></p>
+                    <p>Don't have an account? <a href="{{ route('employer.signup') }}">Sign Up</a></p>
                 </div>
             </div>
         </div>

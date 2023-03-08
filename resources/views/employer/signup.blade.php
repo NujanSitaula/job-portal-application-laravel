@@ -29,38 +29,74 @@
                     <h2 class="ft-bold">Register To An Account</h2>
                 </div>
                 <form class="border p-3 rounded" method="POST" action="{{ route('employer.signup.submit') }}">
-                    <div class="form-group">
+                    @csrf
+                    <div class="form-group has-validation">
                         <label>Company Name *</label>
-                        <input type="text" class="form-control" name="employer_name" placeholder="XYZ Company Pvt. Ltd.*">
+                        <input type="text" class="form-control @error('employer_name') is-invalid @enderror" name="employer_name" placeholder="XYZ Company Pvt. Ltd.*" value="{{ old('employer_name') }}">
+                        @error('employer_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>First Name *</label>
-                            <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" placeholder="First Name" value="{{ old('firstname') }}">
+                            @error('firstname')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Last Name *</label>
-                            <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}">
+                            @error('lastname')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-validation">
                         <label>Username *</label>
-                        <input type="text" class="form-control" name="username" placeholder="Username*">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username*" value="{{ old('username') }}">
+                        @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-validation">
                         <label>Work Email *</label>
-                        <input type="text" class="form-control" name="email" placeholder="Email Address*">
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address*" value="{{ old('email') }}">
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                     
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Password *</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password*">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password*">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Confirm Password *</label>
-                            <input type="password" class="form-control" name="re_password" placeholder="Confirm Password*">
+                            <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" placeholder="Confirm Password*">
+                            @error('confirm_password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                     </div>
                     
@@ -82,7 +118,7 @@
                     </div>
                 </form>
                 <div class="mt-3 text-center">
-                    <p>Already have an account? <a href="#">Sign In</a></p>
+                    <p>Already have an account? <a href="{{ route('employer.signin') }}">Sign In</a></p>
                 </div>
             </div>
             

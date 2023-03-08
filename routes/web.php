@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Frontend\SignupController;
 use App\Http\Controllers\Frontend\SigninController;
+use App\Http\Controllers\Employer\EmployerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,13 @@ Route::get('/post/{slug}', [PostController::class, 'postDetails'])->name('post')
 Route::get('admin/invalid', function () {
     return view('admin.linkexpired');
 })->name('admin.invalid');
+Route::get('/verify', function () {
+    return view('frontend.verify');
+})->name('email.verify');
+Route::get('/verified', function () {
+    return view('frontend.verified');
+})->name('email.verified');
+
 
 /*
  * Admin Routes
@@ -84,13 +92,23 @@ Route::middleware(['admin:admin'])->group(function () {
  * Employer Routes
  */
 
- Route::get('/employer/signin', [SigninController::class, 'index'])->name('employer.signup');
- Route::get('/employer/signup', [SignupController::class, 'index'])->name('employer.login');
+ Route::get('/employer/signin', [SigninController::class, 'index'])->name('employer.signin');
+ Route::get('/employer/signup', [SignupController::class, 'index'])->name('employer.signup');
  Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
 
- Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
- 
 
+
+ Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
+ Route::post('/employer/signinSubmit', [SigninController::class, 'signinSubmit'])->name('employer.signin.submit');
+ Route::get('/verify-email/{token}/{email}', [SignupController::class, 'verifyEmail'])->name('verify.email');
+ Route::get('/employer/logout', [SigninController::class, 'employerLogout'])->name('employer.logout');
+
+
+ Route::middleware(['employer:employer'])->group(function () {
+
+    Route::get('/employer/dashboard', [EmployerController::class, 'index'])->name('employer.dashboard');
+ 
+ });
 /*
  * Employee Routes
  */
@@ -98,3 +116,5 @@ Route::middleware(['admin:admin'])->group(function () {
  Route::get('/employee/signin', [SigninController::class, 'employee'])->name('employee.signup');
  Route::get('/employee/signup', [SignupController::class, 'employee'])->name('employee.login');
  Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
+
+ 

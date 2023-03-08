@@ -15,7 +15,7 @@ class Employer extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('employer.signup');
+            return route('employer.signin');
         }
     }
 }

@@ -86,7 +86,7 @@
 				</div>
 			</div>
             <!-- Start Navigation -->
-			<div class="header header-light dark-text">
+			<div class="header header-light dark-text @yield('header_shadow')">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
@@ -118,7 +118,7 @@
 									</a>
 								</li>
 								<li class="add-listing theme-bg">
-									<a href="dashboard-post-job.html" >
+									<a href="{{ route('employer.signin') }}" >
 										<i class="lni lni-circle-plus mr-1"></i> Post a Job
 									</a>
 								</li>

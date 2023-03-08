@@ -47,6 +47,7 @@ return new class extends Migration
             $table->text('linkedin')->nullable();
             $table->text('instagram')->nullable();
             $table->text('github')->nullable();
+            $table->tinyInteger('isverified');
             $table->timestamps();
         });
     }
