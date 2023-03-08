@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Frontend\SignupController;
+use App\Http\Controllers\Frontend\SigninController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,3 +79,22 @@ Route::middleware(['admin:admin'])->group(function () {
 
 
 });
+
+/*
+ * Employer Routes
+ */
+
+ Route::get('/employer/signin', [SigninController::class, 'index'])->name('employer.signup');
+ Route::get('/employer/signup', [SignupController::class, 'index'])->name('employer.login');
+ Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
+
+ Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
+ 
+
+/*
+ * Employee Routes
+ */
+
+ Route::get('/employee/signin', [SigninController::class, 'employee'])->name('employee.signup');
+ Route::get('/employee/signup', [SignupController::class, 'employee'])->name('employee.login');
+ Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
