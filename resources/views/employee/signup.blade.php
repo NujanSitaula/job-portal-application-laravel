@@ -1,5 +1,5 @@
 @extends('Frontend.layouts.master')            
-@section('page_title')#1 Job Portal Company @endsection
+@section('page_title')Employee Sign Up @endsection
 @section('body_content')
 <!-- ======================= Top Breadcrubms ======================== -->
 <div class="gray py-3">
@@ -25,42 +25,69 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mfliud">
                 <div class="sec_title position-relative text-center mb-5">
-                    <h6 class="text-muted mb-0">Employer Portal</h6>
+                    <h6 class="text-muted mb-0">Employee Portal</h6>
                     <h2 class="ft-bold">Register To An Account</h2>
                 </div>
-                <form class="border p-3 rounded" method="POST" action="{{ route('employer.signup.submit') }}">
-                    <div class="form-group">
-                        <label>Company Name *</label>
-                        <input type="text" class="form-control" placeholder="XYZ Company Pvt. Ltd.*">
-                    </div>
+                <form class="border p-3 rounded" method="POST" action="{{ route('employee.signup.submit') }}">
+                    @csrf
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>First Name *</label>
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" placeholder="First Name" value="{{ old('firstname') }}">
+                            @error('firstname')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Last Name *</label>
-                            <input type="text" class="form-control" placeholder="Last Name">
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}">
+                            @error('lastname')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-validation">
                         <label>Username *</label>
-                        <input type="text" class="form-control" placeholder="Username*">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username*" value="{{ old('username') }}">
+                        @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
-                    <div class="form-group">
-                        <label>Work Email *</label>
-                        <input type="text" class="form-control" placeholder="Email Address*">
+                    <div class="form-group has-validation">
+                        <label>Email *</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address*" value="{{ old('email') }}">
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                     
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Password *</label>
-                            <input type="password" class="form-control" placeholder="Password*">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password*">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         
-                        <div class="form-group col-md-6">
+                        <div class="form-group has-validation col-md-6">
                             <label>Confirm Password *</label>
-                            <input type="password" class="form-control" placeholder="Confirm Password*">
+                            <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" placeholder="Confirm Password*">
+                            @error('confirm_password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                     </div>
                     
@@ -82,7 +109,7 @@
                     </div>
                 </form>
                 <div class="mt-3 text-center">
-                    <p>Already have an account? <a href="#">Sign In</a></p>
+                    <p>Already have an account? <a href="{{ route('employee.signin') }}">Sign In</a></p>
                 </div>
             </div>
             

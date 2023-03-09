@@ -1,5 +1,5 @@
 @extends('Frontend.layouts.master')            
-@section('page_title')#1 Job Portal Company @endsection
+@section('page_title')Employee Sign In @endsection
 @section('body_content')
 <div class="gray py-3">
     <div class="container">
@@ -25,18 +25,45 @@
         
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="sec_title position-relative text-center mb-5">
-                    <h6 class="text-muted mb-0">Employer Portal</h6>
+                    <h6 class="text-muted mb-0">Employee Portal</h6>
                     <h2 class="ft-bold">Sign In To An Account</h2>
                 </div>
-                <form class="border p-3 rounded">				
-                    <div class="form-group">
+                <form class="border p-3 rounded" method="POST" action="{{ route('employee.signin.submit') }}">
+                    @if (session()->get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-block-helper me-2"> </i> {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                        @endif
+                        @if (session()->get('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="mdi mdi-block-helper me-2"> </i> {{ session()->get('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+                    @csrf				
+                    <div class="form-group has-validation">
                         <label>User Name *</label>
-                        <input type="text" class="form-control" placeholder="Username*">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username*" value="{{ old('username') }}">
+                        @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group has-validation">
                         <label>Password *</label>
-                        <input type="password" class="form-control" placeholder="Password*">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password*">
+                        @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     
                     <div class="form-group">
@@ -46,7 +73,7 @@
                                 <label for="dd" class="checkbox-custom-label">Remember Me</label>
                             </div>	
                             <div class="eltio_k2">
-                                <a href="#">Lost Your Password?</a>
+                                <a href="{{ route('employee.recover') }}">Lost Your Password?</a>
                             </div>	
                         </div>
                     </div>
@@ -56,7 +83,7 @@
                     </div>
                 </form>
                 <div class="mt-3 text-center">
-                    <p>Don't have an account? <a href="#">Sign Up</a></p>
+                    <p>Don't have an account? <a href="{{ route('employee.signup') }}">Sign Up</a></p>
                 </div>
             </div>
         </div>

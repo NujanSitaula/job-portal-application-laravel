@@ -1,5 +1,5 @@
 @extends('Frontend.layouts.master')            
-@section('page_title')Employer Sign In @endsection
+@section('page_title')Recover Employer Password @endsection
 @section('body_content')
 <div class="gray py-3">
     <div class="container">
@@ -8,8 +8,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Login</li>
+                        <li class="breadcrumb-item"><a href="#">Login</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Recover Password</li>
                     </ol>
                 </nav>
             </div>
@@ -25,10 +25,10 @@
         
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="sec_title position-relative text-center mb-5">
-                    <h6 class="text-muted mb-0">Employer Portal</h6>
-                    <h2 class="ft-bold">Sign In To An Account</h2>
+                    <h6 class="text-muted mb-0">Forgot Password</h6>
+                    <h2 class="ft-bold">Reset Your Password</h2>
                 </div>
-                <form class="border p-3 rounded" method="POST" action="{{ route('employer.signin.submit') }}">
+                <form class="border p-3 rounded" method="POST" action="{{ route('employer.recover.password.submit') }}">
                     @if (session()->get('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class="mdi mdi-block-helper me-2"> </i> {{ session()->get('error') }}
@@ -36,54 +36,35 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                        @endif
-                        @if (session()->get('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-block-helper me-2"> </i> {{ session()->get('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
+                    @endif
                     @csrf				
+                    <input type="hidden" name="email" value="{{ $email }}">
+                    <input type="hidden" name="token" value="{{ $token }}">
                     <div class="form-group has-validation">
-                        <label>User Name *</label>
-                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username*" value="{{ old('username') }}">
-                        @error('username')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group has-validation">
-                        <label>Password *</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password*">
+                        <label>New Password *</label>
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter New Password*">
                         @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
-                    
-                    <div class="form-group">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="flex-1">
-                                <input id="dd" class="checkbox-custom" name="dd" type="checkbox">
-                                <label for="dd" class="checkbox-custom-label">Remember Me</label>
-                            </div>	
-                            <div class="eltio_k2">
-                                <a href="{{ route('employer.recover') }}">Lost Your Password?</a>
-                            </div>	
+                    <div class="form-group has-validation">
+                        <label>Confirm Password *</label>
+                        <input type="password" name="confirm_password" class="form-control @error('confirm_password') is-invalid @enderror" placeholder="Confirm New Password*">
+                        @error('confirm_password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
+                        @enderror
                     </div>
                     
                     <div class="form-group">
-                        <button type="submit" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Sign In</button>
+                        <button type="submit" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Reset Password</button>
                     </div>
                 </form>
                 <div class="mt-3 text-center">
-                    <p>Don't have an account? <a href="{{ route('employer.signup') }}">Sign Up</a></p>
+                    <p>Remembered Password? <a href="{{ route('employer.signin') }}">Sign In</a></p>
                 </div>
             </div>
         </div>

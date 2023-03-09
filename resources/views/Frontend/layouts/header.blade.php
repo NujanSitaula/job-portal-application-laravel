@@ -112,11 +112,19 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							@include('Frontend.layouts.nav')
 							<ul class="nav-menu nav-menu-social align-to-right">
+								@if(!Auth::guard('employer')->check())
 								<li>
 									<a href="#" data-toggle="modal" data-target="#login" class="ft-medium">
 										<i class="lni lni-user mr-2"></i>Sign In
 									</a>
 								</li>
+								@else
+								<li>
+									<a href="{{ route('employer.dashboard') }}" class="ft-medium">
+										<i class="lni lni-dashboard mr-2"></i>Dashboard
+									</a>
+								</li>
+								@endif
 								<li class="add-listing theme-bg">
 									<a href="{{ route('employer.signin') }}" >
 										<i class="lni lni-circle-plus mr-1"></i> Post a Job

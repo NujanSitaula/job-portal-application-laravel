@@ -5,6 +5,10 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TermsController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\JobCategoryController;
+use App\Http\Controllers\Frontend\RecoverController;
+use App\Http\Controllers\Frontend\SigninController;
+use App\Http\Controllers\Frontend\SignupController;
+
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeEditController;
@@ -12,9 +16,10 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPackageController;
-use App\Http\Controllers\Frontend\SignupController;
-use App\Http\Controllers\Frontend\SigninController;
+
 use App\Http\Controllers\Employer\EmployerController;
+use App\Http\Controllers\Employee\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,27 +99,46 @@ Route::middleware(['admin:admin'])->group(function () {
 
  Route::get('/employer/signin', [SigninController::class, 'index'])->name('employer.signin');
  Route::get('/employer/signup', [SignupController::class, 'index'])->name('employer.signup');
- Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
-
-
-
- Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
- Route::post('/employer/signinSubmit', [SigninController::class, 'signinSubmit'])->name('employer.signin.submit');
- Route::get('/verify-email/{token}/{email}', [SignupController::class, 'verifyEmail'])->name('verify.email');
+ Route::get('/employer/recover', [RecoverController::class, 'recoverEmployer'])->name('employer.recover');
+ Route::get('/employer/verify-email/{token}/{email}', [SignupController::class, 'verifyEmail'])->name('verify.email');
  Route::get('/employer/logout', [SigninController::class, 'employerLogout'])->name('employer.logout');
-
-
+ Route::get('/employer/recover/{token}/{email}', [RecoverController::class, 'resetPassword'])->name('employer.recover.password');
+ Route::post('/employer/signinSubmit', [SigninController::class, 'signinSubmit'])->name('employer.signin.submit');
+ Route::post('/employer/recoverSubmit', [RecoverController::class, 'recoverEmployerSubmit'])->name('employer.recover.submit');
+ Route::post('/employer/recoverPasswordSubmit', [RecoverController::class, 'resetPasswordSubmit'])->name('employer.recover.password.submit');
+ Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
+ 
+ 
  Route::middleware(['employer:employer'])->group(function () {
-
+ 
     Route::get('/employer/dashboard', [EmployerController::class, 'index'])->name('employer.dashboard');
  
  });
-/*
- * Employee Routes
- */
+ 
+ /*
+  * Employee Routes
+  */
+ 
+  Route::get('/employee/signin', [SigninController::class, 'employee'])->name('employee.signin');
+  Route::get('/employee/signup', [SignupController::class, 'employee'])->name('employee.signup');
+  Route::get('/employee/verify-email/{token}/{email}', [SignupController::class, 'verifyEmailEmployee'])->name('verify.email.employee');
+  Route::get('/employee/logout', [SigninController::class, 'employeeLogout'])->name('employee.logout');
+  Route::get('/employee/recover', [RecoverController::class, 'recoverEmployee'])->name('employee.recover');
+  Route::post('/employee/recoverSubmit', [RecoverController::class, 'recoverEmployeeSubmit'])->name('employee.recover.submit');
+  Route::post('/employee/recoverPasswordSubmit', [RecoverController::class, 'resetEmployeePasswordSubmit'])->name('employee.recover.password.submit');
+  Route::get('/employee/recover/{token}/{email}', [RecoverController::class, 'resetEmployeePassword'])->name('employee.recover.password');
+ 
+  Route::post('/employee/signupSubmit', [SignupController::class, 'signupSubmitEmployee'])->name('employee.signup.submit');
+  Route::post('/employee/signinSubmit', [SigninController::class, 'signinSubmitEmployee'])->name('employee.signin.submit');
+ 
+  Route::middleware(['employee:employee'])->group(function () {
+ 
+    Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
+ 
+ });
+  
 
- Route::get('/employee/signin', [SigninController::class, 'employee'])->name('employee.signup');
- Route::get('/employee/signup', [SignupController::class, 'employee'])->name('employee.login');
- Route::get('/employer/forgot-password', [RecoverController::class, 'index'])->name('employer.forgot-password');
-
+ 
+ 
+ 
  

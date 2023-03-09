@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'employerProviders',
         ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employeeProviders',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'employerProviders' => [
             'driver' => 'eloquent',
             'model' => App\Models\Employer::class,
+        ],
+        'employeeProviders' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
         ],
 
         // 'users' => [
@@ -116,7 +124,13 @@ return [
             'throttle' => 60,
         ],
         'employers' => [
-            'provider' => 'employersProviders',
+            'provider' => 'employerProviders',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'employees' => [
+            'provider' => 'employeeProviders',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -1,5 +1,5 @@
 @extends('Frontend.layouts.master')            
-@section('page_title')#1 Job Portal Company @endsection
+@section('page_title')Employer Sign Up @endsection
 @section('body_content')
 <!-- ======================= Top Breadcrubms ======================== -->
 <div class="gray py-3">
@@ -77,7 +77,6 @@
                         </div>
                     @enderror
                     </div>
-                    
                     <div class="row">
                         <div class="form-group has-validation col-md-6">
                             <label>Password *</label>
