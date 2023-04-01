@@ -6,7 +6,7 @@
 					<div class="row justify-content-start">
 						<div class="col-xl-6 col-lg-9 col-md-12 col-sm-12 col-12">
 							<div class="banner_caption text-left mb-4">
-								<h1 class="banner_title ft-bold mb-1"><span class="theme-cl">{{ $HomePageData->heading }}</span></h1>
+								<h1 class="banner_title ft-bold mb-1">{!! $HomePageData->heading !!}</h1>
 								<p class="fs-md ft-regular">{{ $HomePageData->description }}</p>
 							</div>
 						</div>
@@ -77,7 +77,7 @@
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
 								<h6 class="text-muted mb-0">{{ $HomePageData->job_category_heading }}</h6>
-								<h2 class="ft-bold"><span class="theme-cl">{{ $HomePageData->job_category_description }}</span></h2>
+								<h2 class="ft-bold">{!! $HomePageData->job_category_description !!}</h2>
 							</div>
 						</div>
 					</div>

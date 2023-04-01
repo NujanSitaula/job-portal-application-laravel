@@ -9,8 +9,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">Edit Category</h4>
-                        <p class="card-title-desc">To edit the icon you need to input the class name of the icon for example: <code>lni lni-laptop-phone</code>. To get the list of icons and the class name please visit <a href="https://lineicons.com/icons/" target="_blank">Lineicons</a>
+                        <h4 class="card-title">Edit Package</h4>
+                        <p class="card-title-desc">Edit package informations and the prices.
                         </p>
                     </div>
                     <div class="col">

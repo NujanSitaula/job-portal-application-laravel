@@ -16,6 +16,11 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminJobLocationController;
+use App\Http\Controllers\Admin\AdminJobTypeController;
+use App\Http\Controllers\Admin\AdminExperianceController;
+use App\Http\Controllers\Admin\AdminEmployerLocationController;
+use App\Http\Controllers\Admin\AdminEmployerIndustryController;
 
 use App\Http\Controllers\Employer\EmployerController;
 use App\Http\Controllers\Employee\EmployeeController;
@@ -70,11 +75,30 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/adminProfileSubmit', [AdminProfileController::class, 'editProfileSubmit'])->name('admin.profile.submit');
     Route::get('/admin/homepage/edit', [AdminHomeEditController::class, 'index'])->name('admin.homepage.edit');
     Route::post('/admin/updateHomepage', [AdminHomeEditController::class, 'update'])->name('admin.updateHomepage');
+
     Route::get('/admin/category/view', [AdminJobCategoryController::class, 'index'])->name('admin.job.category');
     Route::post('/admin/category/create', [AdminJobCategoryController::class, 'create'])->name('admin.job.category.create');
     Route::get('/admin/category/edit/{id}', [AdminJobCategoryController::class, 'edit'])->name('admin.job.category.edit');
     Route::post('/admin/jobCategoryEdit/{id}', [AdminJobCategoryController::class, 'editCategory'])->name('admin.job.category.edit.submit');
     Route::get('/admin/category/delete/{id}', [AdminJobCategoryController::class, 'delete'])->name('admin.job.category.delete');
+
+    Route::get('/admin/location/view', [AdminJobLocationController::class, 'index'])->name('admin.job.location');
+    Route::post('/admin/location/create', [AdminJobLocationController::class, 'create'])->name('admin.job.location.create');
+    Route::get('/admin/location/edit/{id}', [AdminJobLocationController::class, 'edit'])->name('admin.job.location.edit');
+    Route::post('/admin/jobLocationEdit/{id}', [AdminJobLocationController::class, 'update'])->name('admin.job.location.edit.submit');
+    Route::get('/admin/location/delete/{id}', [AdminJobLocationController::class, 'destroy'])->name('admin.job.location.delete');
+
+    Route::get('/admin/type/view', [AdminJobTypeController::class, 'index'])->name('admin.job.type');
+    Route::post('/admin/type/create', [AdminJobTypeController::class, 'create'])->name('admin.job.type.create');
+    Route::get('/admin/type/edit/{id}', [AdminJobTypeController::class, 'edit'])->name('admin.job.type.edit');
+    Route::post('/admin/jobTypeEdit/{id}', [AdminJobTypeController::class, 'update'])->name('admin.job.type.edit.submit');
+    Route::get('/admin/type/delete/{id}', [AdminJobTypeController::class, 'delete'])->name('admin.job.type.delete');
+
+    Route::get('/admin/experiance/view', [AdminExperianceController::class, 'index'])->name('admin.job.experiance');
+    Route::post('/admin/experiance/create', [AdminExperianceController::class, 'create'])->name('admin.job.experiance.create');
+    Route::get('/admin/experiance/edit/{id}', [AdminExperianceController::class, 'edit'])->name('admin.job.experiance.edit');
+    Route::post('/admin/jobExperianceEdit/{id}', [AdminExperianceController::class, 'update'])->name('admin.job.experiance.edit.submit');
+    Route::get('/admin/experiance/delete/{id}', [AdminExperianceController::class, 'delete'])->name('admin.job.experiance.delete');
 
     Route::get('/admin/post/view', [AdminPostController::class, 'index'])->name('admin.post');
     Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('admin.post.create');
@@ -83,13 +107,23 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/post/editSubmit/{id}', [AdminPostController::class, 'editSubmit'])->name('admin.post.edit.submit');
     Route::get('/admin/post/delete/{id}', [AdminPostController::class, 'delete'])->name('admin.post.delete');
 
-    Route::get('/admin/post/package/view', [AdminPackageController::class, 'featured'])->name('admin.post.featured');
-    Route::get('/admin/post/package/create', [AdminPackageController::class, 'createFeatured'])->name('admin.post.featured.create');
-    Route::post('/admin/post/package/createSubmit', [AdminPackageController::class, 'createFeaturedSubmit'])->name('admin.post.featured.create.submit');
-    Route::get('/admin/post/package/edit/{id}', [AdminPackageController::class, 'editFeatured'])->name('admin.post.featured.edit');
-    Route::post('/admin/post/package/editSubmit/{id}', [AdminPackageController::class, 'editFeaturedSubmit'])->name('admin.post.featured.edit.submit');
-    Route::get('/admin/post/package/delete/{id}', [AdminPackageController::class, 'deleteFeatured'])->name('admin.post.featured.delete');
+    Route::get('/admin/package/view', [AdminPackageController::class, 'index'])->name('admin.package');
+    //Route::get('/admin/package/create', [AdminPackageController::class, 'createFeatured'])->name('admin.post.featured.create');
+    Route::post('/admin/package/createSubmit', [AdminPackageController::class, 'createPackageSubmit'])->name('admin.package.create.submit');
+    Route::get('/admin/package/edit/{id}', [AdminPackageController::class, 'editPackage'])->name('admin.package.edit');
+    Route::post('/admin/package/editSubmit/{id}', [AdminPackageController::class, 'editPackageSubmit'])->name('admin.package.edit.submit');
+    Route::get('/admin/package/delete/{id}', [AdminPackageController::class, 'deletePackage'])->name('admin.package.delete');
 
+    Route::get('/admin/employer/location/view', [AdminEmployerLocationController::class, 'index'])->name('admin.employer.location');
+    Route::post('/admin/employer/location/create', [AdminEmployerLocationController::class, 'create'])->name('admin.employer.location.create');
+    Route::get('/admin/employer/location/edit/{id}', [AdminEmployerLocationController::class, 'edit'])->name('admin.employer.location.edit');
+    Route::post('/admin/employer/jobLocationEdit/{id}', [AdminEmployerLocationController::class, 'update'])->name('admin.employer.location.edit.submit');
+    Route::get('/admin/employer/location/delete/{id}', [AdminEmployerLocationController::class, 'destroy'])->name('admin.employer.location.delete');
+
+    Route::get('/admin/industry/view', [AdminEmployerIndustryController::class, 'index'])->name('admin.industry');
+    Route::post('/admin/industry/create', [AdminEmployerIndustryController::class, 'create'])->name('admin.industry.create');
+    Route::get('/admin/industry/edit/{id}', [AdminEmployerIndustryController::class, 'edit'])->name('admin.industry.edit');
+    Route::post('/admin/industryEdit/{id}', [AdminEmployerIndustryController::class, 'update'])->name('admin.industry.edit.submit');
 
 });
 
@@ -112,6 +146,7 @@ Route::middleware(['admin:admin'])->group(function () {
  Route::middleware(['employer:employer'])->group(function () {
  
     Route::get('/employer/dashboard', [EmployerController::class, 'index'])->name('employer.dashboard');
+    Route::get('/employer/payment', [EmployerController::class, 'payment'])->name('employer.payment');
  
  });
  

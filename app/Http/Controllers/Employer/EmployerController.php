@@ -16,5 +16,10 @@ class EmployerController extends Controller
     {
         return view('employer.dashboard');
     }
+
+    public function payment()
+    {
+        return view('employer.profile');
+    }
     
 }

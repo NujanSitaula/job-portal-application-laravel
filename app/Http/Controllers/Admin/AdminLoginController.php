@@ -165,7 +165,7 @@ class AdminLoginController extends Controller
 
         $adminCheck = Admin::where('token', $request->token)->first();
         if(!$adminCheck) {
-            return redirect()->route('admin.linkexpired')->with('tokenError', 'Invalid token or email');
+            return redirect()->route('admin.invalid')->with('tokenError', 'Invalid token or email');
         }
 
         // dd($adminCheck->otp, Hash::make($request->otp));
