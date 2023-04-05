@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PageHomeItems;
 use App\Models\JobCategory;
+use App\Models\Location;
 use App\Models\Post;
 
 class HomeController extends Controller
@@ -17,6 +18,9 @@ class HomeController extends Controller
         $JobCategoriesAll = JobCategory::get();
         $postData = Post::orderBy('id', 'desc')->take(3)->get();
 
-        return view('frontend.home', compact('HomePageData', 'JobCategories', 'JobCategoriesAll', 'postData'));
+        $JobLocations = Location::get();
+
+
+        return view('frontend.home', compact('HomePageData', 'JobCategories', 'JobCategoriesAll', 'postData', 'JobLocations'));
     }
 }

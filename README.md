@@ -13,7 +13,7 @@ The application features a clean and intuitive user interface, making it easy fo
 
 Employers can create their profiles, post job listings, and search for candidates based on various criteria such as location, experience, and education. They can also receive candidate applications, manage and communicate with applicants, and schedule interviews.
 
-I am currently working on implementing features like blog system, login via OTP and SMS authentication. 
+I am currently working on implementing features like posting jobs and advertisements. 
 
 ## Packages Used (Till Date)
 

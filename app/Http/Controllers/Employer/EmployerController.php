@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class EmployerController extends Controller
 {
     public function __construct()
@@ -21,5 +20,5 @@ class EmployerController extends Controller
     {
         return view('employer.profile');
     }
-    
+
 }

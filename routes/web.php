@@ -18,11 +18,16 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminJobLocationController;
 use App\Http\Controllers\Admin\AdminJobTypeController;
-use App\Http\Controllers\Admin\AdminExperianceController;
+use App\Http\Controllers\Admin\AdminExperienceController;
 use App\Http\Controllers\Admin\AdminEmployerLocationController;
 use App\Http\Controllers\Admin\AdminEmployerIndustryController;
+use App\Http\Controllers\Admin\AdminEmployerSizeController;
 
 use App\Http\Controllers\Employer\EmployerController;
+use App\Http\Controllers\Employer\EmployerProfileController;
+use App\Http\Controllers\Employer\RequirementCheckController;
+
+
 use App\Http\Controllers\Employee\EmployeeController;
 
 /*
@@ -94,11 +99,11 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/jobTypeEdit/{id}', [AdminJobTypeController::class, 'update'])->name('admin.job.type.edit.submit');
     Route::get('/admin/type/delete/{id}', [AdminJobTypeController::class, 'delete'])->name('admin.job.type.delete');
 
-    Route::get('/admin/experiance/view', [AdminExperianceController::class, 'index'])->name('admin.job.experiance');
-    Route::post('/admin/experiance/create', [AdminExperianceController::class, 'create'])->name('admin.job.experiance.create');
-    Route::get('/admin/experiance/edit/{id}', [AdminExperianceController::class, 'edit'])->name('admin.job.experiance.edit');
-    Route::post('/admin/jobExperianceEdit/{id}', [AdminExperianceController::class, 'update'])->name('admin.job.experiance.edit.submit');
-    Route::get('/admin/experiance/delete/{id}', [AdminExperianceController::class, 'delete'])->name('admin.job.experiance.delete');
+    Route::get('/admin/experience/view', [AdminExperienceController::class, 'index'])->name('admin.job.experience');
+    Route::post('/admin/experience/create', [AdminExperienceController::class, 'create'])->name('admin.job.experience.create');
+    Route::get('/admin/experience/edit/{id}', [AdminExperienceController::class, 'edit'])->name('admin.job.experience.edit');
+    Route::post('/admin/jobExperienceEdit/{id}', [AdminExperienceController::class, 'update'])->name('admin.job.experience.edit.submit');
+    Route::get('/admin/experience/delete/{id}', [AdminExperienceController::class, 'delete'])->name('admin.job.experience.delete');
 
     Route::get('/admin/post/view', [AdminPostController::class, 'index'])->name('admin.post');
     Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('admin.post.create');
@@ -124,6 +129,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/industry/create', [AdminEmployerIndustryController::class, 'create'])->name('admin.industry.create');
     Route::get('/admin/industry/edit/{id}', [AdminEmployerIndustryController::class, 'edit'])->name('admin.industry.edit');
     Route::post('/admin/industryEdit/{id}', [AdminEmployerIndustryController::class, 'update'])->name('admin.industry.edit.submit');
+    Route::get('/admin/industry/delete/{id}', [AdminEmployerIndustryController::class, 'delete'])->name('admin.industry.delete');
+
+    Route::get('/admin/employer/size/view', [AdminEmployerSizeController::class, 'index'])->name('admin.employer.size');
+    Route::post('/admin/employer/size/create', [AdminEmployerSizeController::class, 'create'])->name('admin.employer.size.create');
+    Route::get('/admin/employer/size/edit/{id}', [AdminEmployerSizeController::class, 'edit'])->name('admin.employer.size.edit');
+    Route::post('/admin/employer/SizeEdit/{id}', [AdminEmployerSizeController::class, 'update'])->name('admin.employer.size.edit.submit');
+    Route::get('/admin/employer/size/delete/{id}', [AdminEmployerSizeController::class, 'destroy'])->name('admin.employer.size.delete');
+
 
 });
 
@@ -141,19 +154,27 @@ Route::middleware(['admin:admin'])->group(function () {
  Route::post('/employer/recoverSubmit', [RecoverController::class, 'recoverEmployerSubmit'])->name('employer.recover.submit');
  Route::post('/employer/recoverPasswordSubmit', [RecoverController::class, 'resetPasswordSubmit'])->name('employer.recover.password.submit');
  Route::post('/employer/signupSubmit', [SignupController::class, 'signupSubmit'])->name('employer.signup.submit');
- 
- 
+
+
  Route::middleware(['employer:employer'])->group(function () {
- 
+
     Route::get('/employer/dashboard', [EmployerController::class, 'index'])->name('employer.dashboard');
     Route::get('/employer/payment', [EmployerController::class, 'payment'])->name('employer.payment');
- 
+    Route::get('/employer/profile', [EmployerProfileController::class, 'index'])->name('employer.profile');
+    Route::post('/employer/profile/edit', [EmployerProfileController::class, 'edit'])->name('employer.profile.edit');
+    Route::post('/employer/profile/openinghour/edit', [EmployerProfileController::class, 'openingHours'])->name('employer.profile.openinghour.edit');
+    Route::post('/employer/profile/sociallinks/edit', [EmployerProfileController::class, 'socialLinks'])->name('employer.profile.sociallink.edit');
+    Route::post('/employer/profile/contact/edit', [EmployerProfileController::class, 'contact'])->name('employer.profile.contact.edit');
+    Route::post('/employer/requirement/post', [RequirementCheckController::class, 'addData'])->name('employer.requirement.add');
+    Route::get('/employer/requirement/add', [RequirementCheckController::class, 'index'])->name('employer.requirement.view');
+
+
  });
- 
+
  /*
   * Employee Routes
   */
- 
+
   Route::get('/employee/signin', [SigninController::class, 'employee'])->name('employee.signin');
   Route::get('/employee/signup', [SignupController::class, 'employee'])->name('employee.signup');
   Route::get('/employee/verify-email/{token}/{email}', [SignupController::class, 'verifyEmailEmployee'])->name('verify.email.employee');
@@ -162,18 +183,17 @@ Route::middleware(['admin:admin'])->group(function () {
   Route::post('/employee/recoverSubmit', [RecoverController::class, 'recoverEmployeeSubmit'])->name('employee.recover.submit');
   Route::post('/employee/recoverPasswordSubmit', [RecoverController::class, 'resetEmployeePasswordSubmit'])->name('employee.recover.password.submit');
   Route::get('/employee/recover/{token}/{email}', [RecoverController::class, 'resetEmployeePassword'])->name('employee.recover.password');
- 
+
   Route::post('/employee/signupSubmit', [SignupController::class, 'signupSubmitEmployee'])->name('employee.signup.submit');
   Route::post('/employee/signinSubmit', [SigninController::class, 'signinSubmitEmployee'])->name('employee.signin.submit');
- 
-  Route::middleware(['employee:employee'])->group(function () {
- 
-    Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
- 
- });
-  
 
- 
- 
- 
- 
+  Route::middleware(['employee:employee'])->group(function () {
+
+    Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
+
+ });
+
+
+
+
+

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('page_title', 'Job Categories')
+@section('page_title', 'Job Experience')
 
 @section('body_content')
 <div class="row">
@@ -9,34 +9,34 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">All Categories</h4>
+                        <h4 class="card-title">All Experiences</h4>
                         <p class="card-title-desc">All the categories must have an icon, To add the icon you need to input the class name of the icon for example: <code>lni lni-laptop-phone</code>. To get the list of icons and the class name please visit <a href="https://lineicons.com/icons/" target="_blank">Lineicons</a></code>.
                         </p>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-category-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Category</button>
+                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-category-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Experience</button>
                     </div>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
-                            <th>Category Icon</th>
+                            <th>Experience ID</th>
+                            <th>Experience Name</th>
+                            <th>Experience Icon</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($jobExperianceData as $item)
+                        @foreach ($jobExperienceData as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td><i class="{{ $item->icon }}"></i></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                <a href="{{ route('admin.job.experiance.edit', $item->id) }}" class="btn btn-sm btn-outline-primary mr-2" title="Edit" data-toggle="tooltip"><i class="mdi mdi-circle-edit-outline"></i> Edit</a>
-                                <a href="{{ route('admin.job.experiance.delete', $item->id) }}" class="btn btn-sm btn-outline-danger" title="Delete" data-toggle="tooltip"><i class="mdi mdi-delete-outline"></i> Delete</a>
+                                <a href="{{ route('admin.job.experience.edit', $item->id) }}" class="btn btn-sm btn-outline-primary mr-2" title="Edit" data-toggle="tooltip"><i class="mdi mdi-circle-edit-outline"></i> Edit</a>
+                                <a href="{{ route('admin.job.experience.delete', $item->id) }}" class="btn btn-sm btn-outline-danger" title="Delete" data-toggle="tooltip"><i class="mdi mdi-delete-outline"></i> Delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -54,20 +54,20 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Add New Experiance</h5>
+                <h5 class="modal-title mt-0">Add New Experience</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('admin.job.experiance.create') }}">
+                <form method="post" action="{{ route('admin.job.experience.create') }}">
                     @csrf
                     <div class="form-group">
-                      <label for="text">Experiance Name</label> 
-                      <input id="text" name="name" placeholder="Enter Experiance Name" type="text" class="form-control">
-                    </div> 
+                      <label for="text">Experience Name</label>
+                      <input id="text" name="name" placeholder="Enter Experience Name" type="text" class="form-control">
+                    </div>
                     <div class="form-group">
-                      <button name="submit" type="submit" class="btn btn-primary form-control">Add Experiance</button>
+                      <button name="submit" type="submit" class="btn btn-primary form-control">Add Experience</button>
                     </div>
                   </form>
             </div>

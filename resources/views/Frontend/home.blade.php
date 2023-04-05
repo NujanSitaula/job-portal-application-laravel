@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')            
+@extends('Frontend.layouts.master')
 @section('page_title')#1 Job Portal Company @endsection
 @section('body_content')
 			<div class="home-banner margin-bottom-0" style="background:#eff6f2 url({{ asset('frontEndAssets/img/'.$HomePageData->image) }}) no-repeat;">
@@ -11,7 +11,7 @@
 							</div>
 						</div>
 						<div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
-							
+
 							<form class="bg-white rounded p-1">
 								<div class="row no-gutters">
 									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
@@ -24,12 +24,9 @@
 										<div class="form-group mb-0 position-relative">
                                             <select class="custom-select lg b-0 left-ico">
                                                 <option value="1">{{ $HomePageData->location_placeholder }}</option>
-                                                <option value="2">Los Angeles</option>
-                                                <option value="3">San Francisco</option>
-                                                <option value="4">San Diego</option>
-                                                <option value="5">Philadelphia</option>
-                                                <option value="6">Denver</option>
-                                                <option value="7">Houston</option>
+                                                @foreach ($JobLocations as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
                                               </select>
 											<i class="bnc-ico lni lni-target"></i>
 										</div>
@@ -52,7 +49,7 @@
 									</div>
 								</div>
 							</form>
-							
+
 							<div class="top-searches-key">
 								<ul class="p-0 mt-4 align-items-center d-flex">
 									<li><span class="text-dark ft-medium medium">Top Searches:</span></li>
@@ -61,18 +58,18 @@
 									<li><a href="javascript:void(0);" class="">HTML5</a></li>
 								</ul>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- ======================= Home Banner ======================== -->
-			
+
 			<!-- ======================= All category ======================== -->
 			@if($HomePageData->job_category_status == 'Show')
 			<section class="space">
 				<div class="container">
-				
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -81,7 +78,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- row -->
 					<div class="row align-items-center">
 						@foreach($JobCategories as $item)
@@ -97,10 +94,10 @@
 							</div>
 						</div>
 						@endforeach
-						
+
 					</div>
 					<!-- /row -->
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="position-relative text-center">
@@ -108,16 +105,16 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</section>
 			@endif
 			<!-- ======================= All category ======================== -->
-			
+
 			<!-- ======================= Job List ======================== -->
 			<section class="middle gray">
 				<div class="container">
-				
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -126,10 +123,10 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- row -->
 					<div class="row align-items-center">
-					
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -152,7 +149,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -175,7 +172,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -198,7 +195,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -221,7 +218,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -244,7 +241,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -267,7 +264,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -290,7 +287,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
@@ -313,10 +310,10 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 					<!-- row -->
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="position-relative text-center">
@@ -324,15 +321,15 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</section>
 			<!-- ======================= Job List ======================== -->
-			
+
 			<!-- ============================ Our Partner Start ================================== -->
 			<section class="bg-cover" style="background:#28b661 url(assets/img/curve.svg)no-repeat">
 				<div class="container">
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-5 col-lg-7 col-md-9 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -341,7 +338,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
 							<div class="row justify-content-center">
@@ -425,16 +422,16 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 				<div class="ht-50"></div>
 			</section>
 			<!-- ============================ Our Partner End ================================== -->
-			
+
 			<!-- ======================= Customer Review ======================== -->
 			<section class="middle">
 				<div class="container">
-				
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -443,11 +440,11 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-9 col-lg-10 col-md-12 col-sm-12">
 							<div class="reviews-slide px-3">
-								
+
 								<!-- single review -->
 								<div class="single_review">
 									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
@@ -461,7 +458,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- single review -->
 								<div class="single_review">
 									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
@@ -475,7 +472,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- single review -->
 								<div class="single_review">
 									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
@@ -489,7 +486,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- single review -->
 								<div class="single_review">
 									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
@@ -503,18 +500,18 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 			<!-- ======================= Customer Review ======================== -->
-			
+
 			<!-- ============================ Pricing Start ==================================== -->
 			<section class="space min gray">
 				<div class="container">
-				
+
 					<div class="row justify-content-center">
 						<div class="col-xl-5 col-lg-7 col-md-9 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -523,9 +520,9 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row align-items-center">
-						
+
 						<!-- Single Package -->
 						<div class="col-lg-4 col-md-4">
 							<div class="pricing_wrap">
@@ -550,7 +547,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single Package -->
 						<div class="col-lg-4 col-md-4">
 							<div class="pricing_wrap">
@@ -576,7 +573,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single Package -->
 						<div class="col-lg-4 col-md-4">
 							<div class="pricing_wrap">
@@ -601,17 +598,17 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</section>
 			<!-- ============================ Pricing End ==================================== -->
-			
+
 			<!-- ======================= Blog Start ============================ -->
 			<section class="space min">
 				<div class="container">
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-4">
@@ -620,9 +617,9 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
-						
+
 						@foreach($postData as $item)
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 							<div class="blg_grid_box">
@@ -653,17 +650,17 @@
 							</div>
 						</div>
 						@endforeach
-						
+
 					</div>
-					
+
 				</div>
 			</section>
 			<!-- ======================= Blog Start ============================ -->
-			
+
 			<!-- ======================= Newsletter Start ============================ -->
 			<section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
 				<div class="container py-5">
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
@@ -672,7 +669,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row align-items-center justify-content-center">
 						<div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
 							<form class="bg-white rounded p-1">
@@ -692,10 +689,10 @@
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</section>
 			<!-- ======================= Newsletter Start ============================ -->
-			
+
 			<!-- ============================ Footer Start ================================== -->
             @endsection
