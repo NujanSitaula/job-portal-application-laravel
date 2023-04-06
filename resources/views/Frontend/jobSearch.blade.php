@@ -43,7 +43,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-between">
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
-                <h6 class="mb-0 ft-medium fs-sm">302 New Jobs Found</h6>
+                <h6 class="mb-0 ft-medium fs-sm">{{ $hirings->count() }} New Jobs Found</h6>
             </div>
             
             <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
@@ -89,27 +89,30 @@
                     <div class="sidebar-widgets collapse miz_show" id="search_open" data-parent="#search_open">
                         
                         <div class="search-inner">
+                            <form method="GET" action="{{ url('jobs') }}">
                             
                             <div class="filter-search-box px-4 pt-3 pb-0">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search by keywords...">
+                                    <input type="text" name="jobs" class="form-control" placeholder="Search by keywords..." value="{{ $hiringQuery }}">
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Location, Zip..">
-                                </div>
+                                <select name="location" class="custom-select mb-3">
+                                    <option value="">Select Location</option>
+                                    @foreach($locations as $item)
+                                    <option @if($hiringLocation == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                             </select>
                             </div>
                             
                             <div class="filter_wraps">
-                                
                                  {{-- Job categories Search  --}}
                                  <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#jbtypes" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
+                                            <a href="#category" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0  @if($hiringCategory == null) collapsed @endif" @if($hiringCategory != null) expanded="true" @endif>Job Category</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="jbtypes" data-parent="#jbtypes">
+                                    <div class="widget-boxed-body collapse  @if($hiringCategory != null) show @endif" id="category" data-parent="#category">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
@@ -117,9 +120,16 @@
                                                     <div class="inner_widget_link">
                                                         <ul class="no-ul-list filter-list">
                                                             <li>
-                                                                @foreach($hirings->joblocation as $location)
-                                                                <input id="e2" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e2" class="radio-custom-label">Full time</label>
+                                                                @php
+                                                                    $count = 1;
+                                                                @endphp
+                                                                @foreach($categories as $item)
+                                                                
+                                                                <input id="e{{ $count }}" @if($hiringCategory == $item->id) checked @endif  class="radio-custom" value={{ $item->id }} name="category" type="radio">
+                                                                <label for="e{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
+                                                                @php
+                                                                   $count ++;
+                                                                @endphp
                                                                 @endforeach
                                                             </li>
                                                         </ul>
@@ -130,84 +140,35 @@
                                     </div>
                                 </div>
                                 
-                                {{-- Job Locations Search  --}}
-                                <div class="single_search_boxed px-4 pt-0 br-bottom">
-                                    <div class="widget-boxed-header">
-                                        <h4>
-                                            <a href="#jbtypes" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
-                                        </h4>
-                                        
-                                    </div>
-                                    <div class="widget-boxed-body collapse" id="jbtypes" data-parent="#jbtypes">
-                                        <div class="side-list no-border">
-                                            <!-- Single Filter Card -->
-                                            <div class="single_filter_card">
-                                                <div class="card-body p-0">
-                                                    <div class="inner_widget_link">
-                                                        <ul class="no-ul-list filter-list">
-                                                            <li>
-                                                                <input id="e2" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e2" class="radio-custom-label">Full time</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e3" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e3" class="radio-custom-label">Part Time</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e4" class="radio-custom" name="jtype" type="radio" checked="">
-                                                                <label for="e4" class="radio-custom-label">Contract Base</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e5" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e5" class="radio-custom-label">Internship</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e6" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e6" class="radio-custom-label">Regular</label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 
                                 {{-- Job Skills Search  --}}
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#jbtypes" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
+                                            <a href="#jobtype" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="jbtypes" data-parent="#jbtypes">
+                                    <div class="widget-boxed-body collapse" id="jobtype" data-parent="#jobtype">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
                                                 <div class="card-body p-0">
                                                     <div class="inner_widget_link">
                                                         <ul class="no-ul-list filter-list">
+                                                            @php
+                                                                $count = 1;
+                                                            @endphp
+                                                            @foreach($jobtype as $item)
                                                             <li>
-                                                                <input id="e2" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e2" class="radio-custom-label">Full time</label>
+                                                                <input id="ea{{ $count }}" class="radio-custom" name="jobtype" type="radio">
+                                                                <label for="ea{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                             </li>
-                                                            <li>
-                                                                <input id="e3" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e3" class="radio-custom-label">Part Time</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e4" class="radio-custom" name="jtype" type="radio" checked="">
-                                                                <label for="e4" class="radio-custom-label">Contract Base</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e5" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e5" class="radio-custom-label">Internship</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e6" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e6" class="radio-custom-label">Regular</label>
-                                                            </li>
+                                                            @php
+                                                                $count ++;
+                                                            @endphp
+                                                            @endforeach
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -221,37 +182,29 @@
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#jbtypes" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
+                                            <a href="#salary" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Expected Salary</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="jbtypes" data-parent="#jbtypes">
+                                    <div class="widget-boxed-body collapse" id="salary" data-parent="#salary">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
                                                 <div class="card-body p-0">
                                                     <div class="inner_widget_link">
                                                         <ul class="no-ul-list filter-list">
+                                                            @php
+                                                                $count = 1;
+                                                            @endphp
+                                                            @foreach($salaryrange as $item)
                                                             <li>
-                                                                <input id="e2" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e2" class="radio-custom-label">Full time</label>
+                                                                <input id="eb{{ $count }}" class="radio-custom" name="salaryrange" type="radio">
+                                                                <label for="eb{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                             </li>
-                                                            <li>
-                                                                <input id="e3" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e3" class="radio-custom-label">Part Time</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e4" class="radio-custom" name="jtype" type="radio" checked="">
-                                                                <label for="e4" class="radio-custom-label">Contract Base</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e5" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e5" class="radio-custom-label">Internship</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e6" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e6" class="radio-custom-label">Regular</label>
-                                                            </li>
+                                                            @php
+                                                                $count ++;
+                                                            @endphp
+                                                            @endforeach
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -264,37 +217,29 @@
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#jbtypes" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
+                                            <a href="#experience" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Experience</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="jbtypes" data-parent="#jbtypes">
+                                    <div class="widget-boxed-body collapse" id="experience" data-parent="#experience">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
                                                 <div class="card-body p-0">
                                                     <div class="inner_widget_link">
                                                         <ul class="no-ul-list filter-list">
+                                                            @php
+                                                                $count = 1;
+                                                            @endphp
+                                                            @foreach($experience as $item)
                                                             <li>
-                                                                <input id="e2" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e2" class="radio-custom-label">Full time</label>
+                                                                <input id="ec{{ $count }}" class="radio-custom" name="experience" type="radio">
+                                                                <label for="ec{{ $count }}" class="radio-custom-label">Full time</label>
                                                             </li>
-                                                            <li>
-                                                                <input id="e3" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e3" class="radio-custom-label">Part Time</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e4" class="radio-custom" name="jtype" type="radio" checked="">
-                                                                <label for="e4" class="radio-custom-label">Contract Base</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e5" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e5" class="radio-custom-label">Internship</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="e6" class="radio-custom" name="jtype" type="radio">
-                                                                <label for="e6" class="radio-custom-label">Regular</label>
-                                                            </li>
+                                                            @php
+                                                                $count ++;
+                                                            @endphp
+                                                            @endforeach
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -302,103 +247,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Job Level Search -->
-                                <div class="single_search_boxed px-4 pt-0 br-bottom">
-                                    <div class="widget-boxed-header">
-                                        <h4>
-                                            <a href="#jblevel" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Level</a>
-                                        </h4>
-                                        
-                                    </div>
-                                    <div class="widget-boxed-body collapse" id="jblevel" data-parent="#jblevel">
-                                        <div class="side-list no-border">
-                                            <!-- Single Filter Card -->
-                                            <div class="single_filter_card">
-                                                <div class="card-body p-0">
-                                                    <div class="inner_widget_link">
-                                                        <ul class="no-ul-list filter-list">
-                                                            <li>
-                                                                <input id="f1" class="checkbox-custom" name="ADA" type="checkbox" checked="">
-                                                                <label for="f1" class="checkbox-custom-label">Team Leader</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="f2" class="checkbox-custom" name="Parking" type="checkbox">
-                                                                <label for="f2" class="checkbox-custom-label">Manager</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="f3" class="checkbox-custom" name="Coffee" type="checkbox">
-                                                                <label for="f3" class="checkbox-custom-label">Junior</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="f4" class="checkbox-custom" name="Coffee" type="checkbox">
-                                                                <label for="f4" class="checkbox-custom-label">Senior</label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Expected Salary Search -->
-                                <div class="single_search_boxed px-4 pt-0">
-                                    <div class="widget-boxed-header">
-                                        <h4>
-                                            <a href="#salary" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Expected Salary</a>
-                                        </h4>
-                                        
-                                    </div>
-                                    <div class="widget-boxed-body collapse" id="salary" data-parent="#salary">
-                                        <div class="side-list no-border">
-                                            <!-- Single Filter Card -->
-                                            <div class="single_filter_card">
-                                                <div class="card-body p-0">
-                                                    <div class="inner_widget_link">
-                                                        <ul class="no-ul-list filter-list">
-                                                            <li>
-                                                                <input id="g1" class="checkbox-custom" name="ADA" type="checkbox" checked="">
-                                                                <label for="g1" class="checkbox-custom-label">$120k - $140k PA</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="g2" class="checkbox-custom" name="Parking" type="checkbox">
-                                                                <label for="g2" class="checkbox-custom-label">$140k - $150k PA</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="g3" class="checkbox-custom" name="Coffee" type="checkbox">
-                                                                <label for="g3" class="checkbox-custom-label">$150k - $170k PA</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="g4" class="checkbox-custom" name="Mother" type="checkbox">
-                                                                <label for="g4" class="checkbox-custom-label">$170k - $190k PA</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="g5" class="checkbox-custom" name="Outdoor" type="checkbox">
-                                                                <label for="g5" class="checkbox-custom-label">$200k - $250k PA</label>
-                                                            </li>
-                                                            <li>
-                                                                <input id="g6" class="checkbox-custom" name="Pet" type="checkbox">
-                                                                <label for="g6" class="checkbox-custom-label">$250k - $300k PA</label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                             </div>
                             
                             <div class="form-group filter_button pt-2 pb-4 px-4">
-                                <button type="submit" class="btn btn-md theme-bg text-light rounded full-width">22 Results Show</button>
+                                <button type="submit" class="btn btn-md theme-bg text-light rounded full-width">Filter Results</button>
                             </div>
                         </div>							
                     </div>
                 </div>
                 <!-- Sidebar End -->
-            
+            </form>
             </div>
             
             <!-- Item Wrap Start -->
@@ -406,258 +264,48 @@
             
                 <!-- row -->
                 <div class="row align-items-center">
-                
-                    <!-- Single -->
+
+                    @if(!$hirings->count())
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-center border rounded">
+                                <div class="rounded bg-white px-3 py-3">
+                                    <div class=" rounded bg-white text-center">
+                                      <img src="{{ asset('frontEndAssets/img/nosearch.svg') }}" class="mx-auto d-block" width="350" alt="No Result Found"><h1>Opps!! No Jobs Found</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+
+                    @foreach($hirings as $hiring)
+
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="jbr-wrap text-left border rounded">
                             <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
                                 <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
+                                    <div class="text-center"><img src="{{ asset('frontEndAssets/img').'/'. $hiring->jobemployers->logo }}" class="img-fluid" width="55" alt=""></div>
                                     <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
+                                        <h4 class="fs-md mb-0 ft-medium">{{ $hiring->title }} (3 Year Exp.)</h4>
                                         <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 theme-cl"><i class="lni lni-briefcase mr-1"></i>Full Time</span>
+                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>{{ $hiring->joblocation->name }}</span>
+                                            <span class="muted medium ml-2 theme-cl"><i class="lni lni-briefcase mr-1"></i>{{ $hiring->jobtype->name }}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
+                                <div class="text-center mlb-last"><a href="{{ route('jobs', $hiring->id) }}" class="btn gray ft-medium apply-btn fs-sm rounded">View Details<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
                             </div>
                         </div>
                     </div>
+
+                    @endforeach
                     
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-purple"><i class="lni lni-briefcase mr-1"></i>Contract</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-danger"><i class="lni lni-briefcase mr-1"></i>Internship</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 theme-cl"><i class="lni lni-briefcase mr-1"></i>Full Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-purple"><i class="lni lni-briefcase mr-1"></i>Contract</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-danger"><i class="lni lni-briefcase mr-1"></i>Internship</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Single -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="jbr-wrap text-left border rounded">
-                            <div class="cats-box mlb-res rounded bg-white d-flex align-items-center justify-content-between px-3 py-3">
-                                <div class="cats-box rounded bg-white d-flex align-items-center">
-                                    <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-                                    <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">Fresher UI/UX Designer (3 Year Exp.)</h4>
-                                        <div class="d-block mb-2 position-relative">
-                                            <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>Liverpool, London</span>
-                                            <span class="muted medium ml-2 text-warning"><i class="lni lni-briefcase mr-1"></i>Part Time</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mlb-last"><a href="job-detail.html" class="btn gray ft-medium apply-btn fs-sm rounded">Apply Job<i class="lni lni-arrow-right-circle ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    @endif
+
+                    {{ $hirings->appends($_GET)->links() }}
                 </div>
                 <!-- row -->
                 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <ul class="pagination">
                             <li class="page-item">
@@ -679,7 +327,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 
             </div>
             

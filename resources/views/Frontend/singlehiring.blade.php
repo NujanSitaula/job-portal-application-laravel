@@ -25,10 +25,12 @@
                             </div>
                         </div>
                     </div>
+                    @if(!Auth::guard('employer')->check())
                     <div class="jbd-01-right text-right">
                         <div class="jbl_button mb-2"><a href="javascript:void(0);" class="btn btn-md rounded theme-bg-light theme-cl fs-sm ft-medium">Apply This Job</a></div>
                         <div class="jbl_button"><a href="javascript:void(0);" class="btn btn-md rounded bg-white border fs-sm ft-medium">View Company</a></div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -95,10 +97,12 @@
                     
                     <div class="jbd-02 pt-4 pr-3">
                         <div class="jbd-02-flex d-flex align-items-center justify-content-between">
+                            @if(!Auth::guard('employer')->check())
                             <div class="jbl_button mb-2">
                                 <a href="#" class="btn btn-md rounded gray fs-sm ft-medium mr-2">Save This Job</a>
                                 <a href="#" class="btn btn-md rounded theme-bg text-light fs-sm ft-medium">Apply Job</a>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -106,6 +110,7 @@
             </div>
             
             <!-- Sidebar -->
+            
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <div class="jb-apply-form bg-white shadow rounded py-3 px-4 box-static">
                     <h4 class="ft-medium fs-md mb-3">Intrested in this job?</h4>
@@ -114,36 +119,36 @@
                     
                         <div class="form-group">
                             <label class="text-dark mb-1 ft-medium medium">First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <input @if(Auth::guard('employer')->check()) disabled @endif type="text" class="form-control" placeholder="First Name">
                         </div>
                         
                         <div class="form-group">
                             <label class="text-dark mb-1 ft-medium medium">Your Email</label>
-                            <input type="email" class="form-control" placeholder="themezhub@gmail.com">
+                            <input @if(Auth::guard('employer')->check()) disabled @endif type="email" class="form-control" placeholder="themezhub@gmail.com">
                         </div>
                         
                         <div class="form-group">
                             <label class="text-dark mb-1 ft-medium medium">Phone Number:</label>
-                            <input type="text" class="form-control" placeholder="+91 245 256 2548">
+                            <input @if(Auth::guard('employer')->check()) disabled @endif type="text" class="form-control" placeholder="+91 245 256 2548">
                         </div>
                         
                         <div class="form-group">
                             <label class="text-dark mb-1 ft-medium medium">Upload Resume:<small class="medium ft-medium">pdf, doc, docx</small></label>
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="customFile">
+                              <input @if(Auth::guard('employer')->check()) disabled @endif type="file" class="custom-file-input" id="customFile">
                               <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="terms_con">
-                                <input id="aa3" class="checkbox-custom" name="Coffee" type="checkbox">
+                                <input @if(Auth::guard('employer')->check()) disabled @endif id="aa3" class="checkbox-custom" name="Coffee" type="checkbox">
                                 <label for="aa3" class="checkbox-custom-label">I agree to pirvacy policy</label>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <button type="button" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width">Apply For This Job</button>
+                            <button type="button" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width" @if(Auth::guard('employer')->check()) disabled @endif>Apply For This Job</button>
                         </div>
                         
                     </form>

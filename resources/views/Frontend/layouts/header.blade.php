@@ -112,24 +112,37 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							@include('Frontend.layouts.nav')
 							<ul class="nav-menu nav-menu-social align-to-right">
-								@if(!Auth::guard('employer')->check())
-								<li>
-									<a href="#" data-toggle="modal" data-target="#login" class="ft-medium">
-										<i class="lni lni-user mr-2"></i>Sign In
-									</a>
-								</li>
-								@else
+								@if(Auth::guard('employer')->check())
 								<li>
 									<a href="{{ route('employer.dashboard') }}" class="ft-medium">
 										<i class="lni lni-dashboard mr-2"></i>Dashboard
 									</a>
 								</li>
+								@elseif(Auth::guard('employee')->check())
+								<li>
+									<a href="{{ route('employer.dashboard') }}" class="ft-medium">
+										<i class="lni lni-dashboard mr-2"></i>Dashboard
+									</a>
+								@else
+								<li>
+									<a href="#" data-toggle="modal" data-target="#login" class="ft-medium">
+										<i class="lni lni-user mr-2"></i>Sign In
+									</a>
+								</li>
 								@endif
+								@if(Auth::guard('employee')->check())
+								<li class="add-listing theme-bg">
+									<a href="{{ route('employer.signin') }}" >
+										<i class="lni lni-circle-plus mr-1"></i> Apply For Job
+									</a>
+								</li>
+								@else
 								<li class="add-listing theme-bg">
 									<a href="{{ route('employer.signin') }}" >
 										<i class="lni lni-circle-plus mr-1"></i> Post a Job
 									</a>
 								</li>
+								@endif
 							</ul>
 						</div>
 					</nav>

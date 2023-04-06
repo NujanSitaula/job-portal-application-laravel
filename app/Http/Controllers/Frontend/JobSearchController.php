@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Hiring;
+use App\Models\JobCategory;
+use App\Models\Location;
+use App\Models\JobType;
+use App\Models\SalaryRange;
+use App\Models\Experience;
 
 class JobSearchController extends Controller
 {
@@ -13,8 +18,16 @@ class JobSearchController extends Controller
         $hiringQuery = $request->jobs;
         $hiringLocation = $request->location;
         $hiringCategory = $request->category;
+        $hiringType = $request->type;
+        $hiringSalary = $request->salary;
+        $hiringExperience = $request->experience;
 
        $hirings = Hiring::orderBy('id', 'desc');
+       $categories = JobCategory::orderBy('name', 'asc')->get();
+       $locations = Location::orderBy('name', 'asc')->get();
+       $jobtype = JobType::orderBy('name', 'asc')->get();
+       $salaryrange = SalaryRange::orderBy('name', 'asc')->get();
+       $experience = Experience::orderBy('name', 'asc')->get();
 
        if($hiringQuery != null){
           $hirings = $hirings->where('title', 'like', '%'.$hiringQuery.'%');
@@ -28,9 +41,23 @@ class JobSearchController extends Controller
            $hirings = $hirings->where('category', 'like', '%'.$hiringCategory.'%');
         }
 
-        $hirings = $hirings->paginate(10);
+        if($hiringType != null){
+            $hirings = $hirings->where('type', 'like', '%'.$hiringType.'%');
+        }
+
+        if($hiringSalary != null){
+            $hirings = $hirings->where('salary', 'like', '%'.$hiringSalary.'%');
+        }
+
+        if($hiringExperience != null){
+            $hirings = $hirings->where('experiance', 'like', '%'.$hiringExperience.'%');
+        }
+
+        $hirings = $hirings->paginate(6);
         $hirings = $hirings->appends($request->all());
 
-        return view('frontend.jobSearch', compact('hirings'));
+       
+
+        return view('frontend.jobSearch', compact('hirings', 'categories', 'locations', 'jobtype', 'salaryrange', 'experience', 'hiringQuery', 'hiringLocation', 'hiringCategory'));
     }
 }
