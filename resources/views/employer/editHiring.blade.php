@@ -1,5 +1,5 @@
 @extends('Frontend.layouts.masterDashboard')
-@section('page_title')Add Hiring Post @endsection
+@section('page_title')Edit Hiring Post @endsection
 @section('header_shadow')head-shadow @endsection
 @section('body_content')
     @include('Frontend.layouts.employerDashboardNav')
@@ -30,7 +30,7 @@
                         </div>
                         
                         <div class="_dashboard_content_body py-3 px-3">
-                            <form class="row" method="post" action="{{ route('employer.hiring.add') }}">
+                            <form class="row" method="post" action="{{ route('employer.hiring.update', $hiring->id) }}">
                                 @csrf
                                 <div class="col-xl-12 col-lg-12 col-md-12">
                                     <div class="row">
@@ -40,19 +40,31 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Job Title*</label>
-                                                <input type="text" name="title" class="form-control rounded  @error('title') is-invalid @enderror" placeholder="Title">
+                                                <input type="text" name="title" class="form-control rounded  @error('title') is-invalid @enderror" placeholder="Title" value="{{ $hiring->title }}">
                                             </div>
                                         </div>
                                         
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Job Description*</label>
-                                                <textarea class="form-control rounded  @error('description') is-invalid @enderror" name="description" placeholder="Job Description"></textarea>
+                                                <textarea class="form-control rounded  @error('description') is-invalid @enderror" name="description" placeholder="Job Description">{{ $hiring->description }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Job Requirements*</label>
+                                                @foreach($hiring->requirement as $requirement)
+                                                <div class="dynamic-wraps">
+                                                      <div class="entry input-group">
+                                                        <input disabled class="form-control mb-2   @error('fieldsUpdate[]') is-invalid @enderror" name="fieldsUpdate[]" type="text" placeholder="Type something"  value="{{ $requirement->requirements }}"/>
+                                                        <span class="input-group-btn">     
+                                                          <a href="{{ route('employer.requirement.delete', $requirement->id, $hiring->id) }}" class="btn btn-danger mb-2" style="padding: 15px;">
+                                                                  <span class="lni lni-trash-can"></span>
+                                                          </a></form>
+                                                        </span>
+                                                      </div>
+                                                </div>
+                                                @endforeach
                                                 <div class="dynamic-wrap">
                                                       <div class="entry input-group">
                                                         <input class="form-control mb-2  @error('fields[]') is-invalid @enderror" name="fields[]" type="text" placeholder="Type something" />
@@ -73,7 +85,7 @@
                                                     <option value="">Select Category</option>
                                                     @foreach ($JobCategory as $item)
                                                 
-                                                            <option value="{{ $item->id }}">{{$item->name}}</option>
+                                                            <option @if($hiring->category == $item->id) selected @endif value="{{ $item->id }}">{{$item->name}}</option>
 
                                                     @endforeach
                                                 </select>
@@ -87,7 +99,7 @@
                                                     <option value="">Select Location</option>
                                                     @foreach ($Location as $item)
                                                 
-                                                    <option value="{{ $item->id }}">{{$item->name}}</option>
+                                                    <option @if($hiring->location == $item->id) selected @endif value="{{ $item->id }}">{{$item->name}}</option>
 
                                                     @endforeach
                                                 </select>
@@ -101,7 +113,7 @@
                                                     <option value="">Select Job Type</option>
                                                     @foreach ($JobType as $item)
                                                 
-                                                    <option value="{{ $item->id }}">{{$item->name}}</option>
+                                                    <option @if($hiring->type == $item->id) selected @endif value="{{ $item->id }}">{{$item->name}}</option>
 
                                                     @endforeach
                                                 </select>
@@ -112,10 +124,10 @@
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Job Location*</label>
                                                 <select class="form-control rounded">
-                                                    <option>Begginer</option>
-                                                    <option>Junior</option>
-                                                    <option>Manager</option>
-                                                    <option>Team leader</option>
+                                                    <option @if($hiring->category == "Begginer") selected @endif>Begginer</option>
+                                                    <option @if($hiring->category == "Junior") selected @endif>Junior</option>
+                                                    <option @if($hiring->category == "Manager") selected @endif>Manager</option>
+                                                    <option @if($hiring->category == "Team leader") selected @endif>Team leader</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -127,7 +139,7 @@
                                                     <option value="">Web Designing</option>
                                                     @foreach ($SalaryRange as $item)
                                                 
-                                                    <option value="{{ $item->id }}">{{$item->name}}</option>
+                                                    <option @if($hiring->salary == $item->id) selected @endif value="{{ $item->id }}">{{$item->name}}</option>
 
                                                     @endforeach
                                                 </select>
@@ -141,7 +153,7 @@
                                                     <option value="">Select Experience</option>
                                                     @foreach ($Experience as $item)
                                                 
-                                                    <option value="{{ $item->id }}">{{$item->name}}</option>
+                                                    <option @if($hiring->experiance == $item->id) selected @endif value="{{ $item->id }}">{{$item->name}}</option>
 
                                                     @endforeach
                                                 </select>
@@ -153,11 +165,11 @@
                                                 <label class="text-dark ft-medium">Qualification*</label>
                                                 <select name="education" class="form-control rounded @error('education') is-invalid @enderror">
                                                     <option value="">Select Qualification</option>
-                                                    <option value="Graduation">Graduation</option>
-                                                    <option value="Master Degree">Master Degree</option>
-                                                    <option value="BPharma">BPharma</option>
-                                                    <option value="P.H.D">P.H.D.</option>
-                                                    <option value="Other">Other</option>
+                                                    <option @if($hiring->education == "Graduation") selected @endif value="Graduation">Graduation</option>
+                                                    <option @if($hiring->education == "Master Degree") selected @endif value="Master Degree">Master Degree</option>
+                                                    <option @if($hiring->education == "BPharma") selected @endif value="BPharma">BPharma</option>
+                                                    <option @if($hiring->education == "P.H.D") selected @endif value="P.H.D">P.H.D.</option>
+                                                    <option @if($hiring->education == "Other") selected @endif value="Other">Other</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -166,9 +178,9 @@
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Gender*</label>
                                                 <select name="gender" class="form-control rounded">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="All Gender">All Gender</option>
+                                                    <option @if($hiring->gender == "Male") selected @endif value="Male">Male</option>
+                                                    <option @if($hiring->gender == "Female") selected @endif value="Female">Female</option>
+                                                    <option @if($hiring->gender == "All Gender") selected @endif value="All Gender">All Gender</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -176,14 +188,14 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Application Deadline*</label>
-                                                <input type="date" name="deadline" class="form-control rounded" placeholder="dd-mm-yyyy">
+                                                <input type="date" name="deadline" class="form-control rounded" placeholder="dd-mm-yyyy" value="{{ $hiring->deadline }}">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Tags</label>
-                                                <input type="text" name="tag" class="form-control rounded" data-role="tagsinput" placeholder="WordPress, Joomla, PHP">
+                                                <input type="text" name="tag" class="form-control rounded" data-role="tagsinput" placeholder="WordPress, Joomla, PHP" value="{{ $hiring->tags }}">
                                                 <sub>Please add tags separated with a comma, e.g. WordPress, Joomla, PHP.</sub>
                                             </div>
                                         </div>
@@ -207,9 +219,9 @@
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Job Status*</label>
                                                 <select name="status" class="form-control rounded">
-                                                    <option value="Published">Publish</option>
-                                                    <option value="Draft">Draft</option>
-                                                    <option value="Inactive">Inactive</option>
+                                                    <option @if($hiring->status == "Published") selected @endif value="Published">Publish</option>
+                                                    <option @if($hiring->status == "Draft") selected @endif value="Draft">Draft</option>
+                                                    <option @if($hiring->status == "Inactive") selected @endif value="Inactive">Inactive</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -217,7 +229,7 @@
                                         
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="hidden" name="token" value="{{ uniqid() }}">
+                                                <input type="hidden" name="token" value="{{ $hiring->token }}">
                                                 <button type="submit" class="btn btn-md ft-medium text-light rounded theme-bg">Publish Job</button>
                                             </div>
                                         </div>

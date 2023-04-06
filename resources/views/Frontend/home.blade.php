@@ -12,18 +12,19 @@
 						</div>
 						<div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
 
-							<form class="bg-white rounded p-1">
+							<form class="bg-white rounded p-1" method="GET" action="{{ route('job.search') }}">
+							
 								<div class="row no-gutters">
 									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 										<div class="form-group mb-0 position-relative">
-											<input type="text" class="form-control lg left-ico" placeholder="{{ $HomePageData->job_placeholder }}" />
+											<input type="text" name="jobs" class="form-control lg left-ico" placeholder="{{ $HomePageData->job_placeholder }}" />
 											<i class="bnc-ico lni lni-search-alt"></i>
 										</div>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 										<div class="form-group mb-0 position-relative">
-                                            <select class="custom-select lg b-0 left-ico">
-                                                <option value="1">{{ $HomePageData->location_placeholder }}</option>
+                                            <select name="location" class="custom-select lg b-0 left-ico">
+                                                <option value="">{{ $HomePageData->location_placeholder }}</option>
                                                 @foreach ($JobLocations as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
@@ -33,8 +34,8 @@
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 										<div class="form-group mb-0 position-relative">
-                                            <select class="custom-select lg b-0 left-ico">
-                                                <option value="1">{{ $HomePageData->category_placeholder }}</option>
+                                            <select name="category" class="custom-select lg b-0 left-ico">
+                                                <option value="">{{ $HomePageData->category_placeholder }}</option>
 												@foreach ($JobCategoriesAll as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
 												@endforeach
@@ -44,7 +45,7 @@
 									</div>
 									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
 										<div class="form-group mb-0 position-relative">
-											<button class="btn full-width custom-height-lg theme-bg text-white fs-md" type="button">{{ $HomePageData->job_button }}</button>
+											<button class="btn full-width custom-height-lg theme-bg text-white fs-md" type="submit">{{ $HomePageData->job_button }}</button>
 										</div>
 									</div>
 								</div>

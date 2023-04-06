@@ -8,6 +8,8 @@ use App\Http\Controllers\Frontend\JobCategoryController;
 use App\Http\Controllers\Frontend\RecoverController;
 use App\Http\Controllers\Frontend\SigninController;
 use App\Http\Controllers\Frontend\SignupController;
+use App\Http\Controllers\Frontend\JobController;
+use App\Http\Controllers\Frontend\JobSearchController;
 
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -26,9 +28,11 @@ use App\Http\Controllers\Admin\AdminEmployerSizeController;
 use App\Http\Controllers\Employer\EmployerController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\Employer\RequirementCheckController;
+use App\Http\Controllers\Employer\EmployerHiringController;
 
 
 use App\Http\Controllers\Employee\EmployeeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +49,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms');
 Route::get('/categories', [JobCategoryController::class, 'categories'])->name('category');
 Route::get('/post/{slug}', [PostController::class, 'postDetails'])->name('post');
+Route::get('/job/{id}', [JobController::class, 'jobDetails'])->name('jobs');
+Route::get('/jobs', [JobSearchController::class, 'index'])->name('job.search');
 
 Route::get('admin/invalid', function () {
     return view('admin.linkexpired');
@@ -167,6 +173,12 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/employer/profile/contact/edit', [EmployerProfileController::class, 'contact'])->name('employer.profile.contact.edit');
     Route::post('/employer/requirement/post', [RequirementCheckController::class, 'addData'])->name('employer.requirement.add');
     Route::get('/employer/requirement/add', [RequirementCheckController::class, 'index'])->name('employer.requirement.view');
+    Route::get('/employer/hiring/post', [EmployerHiringController::class, 'index'])->name('employer.hiring.view');
+    Route::post('/employer/hiring/add', [EmployerHiringController::class, 'addData'])->name('employer.hiring.add');
+    Route::get('/employer/hirings/', [EmployerHiringController::class, 'viewData'])->name('employer.hiring.list');
+    Route::get('/employer/hiring/edit/{id}', [EmployerHiringController::class, 'editData'])->name('employer.hiring.edit');
+    Route::post('/employer/hiring/update/{id}', [EmployerHiringController::class, 'updateData'])->name('employer.hiring.update');
+    Route::get('/employer/hiring/delete/{id}', [EmployerHiringController::class, 'deleteDataRequirement'])->name('employer.requirement.delete');
 
 
  });
