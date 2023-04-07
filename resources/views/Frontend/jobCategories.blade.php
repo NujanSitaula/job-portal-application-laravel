@@ -40,7 +40,7 @@
                             <div class="d-block full-width mb-1"><i class="{{ $item->icon }} fs-lg theme-cl"></i></div>
                             <h4 class="ft-medium mb-0 fs-md">{{ $item->name }}</h4>
                             <p class="mb-3 p-0 lh-1">632 Jobs</p>
-                            <a href="job-search-v1.html" class="theme-cl ft-medium">Explore Jobs<i class="lni lni-arrow-right-circle ml-1"></i></a>
+                            <a href="{{ route('job.search','category'.'='. $item->id) }}" class="theme-cl ft-medium">Explore Jobs<i class="lni lni-arrow-right-circle ml-1"></i></a>
                         </div>
                     </div>
                     @endforeach

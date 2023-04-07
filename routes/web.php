@@ -203,6 +203,10 @@ Route::middleware(['admin:admin'])->group(function () {
 
     Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
 
+    Route::get('/employee/apply/{id}', [EmployeeController::class, 'apply'])->name('employee.apply');
+    Route::post('/employee/apply/confirm/{id}', [EmployeeController::class, 'applyConfirm'])->name('employee.apply.confirm');
+
+
  });
 
 
