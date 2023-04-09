@@ -205,6 +205,7 @@ Route::middleware(['admin:admin'])->group(function () {
 
     Route::get('/employee/apply/{id}', [EmployeeController::class, 'apply'])->name('employee.apply');
     Route::post('/employee/apply/confirm/{id}', [EmployeeController::class, 'applyConfirm'])->name('employee.apply.confirm');
+    Route::get('/employee/job/applied', [JobController::class, 'getApplied'])->name('employee.job.applied');
 
 
  });

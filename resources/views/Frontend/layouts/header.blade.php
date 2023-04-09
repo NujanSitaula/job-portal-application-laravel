@@ -132,13 +132,13 @@
 								@endif
 								@if(Auth::guard('employee')->check())
 								<li class="add-listing theme-bg">
-									<a href="{{ route('employer.signin') }}" >
+									<a href="{{ route('job.search') }}" >
 										<i class="lni lni-circle-plus mr-1"></i> Apply For Job
 									</a>
 								</li>
 								@else
 								<li class="add-listing theme-bg">
-									<a href="{{ route('employer.signin') }}" >
+									<a href="{{ route('employer.hiring.view') }}" >
 										<i class="lni lni-circle-plus mr-1"></i> Post a Job
 									</a>
 								</li>

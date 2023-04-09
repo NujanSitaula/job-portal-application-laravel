@@ -104,18 +104,19 @@
         
             <div class="modal-body p-5">
                 <div class="text-center mb-4">
-                    <h2 class="m-0 ft-regular">Login</h2>
+                    <h2 class="m-0 ft-regular">Employee Login</h2>
                 </div>
                 
-                <form>				
+                <form method="POST" action="{{ route('employee.signin.submit') }}">		
+                    @csrf		
                     <div class="form-group">
-                        <label>User Name</label>
-                        <input type="text" class="form-control" placeholder="Username*">
+                        <label>Username*</label>
+                        <input type="text" name="username" class="form-control" placeholder="Username*">
                     </div>
                     
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Password*">
+                        <label>Password*</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password*">
                     </div>
                     
                     <div class="form-group">
@@ -135,7 +136,7 @@
                     </div>
                     
                     <div class="form-group text-center mb-0">
-                        <p class="extra">Not a member?<a href="#et-register-wrap" class="text-dark"> Register</a></p>
+                        <p class="extra">Not a member?<a href="{{ route('employee.signup') }}" class="text-dark"> Register</a></p>
                     </div>
                 </form>
             </div>
