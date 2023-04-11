@@ -1,11 +1,13 @@
 <?php
 
+// Specify the namespace for the controller
 namespace App\Http\Controllers\Admin;
+
 // Import the necessary classes
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin; // The Admin model
-use Illuminate\Support\Str; // import Str class for generating random strings
+use Illuminate\Support\Str; // Import Str class for generating random strings
 use App\Mail\WebsiteMailController; // The WebMail class for sending emails
 use Hash; // The Hash facade for password hashing
 use Auth; // The Auth facade for authentication
@@ -16,8 +18,6 @@ class AdminLoginController extends Controller
     // Define the index method, which returns the admin login view
     public function index()
     {
-        // $checkpass = Hash::make('admin123');
-        // dd($checkpass);
         // Return the view for the admin login page
         return view('admin.login');
     }
@@ -29,34 +29,47 @@ class AdminLoginController extends Controller
         return view('admin.recover');
     }
 
+    // Define the sosLogin method, which returns the admin sos login view
     public function sosLogin()
     {
-        // Return the view for the admin password recovery page
+        // Return the view for the admin sos login page
         return view('admin.soslogin');
     }
 
+    // Define the recoverSubmitPost method, which handles the admin password recovery form submission
     public function recoverSubmitPost(Request $request)
     {
+        // Validate the email input from the password recovery form
         $request->validate([
             'email' => 'required|email'
         ]);
 
+        // Check if an admin user with the provided email exists in the database
         $adminCheck = Admin::where('email', $request->email)->first();
         if(!$adminCheck) {
+            // If no admin user exists, redirect the user back to the password recovery page with an error message
             return redirect()->route('admin.recover')->with('error', 'User with that email does not exists');
         }
 
+        // Generate a token for the password recovery link using the current time
         $token = hash('sha256',time());
 
+        // Save the token to the admin user's record in the database
         $adminCheck->token = $token;
         $adminCheck->update();
+
+        // Generate the password recovery link using the token and the user's email
         $resetLink = url('admin/recoverPassword/'.$token.'/'.$request->email);
+
+        // Set the subject and message for the password recovery email
         $subject = 'Password Reset Link';
         $message = $resetLink;
+
+        // Send the password recovery email to the user's email using the WebMail class
         \Mail::to($request->email)->send(new WebsiteMailController($subject, $message));
 
+        // Redirect the user back to the password recovery page with a success message
         return redirect()->route('admin.recover')->with('success', 'Password reset link has been sent to your email');
-
     }
 
     // Define the loginSubmitPost method, which handles the admin login form submission

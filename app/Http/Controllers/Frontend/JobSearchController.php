@@ -22,7 +22,7 @@ class JobSearchController extends Controller
         $hiringSalary = $request->salary;
         $hiringExperience = $request->experience;
 
-       $hirings = Hiring::orderBy('id', 'desc');
+       $hirings = Hiring::where('status', 'Published')->orderBy('id', 'desc');
        $categories = JobCategory::orderBy('name', 'asc')->get();
        $locations = Location::orderBy('name', 'asc')->get();
        $jobtype = JobType::orderBy('name', 'asc')->get();

@@ -36,7 +36,7 @@
                                     <label class="text-dark ft-medium">Company Logo (500 x 500)</label>
                                     <div class="custom-file avater_uploads">
                                         <input type="file"  class="custom-file-input" id="customFile">
-                                        <img class="custom-file-label" style="width: 200px; height: 200px;" src="{{ asset('frontEndAssets/img/shotcoderlogo.jpg') }}" alt="">
+                                        <img class="custom-file-label" style="width: 200px; height: 200px;" src="{{ asset('frontEndAssets/img/'.Auth::guard('employer')->user()->logo) }}" alt="">
 {{--                                        <label class="custom-file-label" for="customFile"><i class="fa fa-building"></i></label>--}}
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                                 <select name="industry" class="custom-select rounded @error('industry') is-invalid @enderror" data-live-search="true">
                                                     <option value="">Select Company Industry</option>
                                                     @foreach($industry as $ind)
-                                                        <option value="{{ $ind->id }}">{{ $ind->name }}</option>
+                                                        <option @if(Auth::guard('employer')->user()->industry === $ind->id) selected @endif value="{{ $ind->id }}">{{ $ind->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -118,7 +118,7 @@
                                                 <select name="employer_size" class="custom-select rounded  @error('employer_size') is-invalid @enderror">
                                                     <option value="">Select Company Size</option>
                                                     @foreach($employerSize as $size)
-                                                        <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                        <option @if(Auth::guard('employer')->user()->size == $size->id) selected @endif value="{{ $size->id }}">{{ $size->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -132,7 +132,7 @@
                                         <div class="col-xl-12 col-lg-12">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">About Info</label>
-                                                <textarea name="about" class="form-control with-light @error('about') is-invalid @enderror">{{ Auth::guard('employer')->user()->about }}</textarea>
+                                                <textarea name="about" class="form-control with-light @error('about') is-invalid @enderror">{{ auth()->user()->about }}</textarea>
                                             </div>
                                         </div>
 

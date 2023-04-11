@@ -285,7 +285,7 @@
                                 <div class="cats-box rounded bg-white d-flex align-items-center">
                                     <div class="text-center"><img src="{{ asset('frontEndAssets/img').'/'. $hiring->jobemployers->logo }}" class="img-fluid" width="55" alt=""></div>
                                     <div class="cats-box-caption px-2">
-                                        <h4 class="fs-md mb-0 ft-medium">{{ $hiring->title }} (3 Year Exp.)</h4>
+                                        <h4 class="fs-md mb-0 ft-medium">{{ $hiring->title }}</h4>
                                         <div class="d-block mb-2 position-relative">
                                             <span class="text-muted medium"><i class="lni lni-map-marker mr-1"></i>{{ $hiring->joblocation->name }}</span>
                                             <span class="muted medium ml-2 theme-cl"><i class="lni lni-briefcase mr-1"></i>{{ $hiring->jobtype->name }}</span>

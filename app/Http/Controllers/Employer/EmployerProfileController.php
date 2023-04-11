@@ -37,7 +37,7 @@ class EmployerProfileController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'employer_name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:employers,email,' . $employer->id,
             'phone' => 'required',
             'website' => 'required',
             'industry' => 'required',

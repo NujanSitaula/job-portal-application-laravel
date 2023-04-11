@@ -9,7 +9,8 @@
 		 
         <!-- Custom CSS -->
         <link href="{{ asset('frontEndAssets/css/styles.css') }}" rel="stylesheet">
-		
+		@livewireScripts
+		@livewireStyles
     </head>
 	
     <body>

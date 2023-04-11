@@ -11,6 +11,7 @@ use App\Models\SalaryRange;
 use App\Models\Location;
 use App\Models\Experience;
 use App\Models\Requirement;
+use App\Models\EmployeeApplication;
 
 class EmployerHiringController extends Controller
 {
@@ -76,7 +77,8 @@ class EmployerHiringController extends Controller
     public function viewData(Request $request)
     {
         $hiring = Hiring::where('company_id', auth()->user()->id)->get();
-        return view('employer.listHiring', compact('hiring'));
+        $applications = EmployeeApplication::all();
+        return view('employer.listHiring', compact('hiring', 'applications'));
     }
 
     public function editData($id)
@@ -136,7 +138,7 @@ class EmployerHiringController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'Hiring Added Successfully');
+        return redirect()->route('employer.hiring.list')->with('success', 'Hiring Added Successfully');
     }
 
     public function deleteDataRequirement($id)

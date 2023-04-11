@@ -16,7 +16,7 @@ class JobController extends Controller
     }
     public function jobDetails($id)
     {
-        $jobPost =  Hiring::where('id', $id)->first();
+        $jobPost =  Hiring::where('id', $id)->where('status', 'Published')->first();
         
         // $jobPost->view_count = $blogPost->view_count + 1;
         // $jobPost->update();

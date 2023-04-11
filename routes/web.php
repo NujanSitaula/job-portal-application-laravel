@@ -32,6 +32,8 @@ use App\Http\Controllers\Employer\EmployerHiringController;
 
 
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Livewire\Chat\CreateChat;
+use App\Http\Livewire\Chat\Main;
 
 
 /*
@@ -180,6 +182,13 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/employer/hiring/update/{id}', [EmployerHiringController::class, 'updateData'])->name('employer.hiring.update');
     Route::get('/employer/hiring/delete/{id}', [EmployerHiringController::class, 'deleteDataRequirement'])->name('employer.requirement.delete');
 
+    Route::get('/employer/hiring/applications', [EmployerController::class, 'viewApplications'])->name('employer.hiring.applications');
+    Route::get('/employer/hiring/applications/{id}', [EmployerController::class, 'viewApplicants'])->name('employer.hiring.applicants');
+
+    Route::get('/employer/chat/{key?}', Main::class)->name('chat');
+    Route::get('/employer/users', CreateChat::class)->name('users');
+
+
 
  });
 
@@ -209,6 +218,11 @@ Route::middleware(['admin:admin'])->group(function () {
 
 
  });
+
+/*
+Message Routes
+*/
+
 
 
 

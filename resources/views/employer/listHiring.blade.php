@@ -39,22 +39,64 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    
+                                $count = 0;
+                                @endphp
                                 @foreach ($hiring as $item)
+                                @php
+                                    
+                                    $userID = Auth::user()->id;
+                                    
+                                @endphp
                                 <tr>
-                                    <td><div class="dash-title"><h4 class="mb-0 ft-medium fs-sm">{{ $item->title }}<span class="medium theme-cl rounded @if($item->status == 'Published')text-success bg-light-success @elseif($item->status == 'Draft')text-info bg-light-info @else text-danger bg-light-danger @endif ml-1 py-1 px-2">{{ $item->status }}</span></h4></div></td>
-                                    <td><div class="dash-filled"><span class="p-2 circle gray d-inline-flex align-items-center justify-content-center"><i class="lni lni-minus"></i></span></div></td>
+                                    <td>
+                                        <div class="dash-title">
+                                            <h4 class="mb-0 ft-medium fs-sm">
+                                                {{ $item->title }}
+                                                <span class="medium theme-cl rounded @if($item->status == 'Published') text-success bg-light-success @elseif($item->status == 'Draft') text-info bg-light-info @else text-danger bg-light-danger @endif ml-1 py-1 px-2">{{ $item->status }}</span>
+                                            </h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash-filled">
+                                            <span class="p-2 circle gray d-inline-flex align-items-center justify-content-center">
+                                                <i class="lni lni-minus"></i>
+                                            </span>
+                                        </div>
+                                    </td>
                                     <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
                                     <td>{{ date('d M Y', strtotime($item->deadline)) }}</td>
-                                    <td><a href="dashboard-manage-applications.html" class="gray rounded px-3 py-2 ft-medium">0</a></td>
+                                    <td>
+                                        <a href="{{ route('employer.hiring.applicants', $item->id) }}" class="gray rounded px-3 py-2 ft-medium">
+                                            @php
+                                            $applications = App\Models\EmployeeApplication::where('job_id', $item->id)->count(); 
+                                            echo $applications;
+                                            @endphp
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="dash-action">
-                                            <a href="{{ route('jobs', $item->id) }}" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i class="lni lni-eye"></i></a>
-                                            <a href="{{ route('employer.hiring.edit', $item->id) }}" class="p-2 circle text-success bg-light-success d-inline-flex align-items-center justify-content-center"><i class="lni lni-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><i class="lni lni-trash-can"></i></a>
+                                            <a href="{{ route('jobs', $item->id) }}" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1">
+                                                <i class="lni lni-eye"></i>
+                                            </a>
+                                            <a href="{{ route('employer.hiring.edit', $item->id) }}" class="p-2 circle text-success bg-light-success d-inline-flex align-items-center justify-content-center">
+                                                <i class="lni lni-pencil"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" class="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1">
+                                                <i class="lni lni-trash-can"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
+                                 @php
+                                    $JOBid = $item->id;
+                                     //$JOBid;
+                                 @endphp
+                                    
+                                         
+                                    
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\EmployeeApplication;
+
+
 class EmployerController extends Controller
 {
     public function __construct()
@@ -19,6 +22,12 @@ class EmployerController extends Controller
     public function payment()
     {
         return view('employer.profile');
+    }
+
+    public function viewApplications()
+    {
+        $applications = EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query){ $query->where('company_id', auth()->user()->id);})->get();
+        return view('livewire.chat.create-chat', compact('applications'));
     }
 
 }
