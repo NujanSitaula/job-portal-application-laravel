@@ -7,7 +7,7 @@
             <div class="dashboard-tlbar d-block mb-5">
                 <div class="row">
                     <div class="colxl-12 col-lg-12 col-md-12">
-                        <h1 class="ft-medium">Hello, {{ Auth::guard('employee')->user()->firstname }} {{ Auth::guard('employee')->user()->lastname }}</h1>
+                        <h1 class="ft-medium"><span id="greeting"></span>, {{ Auth::guard('employee')->user()->firstname }}!</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item text-muted"><a href="#">Home</a></li>

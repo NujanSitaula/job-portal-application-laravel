@@ -14,9 +14,32 @@ class Chatbox extends Component
     public $receiver;
     public $selectedConversation;
     public $messages;
+    public $user_id;
+    public $height;
     public $messages_count;
     public $pagenateVar = 10;
-    protected $listeners=['loadConversation'];
+    protected $listeners=['loadConversation', 'pushMessage', 'loadmore', 'updateHeight'];
+
+    public function pushMessage($messageId)
+    {
+       $newMessage = Message::find($messageId);
+        $this->messages->push($newMessage);
+
+        $this->dispatchBrowserEvent('rowChatToBottom');
+    }
+
+    function loadmore()
+    {
+        $this->pagenateVar = $this->pagenateVar + 5;
+        $this->messages = Message::where('conversation_id', $this->selectedConversation->id)->skip( $this->messages_count - $this->pagenateVar)->take($this->pagenateVar)->get();
+        $height = $this->height;
+        $this->dispatchBrowserEvent('updatedHeight',($height));
+    }
+
+    function updateHeight($height)
+    {
+        $this->height = $height;
+    }
 
     public function loadConversation(Conversation $conversation, Employee $receiver)
     {
@@ -32,7 +55,10 @@ class Chatbox extends Component
         $this->dispatchBrowserEvent('chatSelected');
     
     }
-
+    public function mount()
+    {
+        $this->user_id = auth()->user()->id;
+    }
 
 
 

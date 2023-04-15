@@ -75,7 +75,7 @@
                                         <div class="ico-content">
                                             <ul>
                                                 <li><a href="javascript:void(0);" class="px-2 py-1 medium bg-light-success rounded text-success"><i class="lni lni-download mr-1"></i>Download CV</a></li>
-                                                <li><button class="px-2 py-1 medium bg-light-info rounded text-info" style="border:none;"><i class="lni lni-envelope mr-1"></i>Message</button></li>
+                                                {{-- <li><button class="px-2 py-1 medium bg-light-info rounded text-info" style="border:none;"><i class="lni lni-envelope mr-1"></i>Message</button></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -83,9 +83,10 @@
                             </div>
                             <div class="dashed-list-last">
                                 <div class="text-left">
-                                    <a href="#" data-toggle="modal" data-target="#edit" class="btn gray ft-medium apply-btn fs-sm rounded mr-1"><i class="lni lni-arrow-right-circle mr-1"></i>Edit</a>
-                                    <a href="#" data-toggle="modal" data-target="#note" class="btn gray ft-medium apply-btn fs-sm rounded mr-1"><i class="lni lni-add-files mr-1"></i>Note</a>
-                                    <a href="javascript:void(0);" class="btn gray ft-medium apply-btn fs-sm rounded"><i class="lni lni-heart mr-1"></i>Save</a>
+                                    <a href="#" data-toggle="modal" data-target="#details{{ $application->id }}" class="btn gray ft-medium apply-btn fs-sm rounded mr-1"><i class="lni lni-arrow-right-circle mr-1"></i>Details</a>
+                                    <a href="#" data-toggle="modal" data-target="#cover{{ $application->id }}" class="btn gray ft-medium apply-btn fs-sm rounded mr-1"><i class="lni lni-add-files mr-1"></i>View Cover Letter</a>
+                                    <a href="{{ route('employer.hiring.applicant.approve', $application->id) }}" class="btn gray ft-medium apply-btn fs-sm rounded"><i class="lni lni-heart mr-1"></i>Approve</a>
+                                    <a href="{{ route('employer.hiring.applicant.reject', $application->id) }}" class="btn gray ft-medium apply-btn fs-sm rounded"><i class="lni lni-trash-can mr-1"></i>Reject</a>
                                 </div>
                             </div>
                         </div>

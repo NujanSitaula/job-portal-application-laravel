@@ -183,10 +183,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employer/hiring/delete/{id}', [EmployerHiringController::class, 'deleteDataRequirement'])->name('employer.requirement.delete');
 
     Route::get('/employer/hiring/applications', [EmployerController::class, 'viewApplications'])->name('employer.hiring.applications');
-    Route::get('/employer/hiring/applications/{id}', [EmployerController::class, 'viewApplicants'])->name('employer.hiring.applicants');
+    Route::get('/employer/applicants/job/{id}', [EmployerController::class, 'viewApplicants'])->name('employer.hiring.applicants');
+
+    Route::get('/employer/hiring/approve/{id}', [EmployerHiringController::class, 'ApproveJob'])->name('employer.hiring.applicant.approve');
+    Route::get('/employer/hiring/reject/{id}', [EmployerHiringController::class, 'RejectJob'])->name('employer.hiring.applicant.reject');
+
 
     Route::get('/employer/chat/{key?}', Main::class)->name('chat');
-    Route::get('/employer/users', CreateChat::class)->name('users');
+    Route::get('/employer/applicants', CreateChat::class)->name('manage.applications');
 
 
 
@@ -215,6 +219,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employee/apply/{id}', [EmployeeController::class, 'apply'])->name('employee.apply');
     Route::post('/employee/apply/confirm/{id}', [EmployeeController::class, 'applyConfirm'])->name('employee.apply.confirm');
     Route::get('/employee/job/applied', [JobController::class, 'getApplied'])->name('employee.job.applied');
+    Route::get('/employee/job/bookmark/{id}', [EmployeeController::class, 'addBookmark'])->name('employee.job.bookmark');
+    Route::get('/employee/job/bookmarks', [EmployeeController::class, 'checkBookmark'])->name('employee.job.bookmarks');
+    Route::get('/employee/job/bookmark/delete/{id}', [EmployeeController::class, 'deleteBookmark'])->name('bookmark.delete');
 
 
  });

@@ -12,7 +12,7 @@
                             <img src="{{ asset('frontEndAssets/img').'/'. $jobPost->jobemployers->logo }}" class="img-fluid" width="100" alt="" />
                         </div>
                         <div class="jbd-01-caption pl-3">
-                            <div class="tbd-title"><h4 class="mb-0 ft-medium fs-md">{{ $jobPost->title }}{{ $jobPost->jobemployers->logo }}<img src="assets/img/verify.svg" class="ml-1" width="12" alt=""></h4></div>
+                            <div class="tbd-title"><h4 class="mb-0 ft-medium fs-md">{{ $jobPost->title }}<img src="assets/img/verify.svg" class="ml-1" width="12" alt=""></h4></div>
                             <div class="jbl_location mb-3">
                                 <span><i class="lni lni-map-marker mr-1"></i>{{ $jobPost->joblocation->name }}</span>
                                 <span class="ml-3"><i class="lni lni-briefcase mr-1"></i>{{ $jobPost->jobemployers->employer_name }}</span>
@@ -99,8 +99,9 @@
                         <div class="jbd-02-flex d-flex align-items-center justify-content-between">
                             @if(!Auth::guard('employer')->check())
                             <div class="jbl_button mb-2">
-                                <a href="#" class="btn btn-md rounded gray fs-sm ft-medium mr-2">Save This Job</a>
-                                <a href="#" class="btn btn-md rounded theme-bg text-light fs-sm ft-medium">Apply Job</a>
+                                <a href="{{ route('employee.job.bookmark', $jobPost['id']) }}" class="btn btn-md rounded gray fs-sm ft-medium mr-2">Save This Job</a>
+                
+                                <a href="{{ route('employee.apply', $jobPost->id) }}" class="btn btn-md rounded theme-bg text-light fs-sm ft-medium">Apply Job</a>
                             </div>
                             @endif
                         </div>

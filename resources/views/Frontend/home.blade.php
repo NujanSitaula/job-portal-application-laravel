@@ -89,7 +89,7 @@
 									<div class="text-center mb-2 mx-auto position-relative d-inline-flex align-items-center justify-content-center p-3 theme-bg-light circle"><i class="{{ $item->icon }} fs-lg theme-cl"></i></div>
 									<div class="cats-box-caption">
 										<h4 class="fs-md mb-0 ft-medium m-catrio">{{ $item->name }}</h4>
-										<span class="text-muted">607 Jobs</span>
+										<span class="text-muted">{{ $item->jobcatcount_count }} Jobs</span>
 									</div>
 								</a>
 							</div>
@@ -127,198 +127,43 @@
 
 					<!-- row -->
 					<div class="row align-items-center">
+						@php
 
+						@endphp
+						@foreach($hirings as $hiring)
 						<!-- Single -->
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">Full Time</span></div>
+								@if(!Auth::guard('employer')->check())
+								<div class="position-absolute ab-left"><a href="{{ route('employee.job.bookmark', $hiring['id']) }}" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a></div>
+								@endif
+								<div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $hiring->jobtype->name }}</span></div>
 								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
+									<a href="{{ route('jobs', $hiring->id) }}" class="d-block text-center m-auto"><img src="{{ asset('frontEndAssets/img').'/'. $hiring->jobemployers->logo }}" class="img-fluid" width="70" alt="" /></a>
 								</div>
 								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
+									<h4 class="mb-0 ft-medium medium"><a href="{{ route('jobs', $hiring->id) }}" class="text-dark fs-md">{{ $hiring->title }}</a></h4>
+									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>{{ $hiring->joblocation->name }}</span></div>
 								</div>
 								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
 									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
+										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>{{ $hiring->jobcategory->name }}</div>
+										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>{{ $hiring->salaryrange->name }} PA.</div>
+										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>{{ $hiring->vacancies }} Vacancy</div>
+										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>{{ $hiring->created_at->diffForHumans() }}</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-warning text-warning px-2 py-1 rounded">Part Time</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-purple text-purple px-2 py-1 rounded">Contract</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-purple text-purple px-2 py-1 rounded">Contract</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">Full Time</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-							<div class="job_grid rounded ">
-								<div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-								<div class="position-absolute ab-right"><span class="medium bg-light-warning text-warning px-2 py-1 rounded">Part Time</span></div>
-								<div class="job_grid_thumb mb-3 pt-5 px-3">
-									<a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-								</div>
-								<div class="job_grid_caption text-center pb-3 px-3">
-									<h4 class="mb-0 ft-medium medium"><a href="employer-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-									<div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-								</div>
-								<div class="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-									<div class="row">
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-briefcase mr-1"></i>Web Design</div>
-										<div class="df-1 text-muted col-6 mb-2"><i class="lni lni-wallet mr-1"></i>3-4 Lakhs PA.</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-users mr-1"></i>02 Vacancy</div>
-										<div class="df-1 text-muted col-6"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						@endforeach
+						
 					</div>
 					<!-- row -->
 
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="position-relative text-center">
-								<a href="job-search-v1.html" class="btn btn-md theme-bg rounded text-light hover-theme">Explore More Jobs<i class="lni lni-arrow-right-circle ml-2"></i></a>
+								<a href="{{ route('job.search') }}" class="btn btn-md theme-bg rounded text-light hover-theme">Explore More Jobs<i class="lni lni-arrow-right-circle ml-2"></i></a>
 							</div>
 						</div>
 					</div>
@@ -343,83 +188,19 @@
 					<div class="row justify-content-center">
 						<div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
 							<div class="row justify-content-center">
+								@foreach($employers as $employer)
 								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 									<div class="cats-wrap text-left">
 										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
+											<div class="text-center"><img src="{{ asset('frontEndAssets/img').'/'. $employer->logo }}" class="img-fluid" width="55" alt=""></div>
 											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
+												<h4 class="fs-md mb-0 ft-medium">{{ $employer->employer_name }}</h4>
+												<span class="text-muted">{{ $employer->count_employer_count }} Jobs</span>
 											</div>
 										</a>
 									</div>
 								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
-											<div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
-											<div class="cats-box-caption px-2">
-												<h4 class="fs-md mb-0 ft-medium">Web Designing</h4>
-												<span class="text-muted">302 Jobs</span>
-											</div>
-										</a>
-									</div>
-								</div>
+								@endforeach
 							</div>
 						</div>
 					</div>
@@ -430,7 +211,7 @@
 			<!-- ============================ Our Partner End ================================== -->
 
 			<!-- ======================= Customer Review ======================== -->
-			<section class="middle">
+			<section class="middle space min gray">
 				<div class="container">
 
 					<div class="row justify-content-center">
@@ -510,7 +291,7 @@
 			<!-- ======================= Customer Review ======================== -->
 
 			<!-- ============================ Pricing Start ==================================== -->
-			<section class="space min gray">
+			{{-- <section class="space min gray">
 				<div class="container">
 
 					<div class="row justify-content-center">
@@ -603,7 +384,7 @@
 					</div>
 
 				</div>
-			</section>
+			</section> --}}
 			<!-- ============================ Pricing End ==================================== -->
 
 			<!-- ======================= Blog Start ============================ -->

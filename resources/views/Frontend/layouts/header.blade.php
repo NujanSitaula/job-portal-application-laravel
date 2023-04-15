@@ -74,7 +74,7 @@
 							</div>
 							
 							<div class="currency-selector dropdown js-dropdown float-right mr-3">
-								<a href="javascript:void(0);" class="text-light medium">Wishlist</a>
+								<a href="{{ route('employee.job.bookmarks') }}" class="text-light medium">Wishlist</a>
 							</div>
 							
 							<div class="currency-selector dropdown js-dropdown float-right mr-3">
@@ -121,7 +121,7 @@
 								</li>
 								@elseif(Auth::guard('employee')->check())
 								<li>
-									<a href="{{ route('employer.dashboard') }}" class="ft-medium">
+									<a href="{{ route('employee.dashboard') }}" class="ft-medium">
 										<i class="lni lni-dashboard mr-2"></i>Dashboard
 									</a>
 								@else

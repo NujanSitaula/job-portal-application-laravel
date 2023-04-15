@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\EmployeeApplication;
 use App\Models\Hiring;
+use App\Models\EmployeeBookmark;
 use Auth;
 
 class EmployeeController extends Controller
@@ -47,5 +48,34 @@ class EmployeeController extends Controller
         }
         
         return redirect()->route('employee.dashboard')->with('success', 'You have successfully applied for this job');
+    }
+
+    public function addBookmark($id)
+    {
+        $bookmarkCheck = EmployeeBookmark::where('employee_id', Auth::guard('employee')->user()->id)->where('job_id', $id)->count();
+        if($bookmarkCheck == 0){
+            $bookmark = new EmployeeBookmark();
+            $bookmark->employee_id = Auth::guard('employee')->user()->id;
+            $bookmark->job_id = $id;
+            $bookmark->save();
+        }
+        else{
+            return redirect()->back()->with('error', 'Job has already been added to your bookmark');
+            }
+        return redirect()->back()->with('success', 'Job has been added to your bookmark');
+    }
+
+    public function checkBookmark()
+    {
+        $bookmarks = EmployeeBookmark::where('employee_id', Auth::guard('employee')->user()->id)->get();
+        return view('employee.bookmarks', compact('bookmarks'));
+    }
+
+    public function deleteBookmark($id)
+    {
+        $bookmark = EmployeeBookmark::where('employee_id', Auth::guard('employee')->user()->id)->where('id', $id)->first();
+        //dd($bookmark);
+        $bookmark->delete();
+        return redirect()->back()->with('success', 'Job has been removed from your bookmark');
     }
 }

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobCategory extends Model
+class EmployeeBookmark extends Model
 {
     use HasFactory;
 
-    public function jobcatcount()
+    public function jobdetails()
     {
-        return $this->hasMany(Hiring::class, 'category', 'id');
+        return $this->belongsTo(Hiring::class, 'job_id', 'id');
     }
 }

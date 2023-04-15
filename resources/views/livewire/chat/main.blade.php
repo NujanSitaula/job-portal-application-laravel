@@ -41,7 +41,7 @@
                             <!-- Convershion -->
                             <div class="messages-container margin-top-0">
                                 <div class="messages-headline">
-                                    <h4>Connor Griffin</h4>
+                                    <h4>JobScout Messenger</h4>
                                     <a href="#" class="message-action"><i class="ti-trash"></i> Delete Conversation</a>
                                 </div>
 
@@ -56,7 +56,7 @@
                                     <!-- Messages / End -->
 
                                     <!-- Message Content -->
-                                    <div class="dash-msg-content" style="height: 1000px; overflow-y: scroll;">
+                                    <div class="dash-msg-content">
                                         
                                         @livewire('chat.chatbox')
                                         
@@ -74,6 +74,19 @@
                     </div>
                 </div>
             </div>
+            <script>
+                window.addEventListener('chatSelected', event => {
+                    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+                    let height= $('.message-body')[0].scrollHeight;
+                window.livewire.emit('updateHeight',{
+                    height:height,
+                })
+                });
+
+                
+            </script>
+          
         </div>
     {{-- The whole world belongs to you. --}}
 

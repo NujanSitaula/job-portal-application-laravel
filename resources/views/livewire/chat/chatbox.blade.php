@@ -1,16 +1,47 @@
-<div>
+<div class="message-body messages-body" id="messageBody" style="height: 500px; overflow-y: scroll; padding-right: 5px;">
 @if($selectedConversation)
 @foreach($messages as $message)
-<div class="message-plunch">
-    <div class="dash-msg-avatar"><img src="https://ui-avatars.com/api/?name={{ $receiverInstance->firstname }}+{{ $receiverInstance->lastname }}" alt=""></div>
+
+<div wire:key='{{ $message->id }}' class="message-plunch {{ $this->user_id == $message->sender_id? 'me':'' }}">
+    <div class="dash-msg-avatar"><img src="@if( $this->user_id == $message->sender_id ) https://ui-avatars.com/api/?name={{ $message->sender_id }}+{{ $receiverInstance->lastname }} @else https://ui-avatars.com/api/?name={{ $receiverInstance->firstname }}+{{ $receiverInstance->lastname }} @endif" alt=""></div>
     <div class="dash-msg-text"><p>{{ $message->body }}</p></div>
-    <p class="small ms-3 mb-3 rounded-3 text-muted float-right"> {{ $message->created_at->format('d M Y | m: i a') }}</p>
+    <p class="small ms-3 mb-3 rounded-3 text-muted {{ $this->user_id == $message->sender_id? 'float-left':'float-right' }}"> {{ $message->created_at->format('d M Y | m: i a') }} | <span class="text-info">{{ $this->user_id == $message->sender_id? 'Seen':'' }}</span></p>
 </div>
 @endforeach
-@else
+<script>
+    $("#messageBody").on('scroll', function() {
+     var top = $('#messageBody').scrollTop();  
+     if(top == 0){
+        window.livewire.emit('loadmore');
+     }
+    });
+</script>
 
-No Conversation Selected
+<script>
+    window.addEventListener('updatedHeight', event => {
+      let  old = event.detail.height;
+        let newHeight = $('#messageBody')[0].scrollHeight;
+
+        let height= $('#messageBody').scrollTop(newHeight - old);
+
+        window.livewire.emit('updateHeight',{
+            height: height,
+        });
+    })
+</script>
+@else
+<div class="text-center">
+    <img  src="{{ asset('frontEndAssets/img/nochat.svg') }}" width="500" alt="" class="img-fluid">
+</div>
 @endif
+
+<script>
+ window.addEventListener('rowChatToBottom', event => {
+        $('#messageBody').scrollTop($('#messageBody')[0].scrollHeight);
+    });
+
+</script>
+
 </div>
 
 

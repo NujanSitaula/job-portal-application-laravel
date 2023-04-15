@@ -147,4 +147,20 @@ class EmployerHiringController extends Controller
         $requirements->delete();
         return redirect()->back()->with('success', 'Requirement Deleted Successfully');
     }
+
+    public function ApproveJob($id)
+    {
+        $hiringsApplications = EmployeeApplication::where('id', $id)->first();
+        $hiringsApplications->status = "Approved";
+        $hiringsApplications->update();
+        return redirect()->back()->with('success', 'Job Approved Successfully');
+    }
+
+    public function RejectJob($id)
+    {
+        $hiringsApplications = EmployeeApplication::where('id', $id)->first();
+        $hiringsApplications->status = "Rejected";
+        $hiringsApplications->update();
+        return redirect()->back()->with('success', 'Job Rejected Successfully');
+    }
 }
