@@ -13,19 +13,24 @@ The application features a clean and intuitive user interface, making it easy fo
 
 Employers can create their profiles, post job listings, and search for candidates based on various criteria such as location, experience, and education. They can also receive candidate applications, manage and communicate with applicants, and schedule interviews.
 
-I am currently working on implementing features like posting jobs and advertisements. 
+I am currently working on implementing features like fixing routes and generating CVs. 
 
 ## Packages Used (Till Date)
 
-* axios: A Promise-based HTTP client for JavaScript. It is used in this project to make API requests to the Laravel backend.
+* Axios: A Promise-based HTTP client for JavaScript. It is used in this project to make API requests to the Laravel backend.
 
-* laravel-vite-plugin: A Vite plugin specifically designed for Laravel projects. It provides features such as automatic asset versioning and Laravel Mix-like asset building, among others.
+* Laravel-vite-plugin: A Vite plugin specifically designed for Laravel projects. It provides features such as automatic asset versioning and Laravel Mix-like asset building, among others.
 
-* lodash: A JavaScript utility library that provides a variety of helpful functions for working with arrays, objects, and strings. It is used in this project to simplify certain operations and improve code readability.
+* Lodash: A JavaScript utility library that provides a variety of helpful functions for working with arrays, objects, and strings. It is used in this project to simplify certain operations and improve code readability.
 
-* postcss: A tool for transforming CSS with JavaScript. It is used in this project to preprocess CSS, apply vendor prefixes, and optimize styles.
+* Postcss: A tool for transforming CSS with JavaScript. It is used in this project to preprocess CSS, apply vendor prefixes, and optimize styles.
 
-* vite: A build tool and development server for modern web projects. It is used in this project as the main development server and build tool for the frontend.
+* Vite: A build tool and development server for modern web projects. It is used in this project as the main development server and build tool for the frontend.
+
+* LiveWire: Livewire is an open-source PHP library that allows developers to build dynamic web applications using a reactive programming model. It provides a simple and elegant way to create rich, interactive interfaces with minimal JavaScript code.
+
+* Laravel-DomPDF: Laravel-dompdf is a package for the Laravel PHP framework that allows developers to easily generate PDF documents from HTML views. It is built on top of the popular Dompdf library and provides a simple and intuitive way to generate PDF documents with custom styles and formatting.
+
 
 These packages are the default ones that come with Laravel, and as of now, no additional packages have been added. However, as the development progresses, I plan to incorporate additional packages and will update accordingly.
 
