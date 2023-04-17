@@ -2,32 +2,7 @@
 @section('page_title')#1 Job Portal Company @endsection
 @section('header_shadow')head-shadow @endsection
 @section('body_content')
-<div class="dashboard-wrap bg-light">
-    <a class="mobNavigation" data-toggle="collapse" href="#MobNav" role="button" aria-expanded="false" aria-controls="MobNav">
-        <i class="fas fa-bars mr-2"></i>Dashboard Navigation
-    </a>
-     <div class="collapse" id="MobNav">
-        <div class="dashboard-nav">
-            <div class="dashboard-inner">
-                <ul data-submenu-title="Main Navigation">
-                    <li><a href="candidate-dashboard.html"><i class="lni lni-dashboard mr-2"></i>Dashboard</a></li>
-                    <li><a href="dashboard-manage-resume.html"><i class="lni lni-files mr-2"></i>Manage Resumes</a></li>
-                    <li><a href="dashboard-add-resume.html"><i class="lni lni-add-files mr-2"></i>Create Resume</a></li>
-                    <li class="active"><a href="dashboard-applied-jobs.html"><i class="lni lni-briefcase mr-2"></i>Applied jobs</a></li>
-                    <li><a href="dashboard-alert-job.html"><i class="ti-bell mr-2"></i>Alert Jobs<span class="count-tag bg-warning">4</span></a></li>
-                    <li><a href="dashboard-saved-jobs.html"><i class="lni lni-bookmark mr-2"></i>Bookmark Jobs</a></li>
-                    <li><a href="dashboard-packages.html"><i class="lni lni-mastercard mr-2"></i>Packages</a></li>
-                    <li><a href="dashboard-messages.html"><i class="lni lni-envelope mr-2"></i>Messages<span class="count-tag">4</span></a></li>
-                </ul>
-                <ul data-submenu-title="My Accounts">
-                    <li><a href="dashboard-my-profile.html"><i class="lni lni-user mr-2"></i>My Profile </a></li>
-                    <li><a href="dashboard-change-password.html"><i class="lni lni-lock-alt mr-2"></i>Change Password</a></li>
-                    <li><a href="javascript:void(0);"><i class="lni lni-trash-can mr-2"></i>Delete Account</a></li>
-                    <li><a href="login.html"><i class="lni lni-power-switch mr-2"></i>Log Out</a></li>
-                </ul>
-            </div>					
-        </div>
-    </div>
+@include('Frontend.layouts.employeeDashboardNav')
     
     <div class="dashboard-content">
         <div class="dashboard-tlbar d-block mb-5">
@@ -112,7 +87,7 @@
                                         <td>{{ date('d M Y', strtotime($data->created_at)) }}</td>
                                         <td>
                                             <div class="dash-action">
-                                                <a href="javascript:void(0);" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i class="lni lni-eye"></i></a>
+                                                <a href="{{ route('jobs', $data->jobdetails->id) }}" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i class="lni lni-eye"></i></a>
                                                 <a href="javascript:void(0);" class="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><i class="lni lni-trash-can"></i></a>
                                             </div>
                                         </td>

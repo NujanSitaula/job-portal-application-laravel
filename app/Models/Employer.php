@@ -13,4 +13,9 @@ class Employer extends Authenticatable
     {
         return $this->hasMany(Hiring::class, 'company_id', 'id');
     }
+
+    public function getLocations()
+    {
+        return $this->belongsTo(EmployerLocation::class, 'address_id', 'id');
+    }
 }

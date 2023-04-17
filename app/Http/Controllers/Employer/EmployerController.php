@@ -35,5 +35,5 @@ class EmployerController extends Controller
         $applications = EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query) use ($id){ $query->where('company_id', auth()->user()->id)->where('job_id', $id);})->get();
         return view('employer.applications', compact('applications'));
     }
-
+    
 }

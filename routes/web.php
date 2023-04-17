@@ -29,9 +29,11 @@ use App\Http\Controllers\Employer\EmployerController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\Employer\RequirementCheckController;
 use App\Http\Controllers\Employer\EmployerHiringController;
+use App\Http\Controllers\Frontend\EmployerDetailsController;
 
 
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\Employee\ResumeController;
 use App\Http\Livewire\Chat\CreateChat;
 use App\Http\Livewire\Chat\Main;
 
@@ -53,6 +55,8 @@ Route::get('/categories', [JobCategoryController::class, 'categories'])->name('c
 Route::get('/post/{slug}', [PostController::class, 'postDetails'])->name('post');
 Route::get('/job/{id}', [JobController::class, 'jobDetails'])->name('jobs');
 Route::get('/jobs', [JobSearchController::class, 'index'])->name('job.search');
+Route::get('/employer/details/{id}', [EmployerDetailsController::class, 'employerDetails'])->name('employer.details');
+Route::get('/employer/browse', [EmployerDetailsController::class, 'browseEmployer'])->name('employer.browse');
 
 Route::get('admin/invalid', function () {
     return view('admin.linkexpired');
@@ -222,6 +226,7 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employee/job/bookmark/{id}', [EmployeeController::class, 'addBookmark'])->name('employee.job.bookmark');
     Route::get('/employee/job/bookmarks', [EmployeeController::class, 'checkBookmark'])->name('employee.job.bookmarks');
     Route::get('/employee/job/bookmark/delete/{id}', [EmployeeController::class, 'deleteBookmark'])->name('bookmark.delete');
+    Route::get('/employee/resume/create', [ResumeController::class, 'create'])->name('employee.resume.create');
 
 
  });

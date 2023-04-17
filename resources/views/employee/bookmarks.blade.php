@@ -2,7 +2,7 @@
 @section('page_title')#1 Job Portal Company @endsection
 @section('header_shadow')head-shadow @endsection
 @section('body_content')
-@include('Frontend.layouts.employerDashboardNav')
+@include('Frontend.layouts.employeeDashboardNav')
 <div class="dashboard-content">
     <div class="dashboard-tlbar d-block mb-5">
         <div class="row">

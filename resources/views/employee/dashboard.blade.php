@@ -2,7 +2,7 @@
 @section('page_title')#1 Job Portal Company @endsection
 @section('header_shadow')head-shadow @endsection
 @section('body_content')
-@include('Frontend.layouts.employerDashboardNav')
+@include('Frontend.layouts.employeeDashboardNav')
         <div class="dashboard-content">
             <div class="dashboard-tlbar d-block mb-5">
                 <div class="row">
@@ -21,30 +21,30 @@
             <div class="dashboard-widg-bar d-block">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <div class="dash-widgets py-5 px-4 bg-success rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">46</h2>
-                            <p class="p-0 m-0 text-light fs-md">Submit Jobs</p>
+                        <div class="dash-widgets py-5 px-4 bg-info rounded">
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $appliedJobs }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Applied Jobs</p>
                             <i class="lni lni-empty-file"></i>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="dash-widgets py-5 px-4 bg-success rounded">
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $approvedJobs }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Approved Job</p>
+                            <i class="lni lni-checkmark-circle"></i>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="dash-widgets py-5 px-4 bg-primary rounded">
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $rejectrdJobs }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Rejected Jobs</p>
+                            <i class="lni lni-cross-circle"></i>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="dash-widgets py-5 px-4 bg-purple rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">87</h2>
-                            <p class="p-0 m-0 text-light fs-md">Applications</p>
-                            <i class="lni lni-users"></i>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <div class="dash-widgets py-5 px-4 bg-danger rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">312</h2>
-                            <p class="p-0 m-0 text-light fs-md">Notifications</p>
-                            <i class="lni lni-bar-chart"></i>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <div class="dash-widgets py-5 px-4 bg-blue rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">32</h2>
-                            <p class="p-0 m-0 text-light fs-md">Bookmark</p>
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $bookmarkedJobs }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Bookmark jobs</p>
                             <i class="lni lni-heart"></i>
                         </div>
                     </div>

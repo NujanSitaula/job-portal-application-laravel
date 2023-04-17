@@ -191,7 +191,7 @@
 								@foreach($employers as $employer)
 								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 									<div class="cats-wrap text-left">
-										<a href="job-search-v1.html" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
+										<a href="{{ route('employer.details', $employer->id) }}" class="cats-box rounded bg-white d-flex align-items-center px-2 py-3">
 											<div class="text-center"><img src="{{ asset('frontEndAssets/img').'/'. $employer->logo }}" class="img-fluid" width="55" alt=""></div>
 											<div class="cats-box-caption px-2">
 												<h4 class="fs-md mb-0 ft-medium">{{ $employer->employer_name }}</h4>

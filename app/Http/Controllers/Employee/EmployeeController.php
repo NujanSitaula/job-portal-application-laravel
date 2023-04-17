@@ -18,7 +18,12 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        return view('employee.dashboard');
+        $appliedJobs = EmployeeApplication::where('employee_id', Auth::guard('employee')->user()->id)->count();
+        $bookmarkedJobs = EmployeeBookmark::where('employee_id', Auth::guard('employee')->user()->id)->count();
+        $approvedJobs = EmployeeApplication::where('employee_id', Auth::guard('employee')->user()->id)->where('status', 'approved')->count();
+        $rejectrdJobs = EmployeeApplication::where('employee_id', Auth::guard('employee')->user()->id)->where('status', 'rejected')->count();
+
+        return view('employee.dashboard', compact('appliedJobs', 'bookmarkedJobs', 'approvedJobs', 'rejectrdJobs'));
     }
 
     public function apply($id)
@@ -78,4 +83,6 @@ class EmployeeController extends Controller
         $bookmark->delete();
         return redirect()->back()->with('success', 'Job has been removed from your bookmark');
     }
+
+   
 }
