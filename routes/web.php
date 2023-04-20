@@ -33,7 +33,7 @@ use App\Http\Controllers\Frontend\EmployerDetailsController;
 
 
 use App\Http\Controllers\Employee\EmployeeController;
-use App\Http\Controllers\Employee\ResumeController;
+use App\Http\Controllers\Employee\EmployeeResumeController;
 use App\Http\Livewire\Chat\CreateChat;
 use App\Http\Livewire\Chat\Main;
 
@@ -226,7 +226,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employee/job/bookmark/{id}', [EmployeeController::class, 'addBookmark'])->name('employee.job.bookmark');
     Route::get('/employee/job/bookmarks', [EmployeeController::class, 'checkBookmark'])->name('employee.job.bookmarks');
     Route::get('/employee/job/bookmark/delete/{id}', [EmployeeController::class, 'deleteBookmark'])->name('bookmark.delete');
-    Route::get('/employee/resume/create', [ResumeController::class, 'create'])->name('employee.resume.create');
+    Route::get('/employee/resume/create', [EmployeeResumeController::class, 'create'])->name('employee.resume.create');
+    Route::post('/employee/resume/education', [EmployeeResumeController::class, 'createEducation'])->name('employee.resume.create.education');
+    Route::post('/employee/resume/experience', [EmployeeResumeController::class, 'createExperience'])->name('employee.resume.create.experience');
 
 
  });

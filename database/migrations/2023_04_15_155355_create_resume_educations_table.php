@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('resume_educations', function (Blueprint $table) {
+        Schema::create('resume_education', function (Blueprint $table) {
             $table->id();
+            $table->string('school_name');
+            $table->string('degree');
+            $table->text('details');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->integer('employee_id');
             $table->timestamps();
         });
     }

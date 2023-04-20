@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('resume_skills', function (Blueprint $table) {
             $table->id();
+            $table->string('skill_name');
             $table->timestamps();
         });
     }

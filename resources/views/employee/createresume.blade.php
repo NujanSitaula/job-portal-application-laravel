@@ -99,41 +99,65 @@
                     </div>
                     
                     <div class="_dashboard_content_body py-3 px-3">
-                        <form class="row">
+                        <form class="row" action="{{ route('employee.resume.create.education') }}" method="POST">
+                            @csrf
                             <div class="col-xl-12 col-lg-12">
                                 <div class="gray rounded p-3 mb-3 position-relative">
                                     <div class="form-group">
                                         <label class="text-dark ft-medium">School Name</label>
-                                        <input type="text" class="form-control rounded" placeholder="School Name">
+                                        <input type="text" name="schoolName" class="form-control rounded" placeholder="School Name">
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark ft-medium">Qualification</label>
-                                        <input type="text" class="form-control rounded" placeholder="Qualification Title">
+                                        <input type="text" name="qualification" class="form-control rounded" placeholder="Qualification Title">
                                     </div>
                                     <div class="form-row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">Start Date</label>
-                                                <input type="date" class="form-control rounded" placeholder="dd-mm-yyyy">
+                                                <input type="date" name="startDate" class="form-control rounded" placeholder="dd-mm-yyyy">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="text-dark ft-medium">End Date</label>
-                                                <input type="date" class="form-control rounded" placeholder="dd-mm-yyyy">
+                                                <input type="date" name="endDate" class="form-control rounded" placeholder="dd-mm-yyyy">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark ft-medium">Note</label>
-                                        <textarea class="form-control ht-80" placeholder="Note Optional"></textarea>
+                                        <textarea class="form-control ht-80" name="details" placeholder="Note Optional"></textarea>
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
                             <div class="col-xl-12 col-lg-12">
-                                <div class="form-group">
+                                <div class="form-group mb-4">
                                     <button type="submit" class="btn btn-info text-light ft-medium apply-btn fs-sm rounded"><i class="fas fa-plus mr-1"></i>Add Education</button>
                                 </div>
+                                <label class="text-dark ft-medium">Qualifications:</label>
+                                    @foreach($listEducation as $education)
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <div class="row p-2">
+                                                <div class="col-4">
+                                                    <span class="p-3 text-white bg-purple rounded mr-3"><i class="fas fa-school"></i></span>  <strong>{{ $education->school_name }}</strong>
+                                                </div>
+                                            <div class="col-4">
+                                                 <i class="fas fa-graduation-cap me-2"></i> {{ $education->degree }}
+                                            </div>
+                                            <div class="col-2">
+                                                <i class="far fa-calendar me-2"></i> {{ $education->start_date }} - {{ $education->end_date }}
+                                            </div>
+                                            <div class="col-2 text-right">
+                                                <a class="p-3 text-white bg-danger rounded mr-3"><i class="fas fa-trash"></i> Remove</a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
                             </div>
                             
                         </form>
