@@ -17,7 +17,7 @@
                         <h6 class="text-muted mt-3 mb-0">Congratulations, your email just got a special delivery - the one and only verification link! Check your inbox ASAP and let's get this party started!</h6>
                     </div>
                     <div class="form-group">
-                        <a href="{{ route('employee.signin') }}" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Back To Login</a>
+                        <a href="{{ route('employer.signin') }}" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Back To Login</a>
                     </div>
                 </form>
             </div>

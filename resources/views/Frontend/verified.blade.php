@@ -14,7 +14,7 @@
                         <h6 class="text-muted mt-3 mb-0">Congratulations, Your email has just received its official stamp of approval and is now fully verified. You're now officially part of JobScout. Welcome aboard!</h6>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Back To Login</button>
+                        <a href="{{ route('employee.signin') }}" class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Back To Login</button>
                     </div>
                 </form>
             </div>

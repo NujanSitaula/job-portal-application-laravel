@@ -46,12 +46,15 @@ class SignupController extends Controller
         $employer->password = Hash::make($request->password);
         $employer->save();
 
-        $verifyLink = url('verify-email/'.$token.'/'.$request->email);
+        $verifyLink = url('employer/verify-email/'.$token.'/'.$request->email);
         $subject = 'Verify Your Email';
         $message = $verifyLink;
-        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.verifyEmail'));
 
-        return redirect()->route('email.verify')->with('success', 'Verification has been sent to '.$request->email);
+        $fullname = $request->firstname.' '.$request->lastname;
+        
+        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.verifyEmail', ['employer_name' => $fullname]));
+        return redirect()->route('email.verifyemployer')->with('success', 'Verification has been sent to '.$request->email);
+        
     }
 
     public function verifyEmail($token, $email)
@@ -61,7 +64,7 @@ class SignupController extends Controller
             $employer->isverified = 1;
             $employer->token = '';
             $employer->update();
-            return redirect()->route('email.verified')->with('success', 'Your email has been verified');
+            return redirect()->route('email.verifiedemployer')->with('success', 'Your email has been verified');
         } else {
             return redirect()->route('employer.login')->with('error', 'Invalid verification link');
         }
@@ -93,7 +96,10 @@ class SignupController extends Controller
         $verifyLink = url('verify-email/'.$token.'/'.$request->email);
         $subject = 'Verify Your Email';
         $message = $verifyLink;
-        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.verifyEmail'));
+
+        $fullname = $request->firstname.' '.$request->lastname;
+        
+        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.verifyEmail', ['employer_name' => $fullname]));
 
         return redirect()->route('email.verify')->with('success', 'Verification has been sent to '.$request->email);
     }

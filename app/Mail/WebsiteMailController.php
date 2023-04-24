@@ -14,19 +14,21 @@ class WebsiteMailController extends Mailable
     public $subject;
     public $body;
     public $template;
+    public $employer_name;
 
-    public function __construct($subject, $body, $template = 'admin.email.emailTemplate')
+    public function __construct($subject, $body, $template = 'admin.email.emailTemplate', $employer_name)
     {
         $this->subject = $subject;
         $this->body = $body;
         $this->template = $template;
+        $this->employer_name = $employer_name;
     }
 
     public function build()
     {
-        return $this->view($this->template)->with([
-            'subject' => $this->subject,
-            'body' => $this->body,
-        ]);
+        return $this->view($this->template)
+        ->with('subject', $this->subject)
+        ->with('body', $this->body)
+        ->with('employer_name', $this->employer_name);
     }
 }

@@ -88,7 +88,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <a href="http://litmus.com" target="_blank">
+                        <a href="http://jobscout.tech" target="_blank">
                             <img alt="Logo" src="https://i.ibb.co/ngH1LVV/Copy-of-jobscout.png" width="100" style="display: block; width: 200px; max-width: 200px; min-width: 40px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
                         </a>
                     </td>
@@ -123,6 +123,7 @@
             <![endif]-->
         </td>
     </tr>
+
     <!-- COPY BLOCK -->
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">

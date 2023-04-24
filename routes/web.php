@@ -68,6 +68,12 @@ Route::get('/verified', function () {
     return view('frontend.verified');
 })->name('email.verified');
 
+Route::get('employer/verify', function () {
+    return view('frontend.verifyemployer');
+})->name('email.verifyemployer');
+Route::get('employer/verified', function () {
+    return view('frontend.verifiedemployer');
+})->name('email.verified');
 
 /*
  * Admin Routes
@@ -229,6 +235,7 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employee/resume/create', [EmployeeResumeController::class, 'create'])->name('employee.resume.create');
     Route::post('/employee/resume/education', [EmployeeResumeController::class, 'createEducation'])->name('employee.resume.create.education');
     Route::post('/employee/resume/experience', [EmployeeResumeController::class, 'createExperience'])->name('employee.resume.create.experience');
+    Route::post('/employee/resume/skill', [EmployeeResumeController::class, 'createSkill'])->name('employee.resume.create.skill');
 
 
  });

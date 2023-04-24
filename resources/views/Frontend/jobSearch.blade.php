@@ -125,7 +125,7 @@
                                                                 @endphp
                                                                 @foreach($categories as $item)
                                                                 
-                                                                <input id="e{{ $count }}" @if($hiringCategory == $item->id) checked @endif  class="radio-custom" value={{ $item->id }} name="category" type="radio">
+                                                                <input id="e{{ $count }}" @if($hiringCategory == $item->id) checked @endif  class="radio-custom" value="{{ $item->id }}" name="category" type="radio">
                                                                 <label for="e{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                                 @php
                                                                    $count ++;
@@ -146,11 +146,11 @@
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#jobtype" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Job Type</a>
+                                            <a href="#jobtype" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed  @if($hiringType == null) collapsed @endif" @if($hiringType != null) expanded="true" @endif>Job Type</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="jobtype" data-parent="#jobtype">
+                                    <div class="widget-boxed-body collapse @if($hiringType != null) show @endif" id="jobtype" data-parent="#jobtype">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
@@ -162,7 +162,7 @@
                                                             @endphp
                                                             @foreach($jobtype as $item)
                                                             <li>
-                                                                <input id="ea{{ $count }}" class="radio-custom" name="jobtype" type="radio">
+                                                                <input id="ea{{ $count }}" @if($hiringType == $item->id) checked @endif class="radio-custom" value="{{ $item->id }}" name="jobtype" type="radio">
                                                                 <label for="ea{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                             </li>
                                                             @php
@@ -182,11 +182,11 @@
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#salary" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Expected Salary</a>
+                                            <a href="#salary" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed @if($hiringSalary == null) collapsed @endif" @if($hiringSalary != null) expanded="true" @endif>Expected Salary</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="salary" data-parent="#salary">
+                                    <div class="widget-boxed-body collapse  @if($hiringSalary != null) show @endif" id="salary" data-parent="#salary">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
@@ -198,7 +198,7 @@
                                                             @endphp
                                                             @foreach($salaryrange as $item)
                                                             <li>
-                                                                <input id="eb{{ $count }}" class="radio-custom" name="salaryrange" type="radio">
+                                                                <input id="eb{{ $count }}" @if($hiringSalary == $item->id) checked @endif class="radio-custom" value="{{ $item->id }}" name="salaryrange" type="radio">
                                                                 <label for="eb{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                             </li>
                                                             @php
@@ -217,11 +217,11 @@
                                 <div class="single_search_boxed px-4 pt-0 br-bottom">
                                     <div class="widget-boxed-header">
                                         <h4>
-                                            <a href="#experience" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed">Experience</a>
+                                            <a href="#experience" data-toggle="collapse" aria-expanded="false" role="button" class="ft-medium fs-md pb-0 collapsed @if($hiringExperience == null) collapsed @endif" @if($hiringExperience != null) expanded="true" @endif>Experience</a>
                                         </h4>
                                         
                                     </div>
-                                    <div class="widget-boxed-body collapse" id="experience" data-parent="#experience">
+                                    <div class="widget-boxed-body collapse  @if($hiringExperience != null) show @endif" id="experience" data-parent="#experience">
                                         <div class="side-list no-border">
                                             <!-- Single Filter Card -->
                                             <div class="single_filter_card">
@@ -233,8 +233,8 @@
                                                             @endphp
                                                             @foreach($experience as $item)
                                                             <li>
-                                                                <input id="ec{{ $count }}" class="radio-custom" name="experience" type="radio">
-                                                                <label for="ec{{ $count }}" class="radio-custom-label">Full time</label>
+                                                                <input id="ec{{ $count }}" @if($hiringExperience == $item->id) checked @endif value="{{ $item->id }}" class="radio-custom" name="experience" type="radio">
+                                                                <label for="ec{{ $count }}" class="radio-custom-label">{{ $item->name }}</label>
                                                             </li>
                                                             @php
                                                                 $count ++;

@@ -18,8 +18,8 @@ class JobSearchController extends Controller
         $hiringQuery = $request->jobs;
         $hiringLocation = $request->location;
         $hiringCategory = $request->category;
-        $hiringType = $request->type;
-        $hiringSalary = $request->salary;
+        $hiringType = $request->jobtype;
+        $hiringSalary = $request->salaryrange;
         $hiringExperience = $request->experience;
 
        $hirings = Hiring::where('status', 'Published')->orderBy('id', 'desc');
@@ -58,6 +58,6 @@ class JobSearchController extends Controller
 
        
 
-        return view('frontend.jobSearch', compact('hirings', 'categories', 'locations', 'jobtype', 'salaryrange', 'experience', 'hiringQuery', 'hiringLocation', 'hiringCategory'));
+        return view('frontend.jobSearch', compact('hirings', 'categories', 'locations', 'jobtype', 'salaryrange', 'experience', 'hiringQuery', 'hiringLocation', 'hiringCategory', 'hiringType', 'hiringSalary', 'hiringExperience'));
     }
 }
