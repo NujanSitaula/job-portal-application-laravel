@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\EmployeeApplication;
 use App\Models\Hiring;
 use App\Models\EmployeeBookmark;
+use App\Mail\WebsiteMailController; // The WebMail class for sending emails
 use Auth;
 
 class EmployeeController extends Controller
@@ -51,6 +52,12 @@ class EmployeeController extends Controller
             $apply->status = 'Applied';
             $apply->save();
         }
+        $checkJob = route('employee.job.applied');
+        $subject = 'Job Application Status Update';
+        $message = $checkJob;
+        $fullname = Auth::guard('employee')->user()->first_name.' '.Auth::guard('employee')->user()->last_name;
+        $useremail = Auth::guard('employee')->user()->email;
+        \Mail::to($useremail)->send(new WebsiteMailController($subject, $message, 'admin.email.successfullyApplied', ['employer_name' => $fullname]));
         
         return redirect()->route('employee.dashboard')->with('success', 'You have successfully applied for this job');
     }

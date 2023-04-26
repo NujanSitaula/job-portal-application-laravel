@@ -12,6 +12,8 @@ use App\Models\Location;
 use App\Models\Experience;
 use App\Models\Requirement;
 use App\Models\EmployeeApplication;
+use Auth;
+use App\Mail\WebsiteMailController; // The WebMail class for sending emails
 
 class EmployerHiringController extends Controller
 {
@@ -161,6 +163,13 @@ class EmployerHiringController extends Controller
         $hiringsApplications = EmployeeApplication::where('id', $id)->first();
         $hiringsApplications->status = "Rejected";
         $hiringsApplications->update();
+
+        $checkJob = route('job.search');
+        $subject = 'Job Application Rejected';
+        $message = $checkJob;
+        $fullname = "blank";
+        $useremail = $hiringsApplications->employee->email;
+        \Mail::to($useremail)->send(new WebsiteMailController($subject, $message, 'admin.email.rejectedTemplate', ['employer_name' => $fullname]));
         return redirect()->back()->with('success', 'Job Rejected Successfully');
     }
 }

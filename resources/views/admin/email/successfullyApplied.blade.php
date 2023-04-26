@@ -1,4 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed;background-color:#f9f9f9" id="bodyTable">
 	<tbody>
@@ -45,13 +53,14 @@
 										</tr>
                     <tr>
 											<td style="padding-bottom: 10px; padding-left: 20px; padding-right: 20px;" align="center" valign="top" class="subTitle">
-												<h4 class="text" style="color:#666;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0">Your Login Code Is</h4>
+												<h4 class="text" style="color:#666;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0">Job Applied Successfully!</h4>
 											</td>
 										</tr>
 										<tr>
 											<td style="padding-bottom: 25px; padding-left: 20px; padding-right: 20px;" align="center" valign="top" class="mainTitle">
                         
-												<h2 class="text" style="color:#000;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:28px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:36px;text-transform:none;text-align:center;padding:10px;margin:0; background-color: #3185362b; border-radius: 10px; width: 150px; letter-spacing: 5px;">{!! $body !!}</h2>
+												<img src="https://i.ibb.co/rHZ2vkv/Job-Success-1.png" width="200">
+                        <h2 style="color:#2B332C;font-family:Poppins,Helvetica,Arial,sans-serif;"><span style="color: #2ab463;">You Did It!</span> We Knew You Could!</h2>
 											</td>
 										</tr>
 										
@@ -61,9 +70,9 @@
 													<tbody>
 														<tr>
 															<td style="padding-bottom: 20px;" align="center" valign="top" class="description">
-																<p class="text" style="color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0">Please enter this OTP on the appropriate page on our website/app in order to login.
+																<p class="text" style="color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0">Congratulations on your successful job application!
 
-If you did not initiate this request, please ignore this email and contact our customer support team immediately.</p>
+You can always track your job application status from your dashboard. If you have any questions about the job or anything else, please do not hesitate to contact us.</p>
 															</td>
 														</tr>
 													</tbody>
@@ -75,7 +84,7 @@ If you did not initiate this request, please ignore this email and contact our c
 																<table border="0" cellpadding="0" cellspacing="0" align="center">
 																	<tbody>
 																		<tr>
-																			<td style="background-color: #2ab463; padding: 12px 35px; border-radius: 50px;" align="center" class="ctaButton"> <a href="#" style="color:#fff;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;font-style:normal;letter-spacing:1px;line-height:20px;text-transform:uppercase;text-decoration:none;display:block" target="_blank" class="text">Contact Support</a>
+																			<td style="background-color: #2ab463; padding: 12px 35px; border-radius: 50px;" align="center" class="ctaButton"> <a href="{!! $body !!}" style="color:#fff;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;font-style:normal;letter-spacing:1px;line-height:20px;text-transform:uppercase;text-decoration:none;display:block" target="_blank" class="text">Check Applications</a>
 																			</td>
 																		</tr>
 																	</tbody>
@@ -140,3 +149,6 @@ If you did not initiate this request, please ignore this email and contact our c
 		</tr>
 	</tbody>
 </table>
+    
+</body>
+</html>
