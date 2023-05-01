@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="small text-dark ft-medium">Your Name *</label>
                             <span tabindex="0" data-toggle="tooltip" title="To change your full name, please access and update your profile information.">
-                            <input disabled type="text" class="form-control" value="Your Name">
+                            <input disabled type="text" class="form-control" value="{{ auth()->user()->firstname .' '.auth()->user()->lastname }}">
                             </span>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label class="small text-dark ft-medium">Your Email *</label>
                             <span tabindex="0" data-toggle="tooltip" title="To change your email address, please access and update your profile information.">
-                            <input disabled type="text" class="form-control" value="Your Email">
+                            <input disabled type="text" class="form-control" value="{{ auth()->user()->email }}">
                             </span>
                         </div>
                     </div>

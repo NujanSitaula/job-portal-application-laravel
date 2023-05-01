@@ -70,46 +70,32 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Components <div class="arrow-down"></div>
+                                Management <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-charts">
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-form" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Forms <div class="arrow-down"></div>
+                                        User Management <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-form">
-                                        <a href="form-elements.html" class="dropdown-item">Form Elements</a>
-                                        <a href="form-validation.html" class="dropdown-item">Form Validation</a>
-                                        <a href="form-advanced.html" class="dropdown-item">Form Advanced</a>
-                                        <a href="form-editors.html" class="dropdown-item">Form Editors</a>
-                                        <a href="form-uploads.html" class="dropdown-item">Form File Upload</a>
-                                        <a href="form-xeditable.html" class="dropdown-item">Form Xeditable</a>
-                                        <a href="form-repeater.html" class="dropdown-item">Form Repeater</a>
-                                        <a href="form-wizard.html" class="dropdown-item">Form Wizard</a>
-                                        <a href="form-mask.html" class="dropdown-item">Form Mask</a>
+                                        <a href="form-elements.html" class="dropdown-item">Manage Employees</a>
+                                        <a href="form-validation.html" class="dropdown-item">Manage Employers</a>
                                     </div>
                                 </div>
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-table" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Tables <div class="arrow-down"></div>
+                                        Hiring Management <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-table">
-                                        <a href="tables-basic.html" class="dropdown-item">Basic Tables</a>
-                                        <a href="tables-datatable.html" class="dropdown-item">Data Tables</a>
-                                        <a href="tables-responsive.html" class="dropdown-item">Responsive Table</a>
-                                        <a href="tables-editable.html" class="dropdown-item">Editable Table</a>
+                                        <a href="tables-basic.html" class="dropdown-item">Manage Hirings</a>
                                     </div>
                                 </div>
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-table" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Charts <div class="arrow-down"></div>
+                                        Application Management <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-table">
-                                        <a href="charts-apex.html" class="dropdown-item">Apex charts</a>
-                                        <a href="charts-chartjs.html" class="dropdown-item">Chartjs Chart</a>
-                                        <a href="charts-flot.html" class="dropdown-item">Flot Chart</a>
-                                        <a href="charts-knob.html" class="dropdown-item">Jquery Knob Chart</a>
-                                        <a href="charts-sparkline.html" class="dropdown-item">Sparkline Chart</a>
+                                        <a href="charts-apex.html" class="dropdown-item">Manage Applications</a>
                                     </div>
                                 </div>
                                 <div class="dropdown">
@@ -125,11 +111,11 @@
                                 </div>
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-map" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Maps <div class="arrow-down"></div>
+                                        Logs <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-map">
-                                        <a href="maps-google.html" class="dropdown-item">Google Maps</a>
-                                        <a href="maps-vector.html" class="dropdown-item">Vector Maps</a>
+                                        <a href="maps-google.html" class="dropdown-item">Activity Log</a>
+                                        <a href="maps-vector.html" class="dropdown-item">System Log</a>
                                     </div>
                                 </div>
 
@@ -182,6 +168,20 @@
 
                             </div>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               Logs  <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-pages">
+                                <a href="{{ route('admin.job.location') }}" class="dropdown-item">Activity Log</a>
+                                <a href="{{ route('admin.job.category') }}" class="dropdown-item">System Logs</a>
+                                <a href="calendar.html" class="dropdown-item">Gateway Log</a>
+
+
+                            </div>
+                        </li>
+                        
 
                     </ul>
                 </div>
