@@ -82,6 +82,19 @@ class EmployerHiringController extends Controller
         $applications = EmployeeApplication::all();
         return view('employer.listHiring', compact('hiring', 'applications'));
     }
+    public function viewDatas(Request $request)
+    {
+        $hiring = Hiring::where('company_id', auth()->user()->id)->get();
+        $applications = EmployeeApplication::all();
+        return view('employer.boost', compact('hiring', 'applications'));
+    }
+
+    public function boostData($id)
+    {
+        $hiring = Hiring::with('jobemployers')->where('id', $id)->get();
+        $applications = EmployeeApplication::all();
+        return view('employer.boostpayment', compact('hiring', 'applications'));
+    }
 
     public function editData($id)
     {

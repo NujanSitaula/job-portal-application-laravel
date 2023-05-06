@@ -57,7 +57,7 @@
 		<!-- This page plugins -->
 		<!-- ============================================================== -->	
 		@php
-		$data = App\Models\EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query){ $query->where('company_id', auth()->user()->id);})->get();
+		$data = App\Models\EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query){ $query->where('company_id', auth()->id());})->get();
 		$count = 1;
 		@endphp
 		@foreach($data as $datas)

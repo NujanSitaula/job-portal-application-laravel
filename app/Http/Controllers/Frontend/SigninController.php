@@ -65,6 +65,14 @@ class SigninController extends Controller
         // Redirect to the employer signin page.
         return redirect()->route('employer.signin');
     }
+    public function employeeLogout()
+    {
+        // This method logs out the employer.
+        Auth::guard('employee')->logout();
+
+        // Redirect to the employer signin page.
+        return redirect()->route('employee.signin');
+    }
 
     public function signinSubmitEmployee(Request $request, Employee $employee)
     {

@@ -21,9 +21,13 @@ class HomeController extends Controller
         $postData = Post::orderBy('id', 'desc')->take(3)->get();
         $JobLocations = Location::get();
         $employers = Employer::withCount('countEmployer')->orderBy('count_employer_count', 'desc')->get()->take(7);
-        $hirings = Hiring::where('isFeatured', 'yes')->inRandomOrder()->take(8)->get();
+        $hirings = Hiring::where('isFeatured', 'yes')->inRandomOrder()->take(7)->get();
+        $boosted = Hiring::where('isBoosted', 'yes')->inRandomOrder()->take(1)->get();
+        $boosteds = Hiring::where('isBoosted', 'yes')->inRandomOrder()->take(1)->get();
 
 
-        return view('frontend.home', compact('HomePageData', 'JobCategories', 'JobCategoriesAll', 'postData', 'JobLocations', 'employers', 'hirings'));
+
+        return view('frontend.checkad', compact('HomePageData', 'JobCategories', 'JobCategoriesAll', 'postData', 'JobLocations', 'employers', 'hirings', 'boosted', 'boosteds'));
     }
+
 }

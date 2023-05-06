@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\AdminExperienceController;
 use App\Http\Controllers\Admin\AdminEmployerLocationController;
 use App\Http\Controllers\Admin\AdminEmployerIndustryController;
 use App\Http\Controllers\Admin\AdminEmployerSizeController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\ActivityLogController;
 
 use App\Http\Controllers\Employer\EmployerController;
 use App\Http\Controllers\Employer\EmployerProfileController;
@@ -47,7 +49,16 @@ use App\Http\Livewire\Chat\Main;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+
 */
+
+Route::get('/chat', function () {
+    return view('Frontend.chat');
+});
+Route::get('/employee/delete', function () {
+    return view('employee.deleteaccount');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms');
@@ -57,6 +68,7 @@ Route::get('/job/{id}', [JobController::class, 'jobDetails'])->name('jobs');
 Route::get('/jobs', [JobSearchController::class, 'index'])->name('job.search');
 Route::get('/employer/details/{id}', [EmployerDetailsController::class, 'employerDetails'])->name('employer.details');
 Route::get('/employer/browse', [EmployerDetailsController::class, 'browseEmployer'])->name('employer.browse');
+
 
 Route::get('admin/invalid', function () {
     return view('admin.linkexpired');
@@ -74,6 +86,11 @@ Route::get('employer/verify', function () {
 Route::get('employer/verified', function () {
     return view('frontend.verifiedemployer');
 })->name('email.verified');
+
+Route::get('employee/resume',  [EmployeeResumeController::class, 'resumeView'])->name('employer.resume');
+
+Route::get('/resume/download', [EmployeeResumeController::class, 'generatePDF'])->name('resume.download');
+
 
 /*
  * Admin Routes
@@ -156,6 +173,11 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/employer/size/delete/{id}', [AdminEmployerSizeController::class, 'destroy'])->name('admin.employer.size.delete');
 
 
+    Route::get('/admin/employer/manage', [AdminUserController::class, 'listEmployers'])->name('admin.employer.manage');
+    Route::get('/admin/employee/manage', [AdminUserController::class, 'listEmployees'])->name('admin.employee.manage');
+    Route::get('/admin/log/activity', [ActivityLogController::class, 'showLogs'])->name('admin.activitylog.view');
+
+
 });
 
 /*
@@ -202,6 +224,11 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employer/chat/{key?}', Main::class)->name('chat');
     Route::get('/employer/applicants', CreateChat::class)->name('manage.applications');
 
+    Route::get('/employer/boost', [EmployerHiringController::class, 'viewDatas'])->name('employer.employee.boost');
+    Route::get('/employer/boost/{id}', [EmployerHiringController::class, 'boostData'])->name('employer.employee.boost.submit');
+    Route::get('/verify/esewa_payment', [App\Http\Controllers\PaymentController::class, 'verifyEsewa'])->name('esewa.verify');
+
+
 
 
  });
@@ -225,7 +252,6 @@ Route::middleware(['admin:admin'])->group(function () {
   Route::middleware(['employee:employee'])->group(function () {
 
     Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
-
     Route::get('/employee/apply/{id}', [EmployeeController::class, 'apply'])->name('employee.apply');
     Route::post('/employee/apply/confirm/{id}', [EmployeeController::class, 'applyConfirm'])->name('employee.apply.confirm');
     Route::get('/employee/job/applied', [JobController::class, 'getApplied'])->name('employee.job.applied');
@@ -236,6 +262,10 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/employee/resume/education', [EmployeeResumeController::class, 'createEducation'])->name('employee.resume.create.education');
     Route::post('/employee/resume/experience', [EmployeeResumeController::class, 'createExperience'])->name('employee.resume.create.experience');
     Route::post('/employee/resume/skill', [EmployeeResumeController::class, 'createSkill'])->name('employee.resume.create.skill');
+    Route::get('/employee/profile', [EmployeeController::class, 'updateProfile'])->name('employee.profile');
+    Route::post('/employee/profile/edit', [EmployeeController::class, 'updateProfileConfirm'])->name('employee.profile.edit');
+    Route::post('/employee/profile/social/edit', [EmployeeController::class, 'updateProfileSocial'])->name('employee.profile.social.edit');
+
 
 
  });
