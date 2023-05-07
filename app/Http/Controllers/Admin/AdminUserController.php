@@ -25,4 +25,16 @@ class AdminUserController extends Controller
 
         return view('admin.manageEmployee', compact('listEmployees'));
     }
+
+    public function suspendEmployer($id)
+    {
+        $suspendEmployer = Employer::where('id', $id)->update(['isSuspended' => 'yes']);
+        return redirect()->back()->with('success', 'Employer Suspended Successfully');
+    }
+
+    public function unsuspendEmployer($id)
+    {
+        $unsuspendEmployer = Employer::where('id', $id)->update(['isSuspended' => 'no']);
+        return redirect()->back()->with('success', 'Employer Unsuspended Successfully');
+    }
 }

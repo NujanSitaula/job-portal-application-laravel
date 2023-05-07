@@ -58,7 +58,7 @@ Route::get('/chat', function () {
 });
 Route::get('/employee/delete', function () {
     return view('employee.deleteaccount');
-});
+})->name('employee.delete');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms');
@@ -175,6 +175,9 @@ Route::middleware(['admin:admin'])->group(function () {
 
     Route::get('/admin/employer/manage', [AdminUserController::class, 'listEmployers'])->name('admin.employer.manage');
     Route::get('/admin/employee/manage', [AdminUserController::class, 'listEmployees'])->name('admin.employee.manage');
+    Route::get('/admin/employer/suspend/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.suspend');
+    Route::get('/admin/employer/unsuspend/{id}', [AdminUserController::class, 'unsuspendEmployer'])->name('admin.employer.unsuspend');
+    Route::get('/admin/employer/delete/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.delete');
     Route::get('/admin/log/activity', [ActivityLogController::class, 'showLogs'])->name('admin.activitylog.view');
 
 

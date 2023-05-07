@@ -6,18 +6,23 @@
     <div class="container">
         <div class="row">
             @php
-            $index = floor(count($hirings) / 2);
-            $mergedData = array_merge($hirings, $boosted);
-            shuffle($mergedData);
+            $hirings[] = $boosted[0]; //appending the boosted job to the hiring array
+            //dd($hirings);
+            $keys = iterator_to_array($hirings); //converting the array to keys
+
+            shuffle($keys); //shuffling the array
 
             @endphp
-            @foreach($mergedData as $hiring)
+            @foreach($keys as $hiring)
             <div class="col-4">
                 <div class="card">
                     <img src="https://example.com/image.jpg" class="card-img-top" alt="...">
+                    @if($hiring->isBoosted == 'yes')
+                    <p>Boosted</p>
+                    @endif
                     <div class="card-body">
-                        <h5 class="card-title">Card Title</h5>
-                        <p class="card-text">This is a sample card created using Bootstrap.</p>
+                        <h5 class="card-title">{{ $hiring->title }}</h5>
+                        <p class="card-text"></p>
                         <a href="#" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>

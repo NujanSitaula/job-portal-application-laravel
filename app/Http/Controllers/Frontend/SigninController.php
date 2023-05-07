@@ -50,6 +50,10 @@ class SigninController extends Controller
             return redirect()->route('employer.signin')->with('error', 'Your email is not verified');
         }
 
+        if ($employer->isSuspended == 'yes') {
+            return redirect()->route('employer.signin')->with('error', 'Your account has been suspended. Please contact the administrator for more information.');
+        }
+
         // Login the employer.
         Auth::guard('employer')->login($employer);
 

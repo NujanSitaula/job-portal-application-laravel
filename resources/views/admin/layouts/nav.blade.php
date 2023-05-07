@@ -44,7 +44,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="topnav-components">
                                 <a href="{{ route('admin.homepage.edit') }}" class="dropdown-item">Edit Homepage</a>
-                                <a href="calendar.html" class="dropdown-item">Menu Item</a>
+                                <a href="calendar.html" class="dropdown-item">Manage Testimonial</a>
                                 <a href="calendar.html" class="dropdown-item">Menu Item</a>
                                 <a href="calendar.html" class="dropdown-item">Menu Item</a>
                                

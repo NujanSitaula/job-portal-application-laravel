@@ -128,16 +128,29 @@
 					<!-- row -->
 					<div class="row align-items-center">
 						@php
-
+						if($boosted->count() > 0){
+							$hirings[] = $boosted[0];
+						}
+						else{
+							$hirings = $hiringss;
+						}
+						 //appending the boosted job to the hiring array
+						//dd($hirings);
+						$keys = iterator_to_array($hirings); //converting the array to keys
+			
+						shuffle($keys); //shuffling the array
+			
 						@endphp
-						@foreach($hirings as $hiring)
+						@foreach($keys as $hiring)
 						<!-- Single -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+						
+						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center">
+							@if($hiring->isBoosted == 'yes')<sub class="text-center">-Advertisement-</sub>@endif
 							<div class="job_grid rounded ">
 								@if(!Auth::guard('employer')->check())
 								<div class="position-absolute ab-left"><a href="{{ route('employee.job.bookmark', $hiring['id']) }}" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a></div>
 								@endif
-								<div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $hiring->jobtype->name }}</span></div>
+								<div class="position-absolute ab-right">@if($hiring->isBoosted == 'yes')<span class="medium color-gray theme-bg-light px-2 py-1 rounded"> AD @else <span class="medium theme-cl theme-bg-light px-2 py-1 rounded"> {{ $hiring->jobtype->name }}@endif</span></div>
 								<div class="job_grid_thumb mb-3 pt-5 px-3">
 									<a href="{{ route('jobs', $hiring->id) }}" class="d-block text-center m-auto"><img src="{{ asset('frontEndAssets/img').'/'. $hiring->jobemployers->logo }}" class="img-fluid" width="70" alt="" /></a>
 								</div>
@@ -226,63 +239,21 @@
 					<div class="row justify-content-center">
 						<div class="col-xl-9 col-lg-10 col-md-12 col-sm-12">
 							<div class="reviews-slide px-3">
-
+								@foreach($testimonials as $review)
 								<!-- single review -->
 								<div class="single_review">
-									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
+									<div class="sng_rev_thumb"><figure><img src="{{ asset('frontEndAssets/img/'.$review->image) }}" class="img-fluid circle" alt="" /></figure></div>
 									<div class="sng_rev_caption text-center">
 										<div class="rev_desc mb-4">
-											<p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+											<p class="fs-md">{{ $review->testimonial }}</p>
 										</div>
 										<div class="rev_author">
-											<h4 class="mb-0">Mark Jevenue</h4>
-											<span class="fs-sm">CEO of Addle</span>
+											<h4 class="mb-0">{{ $review->name }}</h4>
+											<span class="fs-sm">{{ $review->designation }} at {{ $review->company }}</span>
 										</div>
 									</div>
 								</div>
-
-								<!-- single review -->
-								<div class="single_review">
-									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
-									<div class="sng_rev_caption text-center">
-										<div class="rev_desc mb-4">
-											<p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-										</div>
-										<div class="rev_author">
-											<h4 class="mb-0">Henna Bajaj</h4>
-											<span class="fs-sm">Aqua Founder</span>
-										</div>
-									</div>
-								</div>
-
-								<!-- single review -->
-								<div class="single_review">
-									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
-									<div class="sng_rev_caption text-center">
-										<div class="rev_desc mb-4">
-											<p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-										</div>
-										<div class="rev_author">
-											<h4 class="mb-0">John Cenna</h4>
-											<span class="fs-sm">CEO of Plike</span>
-										</div>
-									</div>
-								</div>
-
-								<!-- single review -->
-								<div class="single_review">
-									<div class="sng_rev_thumb"><figure><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></figure></div>
-									<div class="sng_rev_caption text-center">
-										<div class="rev_desc mb-4">
-											<p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-										</div>
-										<div class="rev_author">
-											<h4 class="mb-0">Madhu Sharma</h4>
-											<span class="fs-sm">Team Manager</span>
-										</div>
-									</div>
-								</div>
-
+								@endforeach
 							</div>
 						</div>
 					</div>
