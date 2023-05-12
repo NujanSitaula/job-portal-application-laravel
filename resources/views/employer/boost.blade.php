@@ -61,9 +61,16 @@
                                     </td>
                                     <td>
                                         <div class="dash-filled">
+                                            
+                                            @if($item->isBoosted == 'yes')
                                             <span class="p-2 bg-info text-white d-inline-flex align-items-center justify-content-center">
+                                                Boost Active
+                                            </span>
+                                            @else
+                                            <span class="p-2 bg-warning text-white d-inline-flex align-items-center justify-content-center">
                                                 Ready To Boost
                                             </span>
+                                            @endif
                                         </div>
                                     </td>
                                     <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
@@ -78,7 +85,11 @@
                                     </td>
                                     <td>
                                         <div class="dash-action">
+                                            @if($item->isBoosted == 'yes')
+                                           <button class="btn btn-primary">Extend Days</button>
+                                           @else
                                            <button class="btn btn-primary">Boost Job</button>
+                                           @endif
                                         </div>
                                     </td>
                                 </tr>

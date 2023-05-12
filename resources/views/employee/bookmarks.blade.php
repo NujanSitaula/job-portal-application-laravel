@@ -72,7 +72,7 @@
                                 <tr>
                                     <td>
                                         <div class="cats-box rounded bg-white d-flex align-items-center">
-                                            <div class="text-center"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="55" alt=""></div>
+                                            <div class="text-center"><img src="{{ asset('frontEndAssets/img/'.$bookmark->jobdetails->jobemployers->logo) }}" class="img-fluid" width="55" alt=""></div>
                                             <div class="cats-box-caption px-2">
                                                 <h4 class="fs-md mb-0 ft-medium">{{ $bookmark->jobdetails->title }}</h4>
                                                 <div class="d-block mb-2 position-relative">

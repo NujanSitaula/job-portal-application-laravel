@@ -34,20 +34,20 @@
                         </div>
                         <div class="dash_caption mb-4">
                             <h4 class="fs-lg ft-medium mb-0 lh-1">{{ $employer->employer_name }}</h4>
-                            <span class="text-muted smalls"><i class="lni lni-map-marker mr-1"></i>{{ $employer->getLocations->name }}</span>
+                            <span class="text-muted smalls"><i class="lni lni-map-marker mr-1"></i>@if(!empty($employer->getLocations->name)) {{ $employer->getLocations->name }} @else Not Updated @endif</span>
                         </div>
-                        <div class="jb-list-01-title px-2">
+                        {{-- <div class="jb-list-01-title px-2">
                             <span class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">Photoshop</span>
                             <span class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-warning bg-light-warning">WordPress</span>
                             <span class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">Magento</span>
                             <span class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-info bg-light-info">CSS3</span>
                             <span class="px-2 mb-2 d-inline-flex py-1 rounded text-purple bg-light-purple">HTML5</span>
-                        </div>
+                        </div> --}}
                     </div>
                     
                     <div class="cdt_caps">
                         <div class="job_grid_footer pb-3 px-3 d-flex align-items-center justify-content-between">
-                            <div class="df-1 text-muted"><i class="lni lni-briefcase mr-1"></i>10 Openings</div>
+                            <div class="df-1 text-muted"><i class="lni lni-briefcase mr-1"></i>{{ $hiring }} Openings</div>
                             <div class="df-1 text-muted"><i class="lni lni-laptop-phone mr-1"></i>{{ $employer->employer_type }}</div>
                         </div>	
                         <div class="job_grid_footer px-3 d-flex align-items-center justify-content-between">
@@ -71,11 +71,15 @@
                     <!-- About -->
                     <div class="abt-cdt d-block full-width mb-4">
                         <h4 class="ft-medium mb-1 fs-md">About {{ $employer->employer_name }}</h4>
+                        @if($employer->about == null)
+                        <p>About Info Not Updated.</p>
+                        @else
                         {!! $employer->about !!}
+                        @endif
                     </div>
                     
                     <!-- Hobbies -->
-                    <div class="abt-cdt d-block full-width mb-4">
+                    {{-- <div class="abt-cdt d-block full-width mb-4">
                         <h4 class="ft-medium mb-1 fs-md">Instructions</h4>
                         <div class="position-relative row">
                             <div class="col-lg-12 col-md-12 col-12">
@@ -137,48 +141,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     <!-- Award -->
                     <div class="abt-cdt d-block full-width mb-4">
                         <h4 class="ft-medium mb-1 fs-md">Award</h4>
                         <div class="exslio-list mt-3">
                             <ul>
+                            @foreach($EmployerAward as $award)
                                 <li>
                                     <div class="esclio-110 bg-light rounded px-3 py-3">
-                                        <h4 class="mb-0 ft-medium fs-md">FIFA Award</h4>
+                                        <h4 class="mb-0 ft-medium fs-md">{{ $award->award_name }}</h4>
                                         <div class="esclio-110-info full-width mb-2">
-                                            <span class="text-muted mr-2"><i class="lni lni-calendar mr-1"></i>2010</span>
+                                            <span class="text-muted mr-2"><i class="lni lni-calendar mr-1"></i>{{ $award->award_year }}</span>
                                         </div>
                                         <div class="esclio-110-decs full-width">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam <a href="javascript:void(0);" class="theme-cl">Read More..</a></p>
+                                            <p>{{ $award->award_description }}</p>
                                         </div>
                                     </div>
                                 </li>
+                                @endforeach
                                 
-                                <li>
-                                    <div class="esclio-110 bg-light rounded px-3 py-3">
-                                        <h4 class="mb-0 ft-medium fs-md">CIMPLA Award</h4>
-                                        <div class="esclio-110-info full-width mb-2">
-                                            <span class="text-muted mr-2"><i class="lni lni-calendar mr-1"></i>2012</span>
-                                        </div>
-                                        <div class="esclio-110-decs full-width">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam <a href="javascript:void(0);" class="theme-cl">Read More..</a></p>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <li>
-                                    <div class="esclio-110 bg-light rounded px-3 py-3">
-                                        <h4 class="mb-0 ft-medium fs-md">Lisa Award</h4>
-                                        <div class="esclio-110-info full-width mb-2">
-                                            <span class="text-muted mr-2"><i class="lni lni-calendar mr-1"></i>2015</span>
-                                        </div>
-                                        <div class="esclio-110-decs full-width">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam <a href="javascript:void(0);" class="theme-cl">Read More..</a></p>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>

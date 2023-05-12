@@ -112,4 +112,77 @@ class SigninController extends Controller
         return redirect()->route('employee.dashboard');
     }
 
+    public function changePasswordEmployee()
+    {
+        // This method renders the employee change password view.
+        return view('employee.changepassword');
+    }
+
+    public function changePasswordEmployeeConfirm(Request $request)
+    {
+        // This method handles the employee change password submission.
+        // Validate the request.
+        $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|min:6',
+            'confirmpassword' => 'required|min:6',
+        ]);
+
+        // Get the employee from the database.
+        $employee = Employee::where('id', Auth::guard('employee')->user()->id)->first();
+
+        // Check if the old password is correct.
+        if (!Hash::check($request->oldpassword, $employee->password)) {
+            return redirect()->back()->with('error', 'Incorrect old password');
+        }
+
+        // Check if the new password and confirm password are the same.
+        if ($request->newpassword != $request->confirmpassword) {
+            return redirect()->back()->with('error', 'New password and confirm password are not the same');
+        }
+
+        // Update the employee password.
+        $employee->password = Hash::make($request->newpassword);
+        $employee->save();
+
+        // Redirect to the employee dashboard.
+        return redirect()->route('employee.dashboard')->with('success', 'Password changed successfully');
+    }
+
+    public function changePasswordEmployer()
+    {
+        // This method renders the employee change password view.
+        return view('employer.changepassword');
+    }
+
+    public function changePasswordEmployerConfirm(Request $request)
+    {
+        // This method handles the employee change password submission.
+        // Validate the request.
+        $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|min:6',
+            'confirmpassword' => 'required|min:6',
+        ]);
+
+        // Get the employee from the database.
+        $employer = Employee::where('id', Auth::guard('employer')->user()->id)->first();
+
+        // Check if the old password is correct.
+        if (!Hash::check($request->oldpassword, $employer->password)) {
+            return redirect()->back()->with('error', 'Incorrect old password');
+        }
+
+        // Check if the new password and confirm password are the same.
+        if ($request->newpassword != $request->confirmpassword) {
+            return redirect()->back()->with('error', 'New password and confirm password are not the same');
+        }
+
+        // Update the employee password.
+        $employee->password = Hash::make($request->newpassword);
+        $employee->save();
+
+        // Redirect to the employee dashboard.
+        return redirect()->route('employer.dashboard')->with('success', 'Password changed successfully');
+    }
 }

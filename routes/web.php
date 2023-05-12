@@ -56,9 +56,7 @@ use App\Http\Livewire\Chat\Main;
 Route::get('/chat', function () {
     return view('Frontend.chat');
 });
-Route::get('/employee/delete', function () {
-    return view('employee.deleteaccount');
-})->name('employee.delete');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms');
@@ -179,6 +177,7 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/employer/unsuspend/{id}', [AdminUserController::class, 'unsuspendEmployer'])->name('admin.employer.unsuspend');
     Route::get('/admin/employer/delete/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.delete');
     Route::get('/admin/log/activity', [ActivityLogController::class, 'showLogs'])->name('admin.activitylog.view');
+    
 
 
 });
@@ -231,6 +230,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employer/boost/{id}', [EmployerHiringController::class, 'boostData'])->name('employer.employee.boost.submit');
     Route::get('/verify/esewa_payment', [App\Http\Controllers\PaymentController::class, 'verifyEsewa'])->name('esewa.verify');
 
+    Route::get('/employer/password/change', [SigninController::class, 'changePasswordEmployer'])->name('employer.password.change');
+    Route::post('/employer/password/change/confirm', [SigninController::class, 'changePasswordEmployerConfirm'])->name('employer.password.change.confirm');
+
 
 
 
@@ -268,6 +270,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/employee/profile', [EmployeeController::class, 'updateProfile'])->name('employee.profile');
     Route::post('/employee/profile/edit', [EmployeeController::class, 'updateProfileConfirm'])->name('employee.profile.edit');
     Route::post('/employee/profile/social/edit', [EmployeeController::class, 'updateProfileSocial'])->name('employee.profile.social.edit');
+    Route::get('/employee/delete', function () {return view('employee.deleteaccount');})->name('employee.delete');
+    Route::get('/employee/password/change', [SigninController::class, 'changePasswordEmployee'])->name('employee.password.change');
+    Route::post('/employee/password/change/confirm', [SigninController::class, 'changePasswordEmployeeConfirm'])->name('employee.password.change.confirm');
 
 
 

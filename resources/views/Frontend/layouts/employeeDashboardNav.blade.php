@@ -17,7 +17,7 @@
                     </ul>
                     <ul data-submenu-title="My Accounts">
                         <li><a href="{{ route('employee.profile') }}"><i class="lni lni-user mr-2"></i>My Profile </a></li>
-                        <li><a href="dashboard-change-password.html"><i class="lni lni-lock-alt mr-2"></i>Change Password</a></li>
+                        <li><a href="{{ route('employee.password.change') }}"><i class="lni lni-lock-alt mr-2"></i>Change Password</a></li>
                         <li><a href="{{ route('employee.delete') }}"><i class="lni lni-trash-can mr-2"></i>Delete Account</a></li>
                         <li><a href="{{ route('employee.logout') }}"><i class="lni lni-power-switch mr-2"></i>Log Out</a></li>
                     </ul>
