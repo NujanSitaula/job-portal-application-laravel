@@ -11,6 +11,7 @@ use App\Models\Post;
 use App\Models\Employer;
 use App\Models\Hiring;
 use App\Models\UserTestimonial;
+use App\Models\TopBar;
 
 class HomeController extends Controller
 {

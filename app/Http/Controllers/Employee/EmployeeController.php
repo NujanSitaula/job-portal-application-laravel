@@ -44,8 +44,8 @@ class EmployeeController extends Controller
 
     public function applyConfirm(Request $request, $id)
     {
-
-        $open_ai = new OpenAi('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');
+        $openaiApiKey = env('OPENAI_API_KEY');
+        $open_ai = new OpenAi($openaiApiKey);
 
         $jobDetails = Hiring::where('id', $id)->first();
 

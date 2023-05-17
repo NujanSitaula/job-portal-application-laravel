@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PageHomeItems;
+use App\Models\TopBar;
 
 class AdminHomeEditController extends Controller
 {
@@ -63,4 +64,28 @@ class AdminHomeEditController extends Controller
 
         return redirect()->back()->with('success', 'Home Page Updated Successfully.');
 }
+public function topbar(){
+    $topbarData = TopBar::where('id',1)->first();
+    return view('admin.topbar', compact('topbarData'));
+}
+
+public function topbarSubmit(Request $request)
+{
+    $topbarUpdate = TopBar::where('id',1)->first();
+
+    $request->validate([
+        'topbar_contact' => 'required',
+        'topbar_center_text' => 'required',
+        'isHidden' => 'required'
+    ]);
+
+    $topbarUpdate->topbar_contact = $request->topbar_contact;
+    $topbarUpdate->topbar_center_text= $request->topbar_center_text;
+    $topbarUpdate->isHidden = $request->isHidden;
+    $topbarUpdate->update();
+
+    return redirect()->back()->with('success', 'Topbar Updated Successfully.');
+}
+
+
 }

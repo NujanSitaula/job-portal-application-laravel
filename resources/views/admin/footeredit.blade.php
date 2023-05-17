@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('page_title', 'Edit Top Bar')
+@section('page_title', 'Edit Footer')
 
 @section('body_content')
 <div class="row">
@@ -9,8 +9,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">Edit Top Bar</h4>
-                        <p class="card-title-desc">Edit top bar shown in frontend.
+                        <h4 class="card-title">Edit Footer</h4>
+                        <p class="card-title-desc">Edit Footer section of the website.
                         </p>
                     </div>
                     <div class="col">

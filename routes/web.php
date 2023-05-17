@@ -177,6 +177,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/employer/unsuspend/{id}', [AdminUserController::class, 'unsuspendEmployer'])->name('admin.employer.unsuspend');
     Route::get('/admin/employer/delete/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.delete');
     Route::get('/admin/log/activity', [ActivityLogController::class, 'showLogs'])->name('admin.activitylog.view');
+
+    Route::get('/admin/topbar/edit', [AdminHomeEditController::class, 'topbar'])->name('admin.topbar.edit');
+    Route::post('/admin/topbar/editSubmit', [AdminHomeEditController::class, 'topbarSubmit'])->name('admin.topbar.edit.submit');
     
 
 
