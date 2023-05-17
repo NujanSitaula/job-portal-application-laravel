@@ -66,7 +66,7 @@ class SignupController extends Controller
             $employer->update();
             return redirect()->route('email.verifiedemployer')->with('success', 'Your email has been verified');
         } else {
-            return redirect()->route('employer.login')->with('error', 'Invalid verification link');
+            return redirect()->route('employer.signin')->with('error', 'Invalid verification link');
         }
     }
 
@@ -113,7 +113,7 @@ class SignupController extends Controller
             $employer->update();
             return redirect()->route('email.verified')->with('success', 'Your email has been verified');
         } else {
-            return redirect()->route('employee.login')->with('error', 'Invalid verification link');
+            return redirect()->route('employee.signin')->with('error', 'Invalid verification link');
         }
     }
 }

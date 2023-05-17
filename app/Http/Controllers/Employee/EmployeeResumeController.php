@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\View;
 class EmployeeResumeController extends Controller
 {
 
-    public function create(){
+    public function create()
+    {
         $listEducation =  ResumeEducation::where('employee_id', Auth::guard('employee')->id())->orderBy('start_date', 'desc')->get();
         $listExperience = ResumeExperience::where('employee_id', Auth::guard('employee')->id())->orderBy('start_date', 'desc')->get();
         $listSkill = ResumeSkill::where('employee_id', Auth::guard('employee')->id())->get();
@@ -82,7 +83,8 @@ class EmployeeResumeController extends Controller
         return redirect()->back()->with('success', 'Skill added successfully');
     }
 
-    public function resumeView(){
+    public function resumeView()
+    {
         $listEducation =  ResumeEducation::where('employee_id', Auth::guard('employee')->id())->orderBy('start_date', 'desc')->get();
         $listExperience = ResumeExperience::where('employee_id', Auth::guard('employee')->id())->orderBy('start_date', 'desc')->get();
         $listSkill = ResumeSkill::where('employee_id', Auth::guard('employee')->id())->get();

@@ -83,7 +83,7 @@ Route::get('employer/verify', function () {
 })->name('email.verifyemployer');
 Route::get('employer/verified', function () {
     return view('frontend.verifiedemployer');
-})->name('email.verified');
+})->name('email.verifiedemployer');
 
 Route::get('employee/resume',  [EmployeeResumeController::class, 'resumeView'])->name('employer.resume');
 

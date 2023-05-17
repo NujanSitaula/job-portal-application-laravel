@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
+        "orhanerday/open-ai": "^4.7",
         "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {

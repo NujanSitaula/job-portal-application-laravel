@@ -12,6 +12,7 @@ use App\Mail\WebsiteMailController; // The WebMail class for sending emails
 use Auth;
 use App\Models\Employee;
 use Illuminate\Support\Str;
+use Orhanerday\OpenAi\OpenAi;
 
 class EmployeeController extends Controller
 {
@@ -43,6 +44,46 @@ class EmployeeController extends Controller
 
     public function applyConfirm(Request $request, $id)
     {
+
+        $open_ai = new OpenAi('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');
+
+        $jobDetails = Hiring::where('id', $id)->first();
+
+        $jobDetailsAppendBIO = $jobDetails->description . $jobDetails->tags .  $jobDetails->education;
+
+        $text1 = str_replace("\n", "", $jobDetailsAppendBIO);
+
+        $userInfo = Employee::where('id', Auth::guard('employee')->user()->id)->first();
+
+        $userInfoAppendBIO = $userInfo->bio . $userInfo->skills . $userInfo->education;
+
+        $text2 = str_replace("\n", "", $userInfoAppendBIO);
+
+        //dd($text1, $text2);
+
+
+        $prompt = "Please generate a similarity score between the following two texts:\n\nText 1:\n$text1\n\nText 2:\n$text2\n\nSimilarity score:";
+
+        $result = $open_ai->completion([
+            "model" => "text-davinci-003",
+            "temperature" => 0.2,
+            'max_tokens' => 5,
+            'n' => 1,
+            'prompt' => $prompt,
+            'stop' => '',
+        ]);
+
+        //dd($result);
+
+       $decoded_result = json_decode($result, true);
+
+        
+
+        // extract the similarity score from the API response
+        $score = $decoded_result['choices'][0]['text'];
+
+        $FinalScore = round(floatval($score), 2) * 100;
+
         $request->validate([
             'coverletter' => 'required',
         ]);
@@ -54,6 +95,7 @@ class EmployeeController extends Controller
             $apply->job_id = $id;
             $apply->cover_letter =  $request->coverletter;
             $apply->status = 'Applied';
+            $apply->similarityScore = $FinalScore;
             $apply->save();
         }
         $checkJob = route('employee.job.applied');
@@ -110,7 +152,7 @@ class EmployeeController extends Controller
         
         $activityLog = new ActivityLog();
         $activityLog->initiated_by = Auth::guard('employee')->user()->firstname.' '.Auth::guard('employee')->user()->lastname;
-        $activityLog->activity = 'Applied for a job - <a href="'.route('jobs', $id).'">'. $applicationchecks->jobdetails->title .'</a>';
+        $activityLog->activity = 'Applied for a job - <a href="'.route('jobs', $id).'">'. $jobDetails->title .'</a>';
         $activityLog->activity_on = date('Y-m-d H:i:s');
         $activityLog->activity_type = 'apply';
         $activityLog->activity_from_ip = $ip;
