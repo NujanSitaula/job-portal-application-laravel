@@ -12,6 +12,7 @@ use App\Models\Employer;
 use App\Models\Hiring;
 use App\Models\UserTestimonial;
 use App\Models\TopBar;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,43 @@ class HomeController extends Controller
         $postData = Post::orderBy('id', 'desc')->take(3)->get();
         $JobLocations = Location::get();
         $employers = Employer::withCount('countEmployer')->orderBy('count_employer_count', 'desc')->get()->take(7);
-        $hirings = Hiring::where('isFeatured', 'yes')->inRandomOrder()->take(7)->get();
-        $boosted = Hiring::where('isBoosted', 'yes')->inRandomOrder()->take(1)->get();
-        $hiringss = Hiring::where('isFeatured', 'yes')->inRandomOrder()->take(8)->get();
+        $hirings = Hiring::where('isFeatured', 'yes')->where('status', 'Published')->inRandomOrder()->take(7)->get();
+        $boosted = Hiring::where('isBoosted', 'yes')->where('status', 'Published')->inRandomOrder()->take(1)->get();
+        $hiringss = Hiring::where('isFeatured', 'yes')->where('status', 'Published')->inRandomOrder()->take(8)->get();
         $testimonials = UserTestimonial::where('isFeatured', 'yes')->inRandomOrder()->take(3)->get();
+
+        //check expired boosts and jobs listings
+
+        $boostedJobs = Hiring::with('boostingdetails')->where('isBoosted', 'yes')->get();
+        foreach ($boostedJobs as $boostedJob) {
+            $dateExpired = new DateTime($boostedJob->boostingdetails[0]->expiry_date);
+            if ($dateExpired < new DateTime()) {
+                $boostedJob->isBoosted = 'no';
+                $boostedJob->update();
+            }
+            // dd();
+        }
+        $boostedJobs = Hiring::with('boostingdetails')->where('isBoosted', 'yes')->get();
+        foreach ($boostedJobs as $boostedJob) {
+            $dateExpired = new DateTime($boostedJob->boostingdetails[0]->expiry_date);
+            if ($dateExpired > new DateTime()) {
+                $boostedJob->isBoosted = 'yes';
+                $boostedJob->update();
+            }
+            // dd();
+        }
+        //check expired jobs
+        $expiredJobs = Hiring::get();
+        foreach ($expiredJobs as $expiredJob) {
+            $dateExpired = new DateTime($expiredJob->deadline);
+            if ($dateExpired < new DateTime()) {
+                $expiredJob->status = 'Expired';
+                $expiredJob->update();
+            }
+            // dd();
+        }
+
+        // dd($boostedJobs[0]->boostingdetails[0]->expiry_date);
 
 
 

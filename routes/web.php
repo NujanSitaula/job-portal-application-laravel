@@ -175,11 +175,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/employee/manage', [AdminUserController::class, 'listEmployees'])->name('admin.employee.manage');
     Route::get('/admin/employer/suspend/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.suspend');
     Route::get('/admin/employer/unsuspend/{id}', [AdminUserController::class, 'unsuspendEmployer'])->name('admin.employer.unsuspend');
-    Route::get('/admin/employer/delete/{id}', [AdminUserController::class, 'suspendEmployer'])->name('admin.employer.delete');
+    Route::get('/admin/employer/delete/{id}', [AdminUserController::class, 'terminateEmployer'])->name('admin.employer.delete');
     Route::get('/admin/log/activity', [ActivityLogController::class, 'showLogs'])->name('admin.activitylog.view');
 
     Route::get('/admin/topbar/edit', [AdminHomeEditController::class, 'topbar'])->name('admin.topbar.edit');
     Route::post('/admin/topbar/editSubmit', [AdminHomeEditController::class, 'topbarSubmit'])->name('admin.topbar.edit.submit');
+
+
+    
     
 
 
@@ -278,7 +281,7 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/employee/password/change/confirm', [SigninController::class, 'changePasswordEmployeeConfirm'])->name('employee.password.change.confirm');
 
 
-
+    Route::get('/admin/employee/delete/{id}', [EmployeeController::class, 'terminateEmployee'])->name('admin.employee.delete');
  });
 
 /*

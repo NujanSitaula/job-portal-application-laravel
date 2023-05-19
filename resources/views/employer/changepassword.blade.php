@@ -30,7 +30,7 @@
 					</div>
 					
 					<div class="_dashboard_content_body py-3 px-3">
-						<form class="row" method="post" action="{{ route('employee.password.change.confirm') }}">
+						<form class="row" method="post" action="{{ route('employer.password.change.confirm') }}">
 							@csrf
 							<div class="col-xl-8 col-lg-9 col-md-12 col-sm-12">
 								<div class="form-group">

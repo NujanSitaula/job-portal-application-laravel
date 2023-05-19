@@ -3,7 +3,7 @@
 @section('page_title', 'Dashboard')
 
 @section('body_content')
-<div class="row">
+{{-- <div class="row">
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -485,5 +485,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

@@ -32,10 +32,10 @@
                                     
                                     Please note that we will not be able to recover your account or any data after it has been deleted. <br> If you are sure you want to proceed, please enter the confirmation text below to delete your account:</p>
                                 <p class="border bg-light p-3 mb-4 no-select"><strong>I Confirm To Delete</strong></p>
-                                <form action="delete_account.php" method="post">
+                                <form action="{{ route('admin.employee.delete', auth()->id()) }}" method="get">
                                     <div class="form-group">
                                         <label for="confirm-text">Enter Text:</label>
-                                        <input type="text" class="form-control" id="confirm-text"  oninput="this.value = this.value.toUpperCase()" name="confirm-text"
+                                        <input autocomplete="off" type="text" class="form-control" id="confirm-text"  oninput="this.value = this.value.toUpperCase()" name="confirm-text"
                                             required>
                                     </div>
                                     <button type="submit" class="btn btn-danger btn-block">Delete Account</button>

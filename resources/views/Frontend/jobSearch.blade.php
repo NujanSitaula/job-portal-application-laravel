@@ -9,23 +9,28 @@
                     <h1 class="ft-bold mb-4">The Most Exciting Jobs</h1>
                 </div>
                 
-                <form class="bg-white rounded p-1">
+                <form class="bg-white rounded p-1" method="GET" action="{{ url('jobs') }}">
                     <div class="row no-gutters">
                         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
                             <div class="form-group mb-0 position-relative">
-                                <input type="text" class="form-control lg left-ico" placeholder="Job Title, Keyword or Company" />
+                                <input type="text" class="form-control lg left-ico" name="jobs" placeholder="Job Title, Keyword or Company" />
                                 <i class="bnc-ico lni lni-search-alt"></i>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="form-group mb-0 position-relative">
-                                <input type="text" class="form-control lg left-ico" placeholder="Location or Zip Code" />
+                             <select name="location" class="custom-select lg b-0 left-ico">
+                                <option value="">Select Location</option>
+                                @foreach ($locations as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                              </select>
                                 <i class="bnc-ico lni lni-target"></i>
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
                             <div class="form-group mb-0 position-relative">
-                                <button class="btn full-width custom-height-lg bg-dark text-white fs-md" type="button">Find Job</button>
+                                <button class="btn full-width custom-height-lg bg-dark text-white fs-md" type="submit">Find Job</button>
                             </div>
                         </div>
                     </div>
@@ -46,7 +51,7 @@
                 <h6 class="mb-0 ft-medium fs-sm">{{ $hirings->count() }} New Jobs Found</h6>
             </div>
             
-            <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
+            {{-- <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
                 <div class="filter_wraps elspo_wrap d-flex align-items-center justify-content-end">
                     <div class="single_fitres mr-2 br-right">
                         <select class="custom-select simple">
@@ -62,7 +67,7 @@
                         <a href="job-list-v1.html" class="simple-button active theme-cl"><i class="ti-view-list"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         
     </div>

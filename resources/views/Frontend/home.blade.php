@@ -53,10 +53,10 @@
 
 							<div class="top-searches-key">
 								<ul class="p-0 mt-4 align-items-center d-flex">
-									<li><span class="text-dark ft-medium medium">Top Searches:</span></li>
-									<li><a href="javascript:void(0);" class="">WordPress</a></li>
-									<li><a href="javascript:void(0);" class="">Magento</a></li>
-									<li><a href="javascript:void(0);" class="">HTML5</a></li>
+									<li><span class="text-dark ft-medium medium">Quick Search:</span></li>
+									<li><a href="{{ route('job.search', ['jobs' => 'laravel']) }}" class="">Laravel</a></li>
+									<li><a href="{{ route('job.search', ['jobs' => 'marketing']) }}" class="">Marketing</a></li>
+									<li><a href="{{ route('job.search', ['jobs' => 'html']) }}" class="">HTML5</a></li>
 								</ul>
 							</div>
 
@@ -417,7 +417,7 @@
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center mb-5">
-								<h6 class="text-light mb-0">Subscribr Now</h6>
+								<h6 class="text-light mb-0">Subscribe Now</h6>
 								<h2 class="ft-bold text-light">Get All New Job Notification</h2>
 							</div>
 						</div>

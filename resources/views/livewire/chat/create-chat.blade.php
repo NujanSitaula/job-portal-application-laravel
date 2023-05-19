@@ -1,5 +1,5 @@
 @php
-$applications = App\Models\EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query){ $query->where('company_id', auth()->user()->id);})->get();
+$applications = App\Models\EmployeeApplication::with('jobdetails', 'employee')->whereHas('jobdetails', function($query){ $query->where('company_id', auth()->user()->id);})->orderBy('similarityScore', 'desc')->get();
 @endphp
 <div class="dashboard-content">
     <div class="dashboard-tlbar d-block mb-5">
@@ -53,7 +53,7 @@ $applications = App\Models\EmployeeApplication::with('jobdetails', 'employee')->
                         <div class="dashed-list-full bg-white rounded p-3 mb-3">
                             <div class="dashed-list-short d-flex align-items-center">
                                 <div class="dashed-list-short-first">
-                                    <div class="dashed-avater"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="70" alt="" /></div>
+                                    <div class="dashed-avater"><img src="{{ asset('frontEndAssets/img/'. $application->employee->photo) }}" class="img-fluid circle" width="70" alt="" /></div>
                                 </div>
                                 <div class="dashed-list-short-last">
                                     <div class="cats-box-caption px-2">
@@ -89,13 +89,13 @@ $applications = App\Models\EmployeeApplication::with('jobdetails', 'employee')->
                             </div>
                         </div>
                         <div class="dashed-list-footer p-3 br-top">
-                            <div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
+                            {{-- <div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star"></i>
-                            </div>
+                            </div> --}}
                             <div class="ico-content">
                                 <ul>
                                     <li><span><i class="lni lni-calendar mr-1"></i>{{ date('d M Y', strtotime($application->created_at)) }}</span></li>

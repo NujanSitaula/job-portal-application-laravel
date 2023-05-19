@@ -40,7 +40,7 @@
                             <td>
                                 <div class="d-flex justify-content-center">
                                 <a href="{{ route('admin.job.category.edit', $item->id) }}" class="btn btn-sm btn-outline-warning mr-2" title="Edit" data-toggle="tooltip"><i class="mdi mdi-circle-edit-outline"></i> Suspend</a>
-                                <a href="{{ route('admin.job.category.delete', $item->id) }}" class="btn btn-sm btn-outline-danger" title="Delete" data-toggle="tooltip"><i class="mdi mdi-delete-outline"></i> Terminate</a>
+                                <a href="{{ route('admin.employee.delete', $item->id) }}" class="btn btn-sm btn-outline-danger" title="Delete" data-toggle="tooltip"><i class="mdi mdi-delete-outline"></i> Terminate</a>
                                 </div>
                             </td>
                         </tr>

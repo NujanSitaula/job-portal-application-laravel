@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('footer_contents', function (Blueprint $table) {
             $table->id();
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('instagram');
+            $table->string('linkedin');
+            $table->string('youtube');
+            $table->string('copyright_text');
             $table->timestamps();
         });
     }

@@ -11,6 +11,6 @@ class JobCategory extends Model
 
     public function jobcatcount()
     {
-        return $this->hasMany(Hiring::class, 'category', 'id');
+        return $this->hasMany(Hiring::class, 'category', 'id')->where('status', '=', 'Published');
     }
 }

@@ -22,36 +22,37 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="dash-widgets py-5 px-4 bg-success rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">46</h2>
-                            <p class="p-0 m-0 text-light fs-md">Submit Jobs</p>
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $totalJobPosted }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Total Job Added</p>
                             <i class="lni lni-empty-file"></i>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <div class="dash-widgets py-5 px-4 bg-purple rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">87</h2>
-                            <p class="p-0 m-0 text-light fs-md">Applications</p>
-                            <i class="lni lni-users"></i>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="dash-widgets py-5 px-4 bg-danger rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">312</h2>
-                            <p class="p-0 m-0 text-light fs-md">Notifications</p>
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $totalExpiredJob }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Expired Job</p>
                             <i class="lni lni-bar-chart"></i>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="dash-widgets py-5 px-4 bg-purple rounded">
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $totalActiveJob }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Active Job</p>
+                            <i class="lni lni-users"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="dash-widgets py-5 px-4 bg-blue rounded">
-                            <h2 class="ft-medium mb-1 fs-xl text-light">32</h2>
-                            <p class="p-0 m-0 text-light fs-md">Bookmark</p>
+                            <h2 class="ft-medium mb-1 fs-xl text-light">{{ $totalBoostedJob }}</h2>
+                            <p class="p-0 m-0 text-light fs-md">Boosted AD</p>
                             <i class="lni lni-heart"></i>
                         </div>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    {{-- <div class="col-lg-6 col-md-12">
                         <div class="dashboard-gravity-list with-icons">
                             <h4 class="mb-0 ft-medium">Recent Activities</h4>
                             <ul>
@@ -91,85 +92,26 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     <div class="col-lg-6 col-md-12">
                         <div class="dashboard-gravity-list invoices with-icons">
-                            <h4 class="mb-0 ft-medium">Invoices</h4>
+                            <h4 class="mb-0 ft-medium">Transaction History</h4>
                             <ul>
-                                
+                                @foreach($payments as $payment)
                                 <li><i class="dash-icon-box ti-files text-warning bg-light-warning"></i>
-                                    <strong class="ft-medium text-dark">Starter Plan</strong>
+                                    <strong class="ft-medium text-dark">{{ $payment['payment_method'] }}</strong>
                                     <ul>
-                                        <li class="unpaid">Unpaid</li>
-                                        <li>Order: #20551</li>
-                                        <li>Date: 01/08/2019</li>
+                                        <li class="paid">Paid</li>
+                                        <li>Transaction ID: #{{ $payment['tnxID'] }}</li>
+                                        <li>Date: {{ $payment['date_purchased'] }}</li>
                                     </ul>
                                     <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
+                                        <p class="button text-light bg-success">NPR {{ $payment->package_price }}</p>
                                     </div>
                                 </li>
+                                @endforeach
                                 
-                                <li><i class="dash-icon-box ti-files text-success bg-light-success"></i>
-                                    <strong class="ft-medium text-dark">Basic Plan</strong>
-                                    <ul>
-                                        <li class="paid">Paid</li>
-                                        <li>Order: #20550</li>
-                                        <li>Date: 01/07/2019</li>
-                                    </ul>
-                                    <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
-                                    </div>
-                                </li>
-
-                                <li><i class="dash-icon-box ti-files text-danger bg-light-danger"></i>
-                                    <strong class="ft-medium text-dark">Extended Plan</strong>
-                                    <ul>
-                                        <li class="paid">Paid</li>
-                                        <li>Order: #20549</li>
-                                        <li>Date: 01/06/2019</li>
-                                    </ul>
-                                    <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
-                                    </div>
-                                </li>
-                                
-                                <li><i class="dash-icon-box ti-files text-success bg-light-success"></i>
-                                    <strong class="ft-medium text-dark">Platinum Plan</strong>
-                                    <ul>
-                                        <li class="paid">Paid</li>
-                                        <li>Order: #20548</li>
-                                        <li>Date: 01/05/2019</li>
-                                    </ul>
-                                    <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
-                                    </div>
-                                </li>
-                                
-                                <li><i class="dash-icon-box ti-files text-warning bg-light-warning"></i>
-                                    <strong class="ft-medium text-dark">Extended Plan</strong>
-                                    <ul>
-                                        <li class="paid">Paid</li>
-                                        <li>Order: #20547</li>
-                                        <li>Date: 01/04/2019</li>
-                                    </ul>
-                                    <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
-                                    </div>
-                                </li>
-                                
-                                <li><i class="dash-icon-box ti-files text-info bg-light-info"></i>
-                                    <strong class="ft-medium text-dark">Platinum Plan</strong>
-                                    <ul>
-                                        <li class="paid">Paid</li>
-                                        <li>Order: #20546</li>
-                                        <li>Date: 01/03/2019</li>
-                                    </ul>
-                                    <div class="buttons-to-right">
-                                        <a href="javascript:void(0);" class="button text-light bg-warning">View Invoice</a>
-                                    </div>
-                                </li>
-
                             </ul>
                         </div>
                     </div>	

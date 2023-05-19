@@ -104,6 +104,9 @@ class SigninController extends Controller
         if (!$employee->isverified) {
             return redirect()->route('employee.signin')->with('error', 'Your email is not verified');
         }
+        if ($employee->isDeleted) {
+            return redirect()->route('employee.signin')->with('error', 'You have deleted this account ' . $employee->updated_at->diffForHumans());
+        }
 
         // Login the employee.
         Auth::guard('employee')->login($employee);
@@ -179,8 +182,8 @@ class SigninController extends Controller
         }
 
         // Update the employee password.
-        $employee->password = Hash::make($request->newpassword);
-        $employee->save();
+        $employer->password = Hash::make($request->newpassword);
+        $employer->save();
 
         // Redirect to the employee dashboard.
         return redirect()->route('employer.dashboard')->with('success', 'Password changed successfully');

@@ -28,7 +28,7 @@
                     @if(!Auth::guard('employer')->check())
                     <div class="jbd-01-right text-right">
                         <div class="jbl_button mb-2"><a href="{{ route('employee.apply', $jobPost->id) }}" class="btn btn-md rounded theme-bg-light theme-cl fs-sm ft-medium">Apply This Job</a></div>
-                        <div class="jbl_button"><a href="javascript:void(0);" class="btn btn-md rounded bg-white border fs-sm ft-medium">View Company</a></div>
+                        <div class="jbl_button"><a href="{{ route('employer.details', $jobPost->jobemployers->id) }}" class="btn btn-md rounded bg-white border fs-sm ft-medium">View Company</a></div>
                     </div>
                     @endif
                 </div>
@@ -149,7 +149,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <button type="button" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width" @if(Auth::guard('employer')->check()) disabled @endif>Apply For This Job</button>
+                            <button type="button" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width" @if(Auth::guard('employer')->check()) disabled @endif>Apply Via Email</button>
                         </div>
                         
                     </form>
@@ -176,87 +176,27 @@
         
         <!-- row -->
         <div class="row align-items-center">
-        
+        @foreach($relatedJobs as $relatedJob)
             <!-- Single -->
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="job_grid border rounded ">
                     <div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-                    <div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">Full Time</span></div>
+                    <div class="position-absolute ab-right"><span class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $relatedJob->jobtype->name }}</span></div>
                     <div class="job_grid_thumb mb-3 pt-5 px-3">
-                        <a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
+                        <a href="{{ route('jobs', $relatedJob->id) }}" class="d-block text-center m-auto"><img src="{{ asset('frontEndAssets/img').'/'. $relatedJob->jobemployers->logo }}" class="img-fluid" width="70" alt="" /></a>
                     </div>
                     <div class="job_grid_caption text-center pb-5 px-3">
-                        <h6 class="mb-0 lh-1 ft-medium medium"><a href="employer-detail.html" class="text-muted medium">Google Inc</a></h6>
-                        <h4 class="mb-0 ft-medium medium"><a href="job-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-                        <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
+                        <h6 class="mb-0 lh-1 ft-medium medium"><a href="{{ route('employer.details', $relatedJob->jobemployers->id) }}" class="text-muted medium">{{ $relatedJob->jobemployers->company_name }}</a></h6>
+                        <h4 class="mb-0 ft-medium medium"><a href="{{ route('jobs', $relatedJob->id) }}" class="text-dark fs-md">{{ $relatedJob->title }}</a></h4>
+                        <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>{{$relatedJob->joblocation->name }}</span></div>
                     </div>
                     <div class="job_grid_footer pb-4 px-3 d-flex align-items-center justify-content-between">
-                        <div class="df-1 text-muted"><i class="lni lni-wallet mr-1"></i>$50k - $80k PA.</div>
-                        <div class="df-1 text-muted"><i class="lni lni-timer mr-1"></i>3 days ago</div>
+                        <div class="df-1 text-muted"><i class="lni lni-wallet mr-1"></i>{{ $relatedJob->salaryrange->name }} PA.</div>
+                        <div class="df-1 text-muted"><i class="lni lni-timer mr-1"></i>{{ $relatedJob->created_at->diffForHumans() }}</div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Single -->
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <div class="job_grid border rounded ">
-                    <div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-                    <div class="position-absolute ab-right"><span class="medium bg-light-warning text-warning px-2 py-1 rounded">Part Time</span></div>
-                    <div class="job_grid_thumb mb-3 pt-5 px-3">
-                        <a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-                    </div>
-                    <div class="job_grid_caption text-center pb-5 px-3">
-                        <h6 class="mb-0 lh-1 ft-medium medium"><a href="employer-detail.html" class="text-muted medium">Google Inc</a></h6>
-                        <h4 class="mb-0 ft-medium medium"><a href="job-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-                        <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-                    </div>
-                    <div class="job_grid_footer pb-4 px-3 d-flex align-items-center justify-content-between">
-                        <div class="df-1 text-muted"><i class="lni lni-wallet mr-1"></i>$50k - $80k PA.</div>
-                        <div class="df-1 text-muted"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Single -->
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <div class="job_grid border rounded ">
-                    <div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-                    <div class="position-absolute ab-right"><span class="medium bg-light-purple text-purple px-2 py-1 rounded">Contract</span></div>
-                    <div class="job_grid_thumb mb-3 pt-5 px-3">
-                        <a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-                    </div>
-                    <div class="job_grid_caption text-center pb-5 px-3">
-                        <h6 class="mb-0 lh-1 ft-medium medium"><a href="employer-detail.html" class="text-muted medium">Google Inc</a></h6>
-                        <h4 class="mb-0 ft-medium medium"><a href="job-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-                        <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-                    </div>
-                    <div class="job_grid_footer pb-4 px-3 d-flex align-items-center justify-content-between">
-                        <div class="df-1 text-muted"><i class="lni lni-wallet mr-1"></i>$50k - $80k PA.</div>
-                        <div class="df-1 text-muted"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Single -->
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <div class="job_grid border rounded ">
-                    <div class="position-absolute ab-left"><button type="button" class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button></div>
-                    <div class="position-absolute ab-right"><span class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span></div>
-                    <div class="job_grid_thumb mb-3 pt-5 px-3">
-                        <a href="job-detail.html" class="d-block text-center m-auto"><img src="https://via.placeholder.com/120x120" class="img-fluid" width="70" alt="" /></a>
-                    </div>
-                    <div class="job_grid_caption text-center pb-5 px-3">
-                        <h6 class="mb-0 lh-1 ft-medium medium"><a href="employer-detail.html" class="text-muted medium">Google Inc</a></h6>
-                        <h4 class="mb-0 ft-medium medium"><a href="job-detail.html" class="text-dark fs-md">UI/UX Web Designer</a></h4>
-                        <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San Francisco</span></div>
-                    </div>
-                    <div class="job_grid_footer pb-4 px-3 d-flex align-items-center justify-content-between">
-                        <div class="df-1 text-muted"><i class="lni lni-wallet mr-1"></i>$50k - $80k PA.</div>
-                        <div class="df-1 text-muted"><i class="lni lni-timer mr-1"></i>3 days ago</div>
-                    </div>
-                </div>
-            </div>
-            
+            @endforeach
         </div>
         <!-- row -->
         

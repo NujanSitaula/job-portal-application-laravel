@@ -2,24 +2,26 @@
     <div class="footer-middle">
         <div class="container">
             <div class="row">
-                
+                @php
+                    $footerDetails = App\Models\FooterContent::first();
+                @endphp
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <div class="footer_widget">
                         <img src="{{ asset('frontEndAssets/img/jobscout.png') }}" class="img-footer small mb-2" alt="" />
                         
                         <div class="address mt-2">
-                            Buddha Marga 44622 Golfutar<br>Kathmandu 75601	
+                            {!! $footerDetails['address'] !!}	
                         </div>
                         <div class="address mt-3">
-                            01-5845256<br>support@jobscout.tech
+                            {{ $footerDetails['phone'] }}<br>{{ $footerDetails['email'] }}
                         </div>
                         <div class="address mt-2">
                             <ul class="list-inline">
-                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-twitter-filled"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-youtube"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-instagram-filled"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-linkedin-original"></i></a></li>
+                                <li class="list-inline-item"><a href="{{ $footerDetails['facebook'] }}" class="theme-cl"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="{{ $footerDetails['twitter'] }}" class="theme-cl"><i class="lni lni-twitter-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="{{ $footerDetails['youtube'] }}" class="theme-cl"><i class="lni lni-youtube"></i></a></li>
+                                <li class="list-inline-item"><a href="{{ $footerDetails['instagram'] }}" class="theme-cl"><i class="lni lni-instagram-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="{{ $footerDetails['linkedin'] }}" class="theme-cl"><i class="lni lni-linkedin-original"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,7 +86,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 col-md-12 text-center">
-                    <p class="mb-0">© 2023 JobScout. Developed By <a href="https://nujan.com.np">Nujan Sitaula</a>.</p>
+                    <p class="mb-0">{{ $footerDetails['copyright_text'] }} Developed By <a href="https://nujan.com.np">Nujan Sitaula</a>.</p>
                 </div>
             </div>
         </div>
@@ -126,7 +128,7 @@
                                 <label for="dd" class="checkbox-custom-label">Remember Me</label>
                             </div>	
                             <div class="eltio_k2">
-                                <a href="#" class="theme-cl">Lost Your Password?</a>
+                                <a href="{{ route('employee.recover') }}" class="theme-cl">Lost Your Password?</a>
                             </div>	
                         </div>
                     </div>

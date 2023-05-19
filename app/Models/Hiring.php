@@ -44,4 +44,9 @@ class Hiring extends Model
         return $this->belongsTo(Employer::class, 'company_id');
     }
 
+    public function boostingdetails()
+    {
+        return $this->hasMany(BoostOrder::class, 'package_id', 'id');
+    }
+
 }

@@ -3,7 +3,7 @@
     <div class="d-flex">
         <!-- LOGO -->
         <div class="navbar-brand-box">
-            <a href="index.html" class="logo logo-dark">
+            <a href="{{ route('admin.home') }}" class="logo logo-dark">
                 <span class="logo-sm">
                     <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="20">
                 </span>
@@ -12,7 +12,7 @@
                 </span>
             </a>
 
-            <a href="index.html" class="logo logo-light">
+            <a href="{{ route('admin.home') }}" class="logo logo-light">
                 <span class="logo-sm">
                     <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="20">
                 </span>
@@ -78,8 +78,8 @@
                                         User Management <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-form">
-                                        <a href="form-elements.html" class="dropdown-item">Manage Employees</a>
-                                        <a href="form-validation.html" class="dropdown-item">Manage Employers</a>
+                                        <a href="{{ route('admin.employee.manage') }}" class="dropdown-item">Manage Employees</a>
+                                        <a href="{{ route('admin.employer.manage') }}" class="dropdown-item">Manage Employers</a>
                                     </div>
                                 </div>
                                 <div class="dropdown">
@@ -132,51 +132,25 @@
                                 </div>
                             </div>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pages  <div class="arrow-down"></div>
+                               Blogs  <div class="arrow-down"></div>
                             </a>
-
-                            <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-lg dropdown-menu-right" aria-labelledby="topnav-pages">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div>
-
-                                            <a href="pages-login.html" class="dropdown-item">Login</a>
-                                            <a href="pages-register.html" class="dropdown-item">Register</a>
-                                            <a href="pages-recoverpw.html" class="dropdown-item">Recover Password</a>
-                                            <a href="pages-lock-screen.html" class="dropdown-item">Lock Screen</a>
-                                            <a href="pages-starter.html" class="dropdown-item">Starter Page</a>
-                                            <a href="pages-invoice.html" class="dropdown-item">Invoice</a>
-                                            <a href="pages-profile.html" class="dropdown-item">Profile</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div>
-
-                                            <a href="pages-maintenance.html" class="dropdown-item">Maintenance</a>
-                                            <a href="pages-comingsoon.html" class="dropdown-item">Coming Soon</a>
-                                            <a href="pages-timeline.html" class="dropdown-item">Timeline</a>
-                                            <a href="pages-faqs.html" class="dropdown-item">FAQs</a>
-                                            <a href="pages-pricing.html" class="dropdown-item">Pricing</a>
-                                            <a href="pages-404.html" class="dropdown-item">Error 404</a>
-                                            <a href="pages-500.html" class="dropdown-item">Error 500</a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="dropdown-menu" aria-labelledby="topnav-pages">
+                                <a href="{{ route('admin.post') }}" class="dropdown-item">List Blogs</a>
+                                <a href="{{ route('admin.post.create') }}" class="dropdown-item">Add Blog Post</a>
                             </div>
                         </li>
-
+                        
+                      
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Logs  <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-pages">
-                                <a href="{{ route('admin.job.location') }}" class="dropdown-item">Activity Log</a>
-                                <a href="{{ route('admin.job.category') }}" class="dropdown-item">System Logs</a>
-                                <a href="calendar.html" class="dropdown-item">Gateway Log</a>
+                                <a href="{{ route('admin.activitylog.view') }}" class="dropdown-item">Activity Log</a>
+                                {{-- <a href="{{ route('admin.job.category') }}" class="dropdown-item">System Logs</a>
+                                <a href="calendar.html" class="dropdown-item">Gateway Log</a> --}}
 
 
                             </div>
@@ -209,123 +183,9 @@
             </div>
         </div>
 
-        <div class="dropdown d-none d-sm-inline-block">
-            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="" src="{{ asset('assets/images/flags/us.jpg') }}" alt="Header Language" height="16">
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
+        
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="dropdown d-none d-lg-inline-block ml-1">
-            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                <i class="mdi mdi-fullscreen"></i>
-            </button>
-        </div>
-
-        <div class="dropdown d-inline-block">
-            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="mdi mdi-bell-outline"></i>
-                <span class="badge badge-danger badge-pill">3</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
-                <div class="p-3">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h6 class="m-0"> Notifications </h6>
-                        </div>
-                        <div class="col-auto">
-                            <a href="#!" class="small"> View All</a>
-                        </div>
-                    </div>
-                </div>
-                <div data-simplebar style="max-height: 230px;">
-                    <a href="" class="text-reset notification-item">
-                        <div class="media">
-                            <div class="avatar-xs mr-3">
-                                <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                    <i class="bx bx-cart"></i>
-                                </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                <div class="font-size-12 text-muted">
-                                    <p class="mb-1">If several languages coalesce the grammar</p>
-                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="text-reset notification-item">
-                        <div class="media">
-                            <img src="assets/images/users/avatar-3.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                            <div class="media-body">
-                                <h6 class="mt-0 mb-1">James Lemire</h6>
-                                <div class="font-size-12 text-muted">
-                                    <p class="mb-1">It will seem like simplified English.</p>
-                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="text-reset notification-item">
-                        <div class="media">
-                            <div class="avatar-xs mr-3">
-                                <span class="avatar-title bg-success rounded-circle font-size-16">
-                                    <i class="bx bx-badge-check"></i>
-                                </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                <div class="font-size-12 text-muted">
-                                    <p class="mb-1">If several languages coalesce the grammar</p>
-                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="" class="text-reset notification-item">
-                        <div class="media">
-                            <img src="assets/images/users/avatar-4.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                            <div class="media-body">
-                                <h6 class="mt-0 mb-1">Salena Layfield</h6>
-                                <div class="font-size-12 text-muted">
-                                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
-                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="p-2 border-top">
-                    <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                        <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="dropdown d-inline-block">
             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/'.Auth::guard('admin')->user()->photo) }}" alt="Header Avatar">
@@ -335,9 +195,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <!-- item-->
                 <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
-                <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a>
-                <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
-                <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
+                <a class="dropdown-item d-block" href="#"><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
             </div>

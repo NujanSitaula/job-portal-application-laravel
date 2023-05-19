@@ -27,8 +27,13 @@ class EmployeeController extends Controller
         $bookmarkedJobs = EmployeeBookmark::where('employee_id', Auth::guard('employee')->user()->id)->count();
         $approvedJobs = EmployeeApplication::where('employee_id', Auth::guard('employee')->user()->id)->where('status', 'approved')->count();
         $rejectrdJobs = EmployeeApplication::where('employee_id', Auth::guard('employee')->user()->id)->where('status', 'rejected')->count();
+        $activityLog = ActivityLog::where('initiator_id', Auth::guard('employee')->user()->id)
+        ->where('initiator_type', 'employee')
+        ->orderBy('id', 'DESC')
+        ->limit(12)
+        ->get();
 
-        return view('employee.dashboard', compact('appliedJobs', 'bookmarkedJobs', 'approvedJobs', 'rejectrdJobs'));
+        return view('employee.dashboard', compact('appliedJobs', 'bookmarkedJobs', 'approvedJobs', 'rejectrdJobs', 'activityLog'));
     }
 
     public function apply($id)
@@ -157,6 +162,8 @@ class EmployeeController extends Controller
         $activityLog->activity_type = 'apply';
         $activityLog->activity_from_ip = $ip;
         $activityLog->activity_from = $browser . ' on ' . $os;
+        $activityLog->initiator_id = Auth::guard('employee')->user()->id;
+        $activityLog->initiator_type = 'employee';
         $activityLog->save();
         
 
@@ -266,6 +273,35 @@ class EmployeeController extends Controller
         $employee->update();
 
         return redirect()->back()->with('success', 'Social links has been updated successfully');
+    }
+
+    public function terminateEmployee($id)
+    { //update names and other details instead of deleting
+      
+        $employee = Employee::where('id', $id)->first();
+        $employee->firstname = 'Deleted';
+        $employee->lastname = 'User';
+        $employee->email = Str::random(10).'@gmail.com';
+        $employee->phone = '0000000000';
+        $employee->country = 'Unknown';
+        $employee->state = 'Unknown';
+        $employee->city = 'Unknown';
+        $employee->address = 'Unknown';
+        $employee->isMarried = 'Unknown';
+        $employee->dateOfBirth = 'Unknown';
+        $employee->website = 'Unknown';
+        $employee->bio = 'Unknown';
+        $employee->facebook = 'Unknown';
+        $employee->twitter = 'Unknown';
+        $employee->linkedin = 'Unknown';
+        $employee->github = 'Unknown';
+        $employee->update();
+
+        Auth::guard('employee')->logout();
+
+        // Redirect to the employer signin page.
+        return redirect()->route('employee.signin')->with('success', 'Employee has been deleted successfully');;
+        
     }
 
    

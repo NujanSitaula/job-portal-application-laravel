@@ -59,6 +59,15 @@
                         <!-- Right Menu -->
                         <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12">
                             <div class="currency-selector dropdown js-dropdown float-right mr-3">
+                                @if (Auth::guard('employee')->check())
+                                <a href="{{ route('employee.logout') }}" class="text-light medium">Log Out</a>
+                            @elseif(Auth::guard('employer')->check())
+                            <a href="{{ route('employer.logout') }}" class="text-light medium">Log Out</a>
+                            @else
+
+                               @endif
+                            </div>
+                            <div class="currency-selector dropdown js-dropdown float-right mr-3">
                                 <a href="{{ route('employee.job.bookmarks') }}" class="text-light medium">Wishlist</a>
                             </div>
 
@@ -68,12 +77,13 @@
                                         class="text-light medium">{{ auth()->guard('employee')->user()->firstname .' ' .Auth::guard('employee')->user()->lastname }}</a>
                                 @elseif(Auth::guard('employer')->check())
                                     <a href="{{ route('employer.dashboard') }}"
-                                        class="text-light medium">{{ auth()->guard('employer')->user()->company_name }}</a>
+                                        class="text-light medium">{{ auth()->guard('employer')->user()->employer_name }}</a>
                                 @else
                                     <a href="{{ route('employee.dashboard') }}" data-toggle="modal" data-target="#login"
                                         class="text-light medium">My Account</a>
                                 @endif
                             </div>
+                            
 
                         </div>
 

@@ -40,7 +40,8 @@ class RecoverController extends Controller
         $resetLink = url('employer/recover/'.$token.'/'.$request->email);
         $subject = 'Password Reset Link';
         $message = $resetLink;
-        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message));
+        $fullname = 'something';
+        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.emailTemplate', ['employer_name' => $fullname]));
 
         return redirect()->route('employer.recover')->with('success', 'Password reset link has been sent to your email');
     }
@@ -94,7 +95,8 @@ class RecoverController extends Controller
         $resetLink = url('employee/recover/'.$token.'/'.$request->email);
         $subject = 'Password Reset Link';
         $message = $resetLink;
-        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message));
+        $fullname = $employee->firstname.' '.$employee->lastname;
+        \Mail::to($request->email)->send(new WebsiteMailController($subject, $message, 'admin.email.emailTemplate', ['employer_name' => $fullname]));
 
         return redirect()->route('employee.recover')->with('success', 'Password reset link has been sent to your email');
     }

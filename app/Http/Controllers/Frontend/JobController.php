@@ -20,8 +20,9 @@ class JobController extends Controller
         
         // $jobPost->view_count = $blogPost->view_count + 1;
         // $jobPost->update();
+        $relatedJobs = Hiring::where('category', $jobPost->category)->where('id', '!=', $jobPost->id)->get()->take(3);
 
-        return view('frontend.singlehiring', compact('jobPost'));
+        return view('frontend.singlehiring', compact('jobPost', 'relatedJobs'));
     }
 
     public function getApplied()
@@ -30,6 +31,7 @@ class JobController extends Controller
  
         // $jobPost->view_count = $blogPost->view_count + 1;
         // $jobPost->update();
+        
 
         return view('employee.listapplied', compact('jobPost'));
     }

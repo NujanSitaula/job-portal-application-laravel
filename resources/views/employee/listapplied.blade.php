@@ -100,7 +100,7 @@
                 </div>
             </div>
             
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <ul class="pagination">
                         <li class="page-item">
@@ -122,7 +122,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
                 
         </div>
 @endsection

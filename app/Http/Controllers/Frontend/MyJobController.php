@@ -18,6 +18,10 @@ class MyJobController extends Controller
         // $jobPost->view_count = $blogPost->view_count + 1;
         // $jobPost->update();
 
-        return view('frontend.singlehiring', compact('jobPost'));
+        $relatedJobs = Hiring::where('category', $jobPost->category)->where('id', '!=', $jobPost->id)->get()->take(3);
+
+        dd($relatedJobs);
+
+        return view('frontend.singlehiring', compact('jobPost', 'relatedJobs'));
     }
 }

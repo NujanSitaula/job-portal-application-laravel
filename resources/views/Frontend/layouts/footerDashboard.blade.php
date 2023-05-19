@@ -71,7 +71,41 @@
 					  </div>
 				
 					<div class="modal-body p-5">
-						{{ $datas->employee->firstname  }} {{ $datas->employee->lastname }}
+						
+						<table class="table">
+							<tbody>
+							  <tr>
+								<th>Full Name</th>
+								<td>{{ $datas->employee->firstname }} {{ $datas->employee->lastname }}</td>
+								
+							  </tr>
+							  <tr>
+								<th>Email</th>
+								<td>{{ $datas->employee->email }}</td>
+								
+							  </tr>
+							  <tr>
+								<th>Designation</th>
+								<td>{{ $datas->employee->designation }}</td>
+								
+							  </tr>
+							  <tr>
+								<th>Phone</th>
+								<td>{{ $datas->employee->phone }}</td>
+								
+							  </tr>
+							  <tr>
+								<th>DOB</th>
+								<td>{{ $datas->employee->dateOfBirth }}</td>
+								
+							  </tr>
+							  <tr>
+								<th>About</th>
+								<td>{{ $datas->employee->bio }}</td>
+								
+							  </tr>
+							</tbody>
+						  </table>
 					</div>
 				</div>
 			</div>
