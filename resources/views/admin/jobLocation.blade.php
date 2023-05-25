@@ -14,14 +14,14 @@
                         </p>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-category-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Location</button>
+                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-locations-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Location</button>
                     </div>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
+                            <th>Locations ID</th>
+                            <th>Locations Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -48,11 +48,11 @@
     <!-- end col -->
 </div>
 
-<div class="modal fade bs-add-category-modal-center" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
+<div class="modal fade bs-add-locations-modal-center" tabindex="-1" role="dialog" aria-labelledby="addLocationsModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Add New Category</h5>
+                <h5 class="modal-title mt-0">Add New Locations</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -62,7 +62,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="text">Location Name</label> 
-                      <input id="text" name="name" placeholder="Enter Category Name" type="text" class="form-control">
+                      <input id="text" name="name" placeholder="Enter Locations Name" type="text" class="form-control">
                     </div> 
                     <div class="form-group">
                       <button name="submit" type="submit" class="btn btn-primary form-control">Add Location</button>

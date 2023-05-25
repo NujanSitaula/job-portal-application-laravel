@@ -44,9 +44,9 @@
 
                             <div class="dropdown-menu" aria-labelledby="topnav-components">
                                 <a href="{{ route('admin.homepage.edit') }}" class="dropdown-item">Edit Homepage</a>
-                                <a href="calendar.html" class="dropdown-item">Manage Testimonial</a>
+                                {{-- <a href="calendar.html" class="dropdown-item">Manage Testimonial</a>
                                 <a href="calendar.html" class="dropdown-item">Menu Item</a>
-                                <a href="calendar.html" class="dropdown-item">Menu Item</a>
+                                <a href="calendar.html" class="dropdown-item">Menu Item</a> --}}
                                
 
                             </div>
@@ -60,7 +60,7 @@
 
                                 <a href="{{ route('admin.job.category') }}" class="dropdown-item">Category</a>
                                 <a href="{{ route('admin.job.location') }}" class="dropdown-item">Location</a>
-                                <a href="calendar.html" class="dropdown-item">Salary</a>
+                                {{-- <a href="calendar.html" class="dropdown-item">Salary</a> --}}
                                 <a href="{{ route('admin.job.type') }}" class="dropdown-item">Job Type</a>
                                 <a href="{{ route('admin.job.experience') }}" class="dropdown-item">Experience</a>
 
@@ -82,7 +82,7 @@
                                         <a href="{{ route('admin.employer.manage') }}" class="dropdown-item">Manage Employers</a>
                                     </div>
                                 </div>
-                                <div class="dropdown">
+                                {{-- <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-table" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Hiring Management <div class="arrow-down"></div>
                                     </a>
@@ -97,8 +97,8 @@
                                     <div class="dropdown-menu" aria-labelledby="topnav-table">
                                         <a href="charts-apex.html" class="dropdown-item">Manage Applications</a>
                                     </div>
-                                </div>
-                                <div class="dropdown">
+                                </div> --}}
+                                {{-- <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-table" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Icons <div class="arrow-down"></div>
                                     </a>
@@ -108,8 +108,8 @@
                                         <a href="icons-dripicons.html" class="dropdown-item">Dripicons</a>
                                         <a href="icons-fontawesome.html" class="dropdown-item">Font awesome</a>
                                     </div>
-                                </div>
-                                <div class="dropdown">
+                                </div> --}}
+                                {{-- <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-map" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Logs <div class="arrow-down"></div>
                                     </a>
@@ -117,9 +117,9 @@
                                         <a href="maps-google.html" class="dropdown-item">Activity Log</a>
                                         <a href="maps-vector.html" class="dropdown-item">System Log</a>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="dropdown">
+                                {{-- <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-layouts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Layouts <div class="arrow-down"></div>
                                     </a>
@@ -129,7 +129,7 @@
                                         <a href="layouts-boxed.html" class="dropdown-item">Boxed</a>
                                         <a href="layouts-topbar-light.html" class="dropdown-item">Topbar Light</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </li>
                         <li class="nav-item dropdown">

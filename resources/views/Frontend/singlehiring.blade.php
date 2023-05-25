@@ -112,7 +112,7 @@
             
             <!-- Sidebar -->
             
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            {{-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <div class="jb-apply-form bg-white shadow rounded py-3 px-4 box-static">
                     <h4 class="ft-medium fs-md mb-3">Intrested in this job?</h4>
                     
@@ -154,7 +154,7 @@
                         
                     </form>
                 </div>
-            </div>
+            </div> --}}
             
         </div>
     </div>

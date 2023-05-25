@@ -10,18 +10,18 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="card-title">All Locations</h4>
-                        <p class="card-title-desc">All the categories must have an icon, To add the icon you need to input the class name of the icon for example: <code>lni lni-laptop-phone</code>. To get the list of icons and the class name please visit <a href="https://lineicons.com/icons/" target="_blank">Lineicons</a></code>.
+                        <p class="card-title-desc">All the locations must have an icon, To add the icon you need to input the class name of the icon for example: <code>lni lni-laptop-phone</code>. To get the list of icons and the class name please visit <a href="https://lineicons.com/icons/" target="_blank">Lineicons</a></code>.
                         </p>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-category-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Location</button>
+                        <button class="btn btn-primary float-right" data-toggle="modal" data-target=".bs-add-location-modal-center"><i class="far fa-plus-square mr-2"></i> Add New Location</button>
                     </div>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
+                            <th>Location ID</th>
+                            <th>Location Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
     <!-- end col -->
 </div>
 
-<div class="modal fade bs-add-category-modal-center" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
+<div class="modal fade bs-add-location-modal-center" tabindex="-1" role="dialog" aria-labelledby="addLocationModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -62,7 +62,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="text">Location Name</label> 
-                      <input id="text" name="name" placeholder="Enter Category Name" type="text" class="form-control">
+                      <input id="text" name="name" placeholder="Enter Location Name" type="text" class="form-control">
                     </div> 
                     <div class="form-group">
                       <button name="submit" type="submit" class="btn btn-primary form-control">Add Location</button>

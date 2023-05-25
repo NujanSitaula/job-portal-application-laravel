@@ -23,9 +23,9 @@
     <div class="dashboard-widg-bar d-block">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="d-flex align-items-center p-3 alert alert-danger">
+                {{-- <div class="d-flex align-items-center p-3 alert alert-danger">
                     Your listings will be automatically removed after 30 days.
-                </div>
+                </div> --}}
                 <div class="mb-4 tbl-lg rounded overflow-hidden">
                     <div class="table-responsive bg-white">
                         <table class="table">
@@ -86,9 +86,9 @@
                                     <td>
                                         <div class="dash-action">
                                             @if($item->isBoosted == 'yes')
-                                           <button class="btn btn-primary">Extend Days</button>
+                                           <a href="{{ route('employer.employee.boost.submit', $item->id) }}" class="btn btn-primary">Extend Days</a>
                                            @else
-                                           <button class="btn btn-primary">Boost Job</button>
+                                           <a href="{{ route('employer.employee.boost.submit', $item->id) }}" class="btn btn-primary">Boost Job</a>
                                            @endif
                                         </div>
                                     </td>
