@@ -59,6 +59,7 @@ class EmployerHiringController extends Controller
         $hiring->education = $request->education;
         $hiring->gender = $request->gender;
         $hiring->status = $request->status;
+        $hiring->company_id = auth()->user()->id;
         $hiring->token = $request->token;
         $hiring->save();
 
