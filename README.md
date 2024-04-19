@@ -1,13 +1,3 @@
-<h1 align="center">Nujan Sitaula</h1>
-<p align="center"><strong>UniID:</strong> 2059622</p>
-<p align="center"><strong>Supervisor Name:</strong> Padam Ghimire</p>
-<p align="center"><strong>Reader Name:</strong> Anmol Adhikari</p>
-   
-
-<br/>
-<div align="center"><img src="demo.gif"></img></div>
-
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://i.ibb.co/xYZNHpw/Copy-of-jobscout.png" alt="jobscout" border="0" width="200" alt="Laravel Logo"></a></p>
 
 ## About JobScout
 
