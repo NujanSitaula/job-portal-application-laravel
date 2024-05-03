@@ -14,6 +14,7 @@ Employers can create their profiles, post job listings, and search for candidate
 2. Navigate to htdocs directory inside xampp or www directory in case of wampp. 
 3. Download this project as zip and extract it inside the htdocs or www directory.
 4. Import a SQL file provided with this project or run migration simply by running <code>php artisan migrate</code>.
+5. Run the seeders by running <code>php artisan db:seed</code>.
 5. Since, there are no seeders, It is recommended to import the sql file into the database.
 6. Update the .env file with all the database credentials and the database name.
 7. After Successfully completing the above steps, simply run this command to start artisan server <code>php artisan serve</code>.
